@@ -7,127 +7,94 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
+<body class="bg-gray-50 text-gray-900 font-sans">
 
-    <nav class="sticky top-0 z-50 bg-white border-b border-slate-200 px-6 py-3 flex justify-between items-center shadow-sm">
+    <nav class="sticky top-0 z-50 bg-white border-b p-4 flex justify-between items-center shadow-sm">
         <div class="flex items-center gap-2">
             <div class="bg-blue-600 text-white p-2 rounded-lg"><i class="fas fa-graduation-cap"></i></div>
-            <h1 class="text-xl font-black text-slate-800 tracking-tighter">GIFTUHUB <span class="text-blue-600 italic">ACADEMY</span></h1>
+            <h1 class="text-xl font-bold tracking-tighter text-blue-800">GIFTUHUB <span class="text-gray-400">ACADEMY</span></h1>
         </div>
-        <div class="flex items-center gap-4">
-            <a href="https://tiktok.com/@updyrhmn13" target="_blank" class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-700 hover:bg-black hover:text-white transition shadow-sm"><i class="fab fa-tiktok"></i></a>
-            <a href="https://wa.me/252613040087" target="_blank" class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center text-white hover:bg-green-600 transition shadow-lg shadow-green-200"><i class="fab fa-whatsapp text-lg"></i></a>
+        <div class="flex gap-3">
+            <a href="https://tiktok.com/@updyrhmn13" class="text-pink-600 text-xl hover:scale-110 transition"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/252613040087" class="text-green-500 text-xl hover:scale-110 transition"><i class="fab fa-whatsapp"></i></a>
         </div>
     </nav>
 
-    <div class="container mx-auto flex flex-col lg:flex-row">
-        <aside class="w-full lg:w-80 bg-white border-r border-slate-200 p-6 min-h-screen">
-            <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Phase 1: IT Fundamentals</h3>
-            <nav class="space-y-2" id="lesson-menu">
-                </nav>
+    <div class="container mx-auto flex flex-col md:flex-row min-h-screen">
+        <aside class="w-full md:w-72 bg-white border-r p-6 space-y-4">
+            <h3 class="text-xs font-bold text-gray-400 uppercase">Casharrada Phase 1</h3>
+            <button onclick="loadLesson(1)" class="w-full text-left p-3 rounded-xl hover:bg-blue-50 border border-transparent hover:border-blue-200 transition text-sm font-medium"><i class="fas fa-microchip mr-2 text-blue-600"></i> Lesson 1: Hardware</button>
+            <button onclick="loadLesson(2)" class="w-full text-left p-3 rounded-xl hover:bg-blue-50 border border-transparent hover:border-blue-200 transition text-sm font-medium"><i class="fas fa-globe mr-2 text-blue-600"></i> Lesson 2: Internet</button>
+            
+            <div class="mt-10 p-4 bg-green-50 rounded-2xl border border-green-100">
+                <h4 class="text-xs font-bold text-green-800 uppercase">Support toos ah</h4>
+                <p class="text-xs text-green-600 mt-1 mb-3">Ma u baahan tahay caawinaad?</p>
+                <a href="https://wa.me/252613040087" class="block text-center bg-green-500 text-white py-2 rounded-lg text-xs font-bold shadow-md hover:bg-green-600 transition">
+                    <i class="fab fa-whatsapp mr-1"></i> WhatsApp Macallinka
+                </a>
+            </div>
         </aside>
 
         <main class="flex-1 p-6 lg:p-12">
-            <div id="content-area" class="max-w-4xl mx-auto space-y-12 text-center py-20">
-                <i class="fas fa-arrow-left text-4xl text-blue-200 mb-4"></i>
-                <h2 class="text-2xl font-bold text-slate-400">Fadlan dhinaca ka dooro cashar si aad u bilowdo.</h2>
-            </div>
+            <div id="lesson-content" class="max-w-4xl mx-auto space-y-10">
+                </div>
         </main>
     </div>
 
     <script>
-        // XOGTA CASHARRADA (Halkan ku dar cashar kasta)
         const lessons = {
             1: {
-                title: "Lesson 1: Barashada Hardware-ka",
+                title: "Lesson 1: Hardware & Software Basics",
+                doc: "Hardware waa qaybaha muuqda ee computer-ka sida Mouse, Keyboard, iyo Screen. Software waa barnaamijyada gudaha ku jira sida Windows, Word, iyo Browser-ka. Example: Haddii aad computer-ka taabato waa Hardware, haddii aad Facebook gasho waa Software.",
                 video: "https://github.com/user-attachments/assets/a090ac1f-540e-4e41-b274-eedeb099d1ce",
-                doc: "Hardware waa dhammaan qaybaha aad gacanta ku taaban karto ee computer-ka sida Mouse, Keyboard, iyo Screen. Waa jidhka computer-ka.",
-                example: "Tusaale: Haddii aad computer-ka dusha ka taabato waa Hardware.",
-                assignment: "Qor 5 qalab oo Hardware ah oo aad xafiiskaaga ku aragto.",
-                practical: "Isku xir computer-ka, aqoonsashada qaybaha System Unit-ka."
+                practical: "Isku day inaad aqoonsato qaybaha computer-kaaga oo aad kala saarto Hardware iyo Software.",
+                assignment: "Qor 5 tusaale oo Hardware ah iyo 5 Software ah."
             },
             2: {
-                title: "Lesson 2: CPU & RAM (Maskaxda PC-ga)",
+                title: "Lesson 2: Internet & Online Security",
+                doc: "Internet-ku waa shabakad isku xirta dunida oo dhan. Waxaad ku xiriiri kartaa adigoo isticmaalaya Browser. Example: Markaad Google wax ka raadinayso, waxaad isticmaalaysaa matoorka raadinta ugu weyn.",
                 video: "https://github.com/user-attachments/assets/a090ac1f-540e-4e41-b274-eedeb099d1ce",
-                doc: "CPU waa maskaxda amarka bixisa, RAM-kuna waa xawaaraha uu PC-gaagu ku shaqeeyo.",
-                example: "Tusaale: Intuu RAM-ku weyn yahay, ayuu computer-ku ka dheereeyaa.",
-                assignment: "Soo ogow inta GB uu yahay RAM-ka computer-kaaga.",
-                practical: "Baro sida loo hubiyo 'System Information' ee Windows-ka."
+                practical: "Baro sida loo abuuro password adag oo ammaan ah.",
+                assignment: "Samee Gmail account cusub oo ammaan ah."
             }
         };
 
-        // Shaqada menu-ka dhisaya
-        const menu = document.getElementById('lesson-menu');
-        Object.keys(lessons).forEach(id => {
-            menu.innerHTML += `
-                <button onclick="loadLesson(${id})" class="w-full flex items-center gap-3 p-4 rounded-xl text-slate-600 hover:bg-blue-50 hover:text-blue-600 font-bold text-sm transition text-left border border-transparent">
-                    <i class="fas fa-book-open"></i> Lesson ${id}: ${lessons[id].title.split(':')[1]}
-                </button>
-            `;
-        });
-
-        // Shaqada casharka soo bandhigaysa
         function loadLesson(id) {
             const lesson = lessons[id];
-            const container = document.getElementById('content-area');
-
+            const container = document.getElementById('lesson-content');
             container.innerHTML = `
-                <div class="space-y-6 text-left">
-                    <h2 class="text-4xl font-black text-slate-900 tracking-tight">${lesson.title}</h2>
-                    
-                    <div class="relative bg-black rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
-                        <video controls class="w-full aspect-video" autoplay>
-                            <source src="${lesson.video}" type="video/mp4">
-                        </video>
-                        <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-1.5 rounded-full text-[10px] font-bold">
-                            <i class="fas fa-robot mr-1"></i> AI TEACHER SOMALIA
-                        </div>
-                    </div>
+                <h2 class="text-3xl font-black text-gray-800">${lesson.title}</h2>
+                
+                <div class="bg-black rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+                    <video controls class="w-full aspect-video"><source src="${lesson.video}" type="video/mp4"></video>
+                </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm">
-                            <h4 class="text-blue-600 font-bold text-xs uppercase mb-3 underline decoration-blue-200 underline-offset-4">Akhris & Dukumenti</h4>
-                            <p class="text-slate-600 text-sm leading-relaxed">${lesson.doc}</p>
-                            <div class="mt-4 p-4 bg-slate-50 rounded-xl border-l-4 border-slate-300 italic text-xs text-slate-500">${lesson.example}</div>
-                        </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="font-bold text-lg mb-3 flex items-center gap-2 text-blue-600"><i class="fas fa-book-open"></i> Dukumentiga Akhriska</h3>
+                    <p class="text-gray-600 leading-relaxed">${lesson.doc}</p>
+                </div>
 
-                        <div class="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-sm space-y-4">
-                            <h4 class="text-orange-500 font-bold text-xs uppercase mb-3 underline decoration-orange-200 underline-offset-4">Shaqo Guri (Assignment)</h4>
-                            <p class="text-slate-700 font-bold text-sm">${lesson.assignment}</p>
-                            <a href="https://wa.me/252613040087?text=Macallin%20waxaan%20soo%20gudbinayaa%20Assignment-ka%20Lesson%20${id}" 
-                               class="flex items-center justify-center gap-2 w-full bg-slate-900 text-white py-4 rounded-2xl text-xs font-black uppercase hover:bg-blue-600 transition">
-                                <i class="fas fa-upload"></i> Submit via WhatsApp
-                            </a>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+                        <h4 class="font-bold text-blue-800 mb-2"><i class="fas fa-vial"></i> Practical & Example</h4>
+                        <p class="text-sm text-blue-700">${lesson.practical}</p>
                     </div>
+                    <div class="bg-orange-50 p-6 rounded-2xl border border-orange-100">
+                        <h4 class="font-bold text-orange-800 mb-2"><i class="fas fa-tasks"></i> Assignment</h4>
+                        <p class="text-sm text-orange-700">${lesson.assignment}</p>
+                    </div>
+                </div>
 
-                    <div class="bg-blue-600 p-8 rounded-[2rem] text-white shadow-xl shadow-blue-100">
-                        <h4 class="font-black text-xs uppercase tracking-widest mb-4"><i class="fas fa-tools mr-2 text-blue-200"></i> Layli Gacmeed (Practical)</h4>
-                        <p class="text-blue-50 text-sm">${lesson.practical}</p>
-                    </div>
-
-                    <div class="pt-10 border-t border-slate-200 space-y-4">
-                        <h4 class="font-black text-slate-800 uppercase text-xs tracking-widest flex items-center gap-2"><i class="fas fa-comments text-blue-600"></i> Aragtidaada (Comments)</h4>
-                        <div class="bg-white p-3 rounded-[2rem] border border-slate-200 shadow-sm flex flex-col md:flex-row gap-3">
-                            <input type="text" id="comment-box" placeholder="Maxaad ka fahamtay casharkan?..." class="flex-1 px-6 py-4 bg-transparent outline-none text-sm font-medium">
-                            <button onclick="postComment()" class="bg-blue-600 text-white px-10 py-4 rounded-2xl font-black text-xs uppercase hover:bg-blue-700 transition shadow-lg shadow-blue-100">Post</button>
-                        </div>
-                        <div id="comment-display" class="space-y-2"></div>
-                    </div>
+                <div class="bg-gray-100 p-6 rounded-2xl">
+                    <h4 class="font-bold mb-4 text-sm uppercase text-gray-500">Comments / Ra'yiga Ardayda</h4>
+                    <textarea class="w-full p-4 rounded-xl border-none focus:ring-2 focus:ring-blue-400 text-sm" rows="3" placeholder="Maxaad ka fahamtay casharkan?"></textarea>
+                    <button class="mt-3 bg-blue-600 text-white px-6 py-2 rounded-lg font-bold text-sm shadow-md hover:bg-blue-700">Submit Comment</button>
                 </div>
             `;
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function postComment() {
-            const input = document.getElementById('comment-box');
-            const display = document.getElementById('comment-display');
-            if(input.value.trim() !== "") {
-                display.innerHTML = `<div class="bg-slate-100 p-4 rounded-2xl text-sm font-medium text-slate-700 animate-pulse">Waad ku mahadsantahay ra'yigaaga: "${input.value}"</div>` + display.innerHTML;
-                input.value = "";
-                alert("Mahadsanid! Comment-kaaga waa la soo gudbiyey.");
-            }
-        }
+        window.onload = () => loadLesson(1);
     </script>
 </body>
 </html>
