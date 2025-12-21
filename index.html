@@ -235,3 +235,69 @@
     </script>
 </body>
 </html>
+
+<div id="payment-gate" class="bg-white p-8 rounded-[3rem] shadow-2xl border-4 border-blue-50 mt-12 animate-content">
+    <div class="text-center mb-10">
+        <div class="inline-block bg-yellow-100 text-yellow-700 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest mb-4">
+            <i class="fas fa-lock mr-2"></i> Qaybtan waa xirantahay (Paid Content)
+        </div>
+        <h2 class="text-3xl font-black text-slate-800 tracking-tighter">GIFTUHUB PREMIUM ACCESS</h2>
+        <p class="text-slate-500 mt-2">Bixi lacagta course-ka si aad u furto Phase 2, Phase 3, iyo Shahaadada.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div class="relative bg-gradient-to-br from-blue-600 to-blue-800 p-8 rounded-[2.5rem] text-white shadow-2xl overflow-hidden group">
+            <div class="absolute -right-10 -top-10 w-40 h-40 bg-white opacity-10 rounded-full group-hover:scale-150 transition duration-700"></div>
+            <div class="relative z-10 space-y-6">
+                <div class="flex justify-between items-start">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Hormuud_Telecom_Logo.png/640px-Hormuud_Telecom_Logo.png" class="h-10 brightness-200">
+                    <span class="font-black text-xl italic text-yellow-400">EVC Plus</span>
+                </div>
+                <div>
+                    <p class="text-[10px] uppercase tracking-widest opacity-70">Lambarka Lacag Qaataha</p>
+                    <h3 class="text-3xl font-black tracking-[0.2em]">613040087</h3>
+                </div>
+                <div class="pt-4 border-t border-blue-400/30 flex justify-between items-end">
+                    <div>
+                        <p class="text-[10px] uppercase opacity-70 font-bold text-blue-200">Qiimaha Course-ka</p>
+                        <p class="text-2xl font-black">$5.00 <span class="text-xs font-normal opacity-60">Vat Inc.</span></p>
+                    </div>
+                    <div class="text-right">
+                        <i class="fas fa-shield-alt text-2xl opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            <h4 class="font-black text-slate-800 uppercase text-xs tracking-widest">Tallaabooyinka Lacag Bixinta:</h4>
+            <ul class="space-y-4">
+                <li class="flex gap-4 items-start">
+                    <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-[10px] font-bold">1</span>
+                    <p class="text-sm text-slate-600">Ka dhufo moobilkaaga <b>*712*613040087*5#</b></p>
+                </li>
+                <li class="flex gap-4 items-start">
+                    <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-[10px] font-bold">2</span>
+                    <p class="text-sm text-slate-600">Markaad lacagta dirto, qaado <b>Screenshot</b> caddeyn ah.</p>
+                </li>
+                <li class="flex gap-4 items-start">
+                    <span class="bg-blue-600 text-white w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-[10px] font-bold">3</span>
+                    <p class="text-sm text-slate-600">Riix badhanka hoose si aad ugu dirto caddeynta <b>Eng Abdirahman</b>.</p>
+                </li>
+            </ul>
+
+            <button onclick="redirectToWhatsApp()" class="w-full bg-green-500 hover:bg-green-600 text-white py-5 rounded-2xl font-black uppercase tracking-widest shadow-xl shadow-green-100 transition transform hover:-translate-y-1 flex items-center justify-center gap-3">
+                <i class="fab fa-whatsapp text-2xl"></i>
+                Hadda Dir Caddeynta Lacagta
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function redirectToWhatsApp() {
+        const phone = "252613040087";
+        const message = encodeURIComponent("Asc Eng Abdirahman, waxaan bixiyey lacagta GIFTUHUB Academy ($5). Halkan waa Screenshot-kii. Fadlan ii fura casharrada Phase 2 & 3.");
+        window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+    }
+                        </script>
