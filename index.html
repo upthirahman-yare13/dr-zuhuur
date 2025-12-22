@@ -6,212 +6,134 @@
     <title>GIFTUHUB ACADEMY | Eng Abdirahman</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <style>
-        .locked-overlay { backdrop-filter: blur(8px); background: rgba(255,255,255,0.7); }
-        .tab-btn.active { border-bottom: 3px solid #2563eb; color: #2563eb; }
-    </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body class="bg-gray-50 text-slate-900 font-sans">
 
-    <div id="admin-gate" class="hidden fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-4">
-        <div class="bg-white p-8 rounded-3xl w-full max-w-sm">
-            <h2 class="font-black text-xl mb-4 text-center">Admin Login</h2>
-            <input type="password" id="admin-pass" placeholder="Password-kaaga" class="w-full p-4 border rounded-2xl mb-4 outline-none">
-            <button onclick="loginAdmin()" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold">Gasho</button>
-            <button onclick="toggleAdmin()" class="w-full mt-2 text-gray-400 text-xs text-center">Xir</button>
-        </div>
-    </div>
-
-    <nav class="bg-white border-b px-6 py-4 flex justify-between items-center sticky top-0 z-50 shadow-sm">
+    <nav class="bg-white border-b p-4 sticky top-0 z-50 shadow-sm flex justify-between items-center">
         <div class="flex items-center gap-2">
-            <div class="bg-blue-600 text-white p-2 rounded-xl"><i class="fas fa-university"></i></div>
-            <h1 class="font-black text-xl tracking-tighter">GIFTUHUB <span class="text-blue-600">ACADEMY</span></h1>
+            <div class="bg-blue-600 text-white p-2 rounded-lg"><i class="fas fa-laptop-code"></i></div>
+            <h1 class="font-black text-xl italic text-blue-800">GIFTUHUB <span class="text-slate-500">ACADEMY</span></h1>
         </div>
-        <div class="flex gap-3">
-            <button onclick="toggleAdmin()" class="bg-slate-100 p-2 rounded-xl text-slate-500"><i class="fas fa-user-lock"></i></button>
-            <a href="https://wa.me/252613040087" class="bg-green-500 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2"><i class="fab fa-whatsapp"></i> Support</a>
+        <div class="flex items-center gap-4">
+            <a href="https://tiktok.com/@updyrhmn13" class="text-xl hover:text-pink-600"><i class="fab fa-tiktok"></i></a>
+            <button onclick="window.open('https://wa.me/252613040087')" class="bg-green-500 text-white px-4 py-2 rounded-full text-xs font-bold">WhatsApp Support</button>
         </div>
     </nav>
 
     <div class="container mx-auto flex flex-col lg:flex-row min-h-screen">
-        <aside class="w-full lg:w-80 bg-white border-r p-6 space-y-8">
-            <div class="bg-slate-900 p-6 rounded-[2rem] text-white relative overflow-hidden group">
-                <i class="fab fa-tiktok absolute -right-4 -bottom-4 text-7xl opacity-20 group-hover:rotate-12 transition"></i>
-                <p class="text-[10px] font-black uppercase text-blue-400 mb-1">Follow Me on TikTok</p>
-                <h4 class="font-bold text-sm mb-4 italic">@UPDYRHMN13</h4>
-                <a href="https://tiktok.com/@updyrhmn13" target="_blank" class="bg-white text-black px-4 py-2 rounded-lg text-[10px] font-black uppercase">Follow Now</a>
-            </div>
-
-            <nav class="space-y-6" id="course-menu"></nav>
+        <aside class="w-full lg:w-72 bg-white border-r p-6 space-y-4">
+            <h3 class="text-xs font-black text-gray-400 uppercase tracking-widest mb-4">Course Phases</h3>
+            <div id="phase-menu" class="space-y-2">
+                </div>
         </aside>
 
-        <main class="flex-1 p-6 lg:p-10" id="main-view">
-            <div class="text-center py-20 animate-pulse">
-                <i class="fas fa-hand-pointer text-5xl text-blue-200 mb-4"></i>
-                <h2 class="text-2xl font-black text-slate-400">Fadlan dooro cashar si aad u bilowdo...</h2>
+        <main class="flex-1 p-6 lg:p-10">
+            <div id="content-display" class="max-w-4xl mx-auto">
+                <div class="text-center py-20">
+                    <i class="fas fa-rocket text-6xl text-blue-100 mb-4"></i>
+                    <h2 class="text-2xl font-black text-slate-400">Ku soo dhawaada GIFTUHUB Academy!</h2>
+                    <p class="text-slate-400">Dooro Phase-ka aad rabto inaad barato dhinaca bidix.</p>
+                </div>
             </div>
         </main>
     </div>
 
     <script>
-        let userHasAccess = false; 
-
-        const content = {
-            1: { title: "Phase 1: Computer Basics", doc: "IT waa aasaaska nolosha casriga ah. Hardware waa qalabka la taaban karo.", vid: "https://github.com/user-attachments/assets/a090ac1f-540e-4e41-b274-eedeb099d1ce", task: "Qor 5 qalab oo Hardware ah.", practice: "Isku xir Computer-ka qaybihiisa." },
-            2: { title: "Phase 2: Networking & Security", doc: "Networking waa isku xirka aaladaha. Security waa badbaadinta xogta.", vid: "https://github.com/user-attachments/assets/a090ac1f-540e-4e41-b274-eedeb099d1ce", task: "Sharax farqiga LAN iyo WAN.", practice: "Samee Router configuration." },
-            3: { title: "Phase 3: Web Development", doc: "HTML waa laf-dhabarta website-ka. CSS waa qurxinta.", vid: "https://github.com/user-attachments/assets/a090ac1f-540e-4e41-b274-eedeb099d1ce", task: "Abuur bog leh 'Hello World'.", practice: "Dhis website hal bog ah." }
-        };
+        const phases = [
+            { 
+                id: 1, name: "Phase 1: IT Fundamentals", isFree: true,
+                video: "https://app.heygen.com/embed/916f11388b3d4efeaefa34e73cad9cc5",
+                lesson: "Hardware waa qalabka la taaban karo, Software-na waa barnaamijyada gudaha ku jira.",
+                practice: "Isku day inaad aqoonsato 5 qalab oo Hardware ah oo gurigaaga yaala.",
+                assignment: "Qor farqiga u dhexeeya RAM iyo Hard Drive, u soo dir macallinka."
+            },
+            { 
+                id: 2, name: "Phase 2: Networking", isFree: false,
+                video: "https://app.heygen.com/embed/916f11388b3d4efeaefa34e73cad9cc5",
+                lesson: "Networking waa sida ay kombiyuutaradu isula hadlaan iyagoo isticmaalaya Router iyo Switch.",
+                practice: "Baro sida loo helo IP Address-ka kombiyuutarkaaga.",
+                assignment: "Sharax waxa ay tahay LAN, una soo dir WhatsApp-ka macallinka."
+            },
+            { 
+                id: 3, name: "Phase 3: Web Development & AI", isFree: false,
+                video: "https://app.heygen.com/embed/916f11388b3d4efeaefa34e73cad9cc5",
+                lesson: "Web Dev waa dhisidda boggaga internetka, AI-na waa tignoolajiyada mustaqbalka.",
+                practice: "Isku day inaad qorto code-kaaga kowaad ee HTML.",
+                assignment: "Dhis hal bog oo xogtaada ah, ka dibna noo soo gudbi."
+            }
+        ];
 
         function renderMenu() {
-            const menu = document.getElementById('course-menu');
-            Object.keys(content).forEach(id => {
-                menu.innerHTML += `
-                    <button onclick="loadLesson(${id})" class="w-full text-left p-4 rounded-2xl hover:bg-slate-50 transition border border-transparent hover:border-blue-100 flex justify-between items-center group">
-                        <span class="text-sm font-bold">${content[id].title}</span>
-                        ${!userHasAccess ? '<i class="fas fa-lock text-[10px] text-orange-400"></i>' : '<i class="fas fa-check-circle text-green-500"></i>'}
-                    </button>`;
-            });
+            const menu = document.getElementById('phase-menu');
+            menu.innerHTML = phases.map(p => `
+                <button onclick="loadPhase(${p.id})" class="w-full text-left p-4 rounded-xl hover:bg-blue-50 border border-transparent hover:border-blue-200 transition flex justify-between items-center group">
+                    <span class="font-bold text-sm">${p.name}</span>
+                    ${p.isFree ? '<span class="text-[10px] bg-green-100 text-green-600 px-2 py-0.5 rounded">FREE</span>' : '<i class="fas fa-lock text-orange-400 text-xs"></i>'}
+                </button>
+            `).join('');
         }
 
-        function loadLesson(id) {
-            const lesson = content[id];
-            const view = document.getElementById('main-view');
-            
-            view.innerHTML = `
-                <div class="space-y-8 relative">
-                    <h2 class="text-4xl font-black tracking-tighter">${lesson.title}</h2>
-                    
-                    <div class="flex gap-6 border-b mb-6 overflow-x-auto pb-2">
-                        <button class="tab-btn active text-xs font-black uppercase tracking-widest pb-3">All Content</button>
+        function loadPhase(id) {
+            const p = phases.find(x => x.id === id);
+            const display = document.getElementById('content-display');
+
+            let contentHTML = `
+                <h2 class="text-3xl font-black mb-6">${p.name}</h2>
+                <div class="grid grid-cols-1 gap-8 relative">
+                    ${!p.isFree ? `
+                        <div class="absolute inset-0 z-50 bg-white/90 backdrop-blur-md rounded-3xl flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-orange-300">
+                            <i class="fas fa-lock text-5xl text-orange-500 mb-4"></i>
+                            <h3 class="text-xl font-black">Casharkan waa Xiranyahay!</h3>
+                            <p class="text-slate-500 mb-6">Si aad u furto Phase-kan, fadlan bixi lacagta diiwaangelinta ($5).</p>
+                            <div class="bg-blue-600 text-white p-6 rounded-2xl shadow-xl mb-4">
+                                <p class="text-xs opacity-80 uppercase font-bold">EVC Plus Number</p>
+                                <h4 class="text-2xl font-black">613040087</h4>
+                            </div>
+                            <button onclick="window.open('https://wa.me/252613040087')" class="bg-green-500 text-white px-8 py-3 rounded-xl font-bold uppercase text-xs tracking-widest">Submit Payment Screenshot</button>
+                        </div>
+                    ` : ''}
+
+                    <div class="bg-black rounded-3xl overflow-hidden aspect-video shadow-2xl">
+                        <iframe src="${p.video}" class="w-full h-full" frameborder="0" allowfullscreen></iframe>
                     </div>
 
-                    <div class="grid grid-cols-1 gap-8 relative">
-                        ${!userHasAccess ? `
-                            <div class="absolute inset-0 z-20 rounded-[3rem] locked-overlay flex flex-col items-center justify-center text-center p-10 border-4 border-white shadow-2xl">
-                                <div class="w-20 h-20 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center text-3xl mb-4 shadow-inner"><i class="fas fa-lock"></i></div>
-                                <h3 class="text-2xl font-black mb-2">Casharkan waa Xiranyahay</h3>
-                                <p class="text-slate-500 mb-6 max-w-sm">Si aad u furto Video, Lesson, Practice iyo Assignment, fadlan bixi lacagta diiwaangelinta ($5).</p>
-                                <div class="bg-white p-6 rounded-3xl border-2 border-blue-600 shadow-xl mb-6 w-full max-w-xs">
-                                    <p class="text-[10px] font-black text-blue-600 uppercase mb-2">EVC PLUS PAYMENT</p>
-                                    <h4 class="text-2xl font-black tracking-widest">613040087</h4>
-                                    <p class="text-xs text-gray-400 mt-2 font-bold italic">Markaad lacagta dirto, Screenshot-ka WhatsApp u soo dir macallinka.</p>
-                                </div>
-                                <button onclick="window.open('https://wa.me/252613040087')" class="bg-green-500 text-white px-10 py-4 rounded-2xl font-black uppercase tracking-widest shadow-lg hover:bg-green-600 transition">Submit Payment Caddeyn</button>
-                            </div>
-                        ` : ''}
+                    <div class="bg-white p-6 rounded-3xl border shadow-sm space-y-6">
+                        <div class="border-b pb-4 flex gap-4 overflow-x-auto">
+                            <span class="text-blue-600 border-b-2 border-blue-600 font-bold pb-2 cursor-pointer">Lesson</span>
+                            <span class="text-gray-400 font-bold pb-2">Practice</span>
+                            <span class="text-gray-400 font-bold pb-2">Assignment</span>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-black text-sm uppercase text-gray-400 mb-2 tracking-widest">Casharka Maanta</h4>
+                            <p class="text-slate-700 leading-relaxed font-medium">${p.lesson}</p>
+                        </div>
 
-                        <div class="space-y-8">
-                            <div class="bg-black rounded-[3rem] overflow-hidden aspect-video shadow-2xl"><video controls class="w-full h-full"><source src="${lesson.vid}"></video></div>
-                            <div class="bg-white p-8 rounded-[2.5rem] border shadow-sm">
-                                <h4 class="text-blue-600 font-black text-xs uppercase mb-4 tracking-widest">Dukumentiga Casharka</h4>
-                                <p class="text-slate-600 leading-relaxed">${lesson.doc}</p>
-                            </div>
-                            <div class="bg-slate-100 p-8 rounded-[2.5rem] border border-dashed border-slate-300">
-                                <h4 class="text-orange-600 font-black text-xs uppercase mb-4 tracking-widest text-center">Layli (Practice)</h4>
-                                <p class="text-center font-bold text-slate-800 italic">"${lesson.practice}"</p>
-                            </div>
-                            <div class="bg-blue-600 p-8 rounded-[2.5rem] text-white">
-                                <h4 class="font-black text-xs uppercase mb-2">Assignment</h4>
-                                <p class="font-bold mb-4">${lesson.task}</p>
-                                <button onclick="window.open('https://wa.me/252613040087')" class="bg-white text-blue-600 px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest">Gudbi Shaqada</button>
-                            </div>
+                        <div class="bg-blue-50 p-4 rounded-2xl border border-blue-100">
+                            <h4 class="font-black text-xs text-blue-600 mb-2 uppercase">Tababar (Practice)</h4>
+                            <p class="text-sm italic text-slate-600">"${p.practice}"</p>
+                        </div>
+
+                        <div class="bg-slate-900 p-6 rounded-2xl text-white">
+                            <h4 class="font-black text-xs text-orange-400 mb-2 uppercase">Shaqada Guriga (Assignment)</h4>
+                            <p class="text-sm mb-4">${p.assignment}</p>
+                            <button onclick="window.open('https://wa.me/252613040087')" class="bg-white text-slate-900 px-4 py-2 rounded-lg text-xs font-bold">Gudbi Shaqada</button>
                         </div>
                     </div>
 
                     <div class="pt-10 border-t">
-                        <h4 class="font-black text-xs uppercase mb-6 tracking-widest text-slate-400">Comments / Ra'yiga Ardayda</h4>
-                        <div class="flex gap-4 mb-6">
-                            <input type="text" id="com-in" class="flex-1 p-4 rounded-2xl border outline-none shadow-inner text-sm" placeholder="Maxaad ka fahamtay casharka?">
-                            <button onclick="addCom()" class="bg-slate-900 text-white px-8 rounded-2xl font-bold">Post</button>
-                        </div>
-                        <div id="com-list" class="space-y-3">
-                            <div class="bg-white p-4 rounded-2xl border text-xs"><strong>Eng Abdirahman:</strong> Soo dhawaada dhamaantiin!</div>
+                        <h4 class="font-black text-xs uppercase text-slate-400 mb-4 tracking-tighter">Comments & Questions</h4>
+                        <div class="flex gap-4 mb-4">
+                            <input type="text" placeholder="Su'aal ma qabtaa?" class="flex-1 p-3 rounded-xl border outline-none">
+                            <button class="bg-slate-800 text-white px-6 rounded-xl font-bold">Post</button>
                         </div>
                     </div>
-                </div>`;
-        }
-
-        function toggleAdmin() { document.getElementById('admin-gate').classList.toggle('hidden'); }
-        
-        function loginAdmin() {
-            const pass = document.getElementById('admin-pass').value;
-            if(pass === "admin123") {
-                userHasAccess = true;
-                alert("ACCESS GRANTED: Casharrada waa kuu furmeen!");
-                document.getElementById('admin-gate').classList.add('hidden');
-                document.getElementById('course-menu').innerHTML = '';
-                renderMenu();
-            } else {
-                alert("Password-ka waa khalad!");
-            }
-        }
-
-        function addCom() {
-            const inp = document.getElementById('com-in');
-            if(inp.value) {
-                document.getElementById('com-list').innerHTML = `<div class="bg-white p-4 rounded-2xl border text-xs animate-in slide-in-from-top"><strong>Arday:</strong> ${inp.value}</div>` + document.getElementById('com-list').innerHTML;
-                inp.value = '';
-            }
+                </div>
+            `;
+            display.innerHTML = contentHTML;
         }
 
         window.onload = renderMenu;
     </script>
 </body>
-</html>    
-
-<script>
-    // Ku dar xogtan qaybta 'const content' ee hore
-    content[5] = { 
-        title: "Lesson 5: Introduction to AI", 
-        doc: "Artificial Intelligence (AI) waa nidaamka kombiyuutarku ku dayanayo garaadka bini'aadanka. Waxaan baran doonaa Prompt Engineering.", 
-        vid: "https://github.com/user-attachments/assets/a090ac1f-540e-4e41-b274-eedeb099d1ce", 
-        task: "Isticmaal ChatGPT si aad u qorto code HTML ah.", 
-        practice: "Baro sida loo weydiiyo su'aalaha saxda ah AI-ga." 
-    };
-    content[6] = { 
-        title: "Lesson 6: AI for Web Design", 
-        doc: "Casharkaan waxaad ku baranaysaa sida AI loogu dhisidda website-yo qurxoon iyo isticmaalka qalabka sida v0.dev.", 
-        vid: "https://github.com/user-attachments/assets/a090ac1f-540e-4e41-b274-eedeb099d1ce", 
-        task: "Samee design website adoo isticmaalaya AI tools.", 
-        practice: "Dhis interface website oo dhamaystiran." 
-    };
-
-    // QAYBTA ABOUT ME (Ku dar dhamaadka Dashboard-ka)
-    function showAboutMe() {
-        const view = document.getElementById('main-view');
-        view.innerHTML = `
-            <div class="max-w-3xl mx-auto py-12 animate-content">
-                <div class="bg-white p-10 rounded-[3rem] shadow-2xl border-t-8 border-blue-600">
-                    <div class="text-center mb-8">
-                        <div class="w-32 h-32 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center border-4 border-white shadow-lg text-4xl text-blue-600">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                        <h2 class="text-3xl font-black text-slate-800">ENG ABDIRAHMAN ABDIRIZAQ</h2>
-                        <p class="text-blue-600 font-bold uppercase tracking-widest text-xs">Founder & Lead Instructor</p>
-                    </div>
-                    
-                    <div class="space-y-6 text-slate-600 leading-relaxed">
-                        <p class="text-center italic font-medium">"Hadafkaygu waa inaan dhalinyarada Soomaaliyeed u fududeeyo barashada IT-ga casriga ah iyo Web Development-ka."</p>
-                        
-                        <div class="grid grid-cols-2 gap-4 pt-6">
-                            <div class="bg-slate-50 p-4 rounded-2xl text-center border">
-                                <h5 class="font-black text-slate-800">5+ Years</h5>
-                                <p class="text-[10px] uppercase">Experience</p>
-                            </div>
-                            <div class="bg-slate-50 p-4 rounded-2xl text-center border">
-                                <h5 class="font-black text-slate-800">1000+</h5>
-                                <p class="text-[10px] uppercase">Students</p>
-                            </div>
-                        </div>
-
-                        <div class="pt-6 border-t flex justify-center gap-6 text-xl text-slate-400">
-                            <a href="https://tiktok.com/@updyrhmn13" class="hover:text-black"><i class="fab fa-tiktok"></i></a>
-                            <a href="https://wa.me/252613040087" class="hover:text-green-500"><i class="fab fa-whatsapp"></i></a>
-                            <i class="fas fa-envelope hover:text-red-500 cursor-pointer"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-    }
-</script>
+    </html>
