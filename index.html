@@ -3,126 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gifthub Academy - Phase Dashboard</title>
+    <title>Gifthub Academy - 6 Phases</title>
     <style>
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .header-banner {
-            background-color: #1a56db;
-            color: white;
-            width: 100%;
-            max-width: 600px;
-            padding: 15px;
-            text-align: center;
-            border-radius: 10px 10px 0 0;
-            font-weight: bold;
-        }
-
-        .container {
-            background-color: white;
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .phase-title {
-            color: #1a56db;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            margin-top: 20px;
-        }
-
-        .lesson-card {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-
-        .lesson-name {
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 8px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
-        }
-
-        .btn-video {
-            background-color: #ff8c00;
-            color: white;
-        }
-
-        .btn-assignment {
-            background-color: #ced4da;
-            color: #495057;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; }
+        .header { background: #1a56db; color: white; padding: 15px; text-align: center; border-radius: 10px; margin-bottom: 20px; }
+        .phase-container { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 25px; }
+        .phase-header { background: #eef2ff; padding: 10px; border-left: 5px solid #1a56db; font-weight: bold; color: #1a56db; margin-bottom: 15px; }
+        .lesson { display: flex; align-items: center; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; }
+        .btn-group { display: flex; gap: 10px; }
+        .btn { padding: 8px 15px; border: none; border-radius: 5px; cursor: pointer; font-size: 13px; font-weight: bold; text-decoration: none; }
+        .btn-orange { background: #ff8c00; color: white; }
+        .btn-gray { background: #ced4da; color: #495057; }
     </style>
 </head>
 <body>
 
-    <div class="header-banner">
-        🎓 GIFTHUB IT ACADEMY - ALL PHASES
+    <div class="header">
+        <h2>GIFTHUB IT ACADEMY - FULL COURSE (6 PHASES)</h2>
+        <p>Eng ABDIRAHMAN ABDIRIZAQ</p>
     </div>
 
-    <div class="container">
-        <h3 class="phase-title">Phase 1: Computer Basics</h3>
-        <div class="lesson-card">
-            <span class="lesson-name">Lesson 1: Hardware & Software</span>
-            <div class="button-group">
-                <button class="btn btn-video">▶ Watch AI Video</button>
-                <button class="btn btn-assignment">Submit Assignment</button>
+    <div class="phase-container">
+        <div class="phase-header">PHASE 1: COMPUTER BASICS</div>
+        
+        <div class="lesson">
+            <span>Lesson 1: Hardware & Software</span>
+            <div class="btn-group">
+                <a href="#" class="btn btn-orange">▶ Watch AI Video</a>
+                <a href="#" class="btn btn-gray">Submit Assignment</a>
             </div>
         </div>
 
-        <h3 class="phase-title">Phase 2: Web Development</h3>
-        <div class="lesson-card">
-            <span class="lesson-name">Lesson 1: HTML & CSS Basics</span>
-            <div class="button-group">
-                <button class="btn btn-video">▶ Watch AI Video</button>
-                <button class="btn btn-assignment">Submit Assignment</button>
-            </div>
-        </div>
-
-        <h3 class="phase-title">Phase 3: Digital Marketing & AI</h3>
-        <div class="lesson-card">
-            <span class="lesson-name">Lesson 1: AI Tools for Business</span>
-            <div class="button-group">
-                <button class="btn btn-video">▶ Watch AI Video</button>
-                <button class="btn btn-assignment">Submit Assignment</button>
+        <div class="lesson">
+            <span>Lesson 2: Internet & Email</span>
+            <div class="btn-group">
+                <a href="#" class="btn btn-orange">▶ Watch AI Video</a>
+                <a href="#" class="btn btn-gray">Submit Assignment</a>
             </div>
         </div>
     </div>
 
-</body>
+    </body>
 </html>
