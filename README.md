@@ -1,3 +1,7 @@
+
+
+https://github.com/user-attachments/assets/dc84800b-0413-4058-9975-57b854826f18
+
 # it-course-somali
 IT Course in Somali language – beginner to intermediate level, including hardware, software, networking, and security basics.
 
