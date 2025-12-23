@@ -1,97 +1,63 @@
+
 <!DOCTYPE html>
 <html lang="so">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eng Abdirahman - IT Dashboard</title>
+    <title>Legend Building Affiliate Page</title>
     <style>
-        :root { --main-blue: #1a56db; --accent-orange: #ff8c00; --bg-gray: #f1f5f9; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg-gray); margin: 0; padding: 15px; color: #1e293b; }
-        
-        /* Profile Section */
-        .profile-section { background: white; border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 25px; border-bottom: 5px solid var(--main-blue); }
-        .profile-img { width: 110px; height: 110px; border-radius: 50%; border: 4px solid var(--main-blue); margin-bottom: 15px; object-fit: cover; }
-        .profile-name { font-size: 22px; font-weight: 800; margin: 0; }
-        .master-badge { display: inline-block; background: #dbeafe; color: var(--main-blue); padding: 5px 15px; border-radius: 25px; font-weight: bold; font-size: 13px; margin: 10px 0; }
-        
-        /* Contact Buttons */
-        .social-bar { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
-        .social-btn { text-decoration: none; color: white; padding: 10px 18px; border-radius: 10px; font-size: 13px; font-weight: bold; display: flex; align-items: center; gap: 8px; }
-        .btn-whatsapp { background: #25d366; }
-        .btn-tiktok { background: #000; }
-
-        /* Phase Layout */
-        .phase-card { background: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-        .phase-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 12px; margin-bottom: 15px; }
-        .phase-title { font-weight: 800; color: var(--main-blue); font-size: 16px; }
-        .price-badge { background: #fef3c7; color: #92400e; padding: 4px 10px; border-radius: 8px; font-weight: bold; font-size: 13px; }
-
-        .lesson-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 15px; margin-bottom: 10px; }
-        .lesson-title { font-weight: 600; font-size: 14px; display: block; margin-bottom: 12px; }
-
-        /* Action Buttons */
-        .actions { display: flex; gap: 8px; }
-        .action-btn { flex: 1; text-align: center; padding: 8px; border-radius: 6px; font-size: 12px; font-weight: bold; text-decoration: none; border: none; cursor: pointer; }
-        .btn-play { background: var(--accent-orange); color: white; }
-        .btn-task { background: #e2e8f0; color: #475569; }
-
-        /* Locked Certificate */
-        .certificate-locked { background: #1e293b; color: white; padding: 25px; border-radius: 20px; text-align: center; margin-top: 25px; opacity: 0.9; }
-        .lock-icon { font-size: 28px; margin-bottom: 10px; }
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f4; }
+        .card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; max-width: 350px; }
+        img { max-width: 100%; border-radius: 5px; }
+        .btn { display: inline-block; background: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 15px; }
     </style>
 </head>
 <body>
 
-    <div class="profile-section">
-        <img src="sawirkaaga.jpg" class="profile-img" alt="Eng Abdirahman"> 
-        <h1 class="profile-name">Eng Abdirahman Abdirizaq</h1>
-        <span class="master-badge">🎓 Master of Information Technology (IT)</span>
-        
-        <div class="social-bar">
-            <a href="https://wa.me/252613040087" class="social-btn btn-whatsapp">WhatsApp</a>
-            <a href="https://www.tiktok.com/@updulahiyare0" class="social-btn btn-tiktok">TikTok</a>
-        </div>
-    </div>
+<div class="card" id="affiliate-card">
+    <h2 id="title">Soo dhowaaw!</h2>
+    <img id="image" src="" alt="Product Image">
+    <p id="description">Dhis mustaqbalkaaga maanta.</p>
+    <a id="link" href="#" class="btn" target="_blank">Hadda ku biir</a>
+</div>
 
-    <div class="phase-card">
-        <div class="phase-header">
-            <span class="phase-title">PHASE 1: COMPUTER BASICS</span>
-            <span class="price-badge">$10.00</span>
-        </div>
-        <div class="lesson-box">
-            <span class="lesson-title">Hardware & Software</span>
-            <div class="actions">
-                <a href="#" class="action-btn btn-play">Video</a>
-                <a href="#" class="action-btn btn-task">Assignment</a>
-                <a href="#" class="action-btn btn-task">Practice</a>
-            </div>
-        </div>
-    </div>
+<script>
+    // 1. Liiska alaabtaada (Halkan wax ka bedel)
+    const products = [
+        {
+            title: "Legend Building Mentorship",
+            description: "Baro sida dollar looga sameeyo internetka.",
+            image: "https://via.placeholder.com/300x200?text=Legend+Building", 
+            link: "https://tusaale.com/affiliate1"
+        },
+        {
+            title: "Digital Marketing Course",
+            description: "Noqo khabiir dhanka suuqgeynta casriga ah.",
+            image: "https://via.placeholder.com/300x200?text=Marketing+Course",
+            link: "https://tusaale.com/affiliate2"
+        },
+        {
+            title: "High Ticket Sales Guide",
+            description: "Sida loo iibiyo alaabta qaaliga ah.",
+            image: "https://via.placeholder.com/300x200?text=Sales+Guide",
+            link: "https://tusaale.com/affiliate3"
+        }
+    ];
 
-    <div class="phase-card">
-        <div class="phase-header">
-            <span class="phase-title">PHASE 2: WEB DEVELOPMENT</span>
-            <span class="price-badge">$15.00</span>
-        </div>
-        <div class="lesson-box">
-            <span class="lesson-title">HTML & CSS Fundamentals</span>
-            <div class="actions">
-                <a href="#" class="action-btn btn-play">Video</a>
-                <a href="#" class="action-btn btn-task">Assignment</a>
-                <a href="#" class="action-btn btn-task">Practice</a>
-            </div>
-        </div>
-    </div>
+    // 2. Shaqada doorashada automatic-ga ah
+    function displayRandomProduct() {
+        const randomIndex = Math.floor(Math.random() * products.length);
+        const item = products[randomIndex];
 
-    <div style="text-align: center; color: #94a3b8; font-size: 12px; margin-bottom: 20px;">
-        Phases 3, 4, 5 & 6 are currently being updated...
-    </div>
+        document.getElementById('title').innerText = item.title;
+        document.getElementById('description').innerText = item.description;
+        document.getElementById('image').src = item.image;
+        document.getElementById('link').href = item.link;
+    }
 
-    <div class="certificate-locked">
-        <div class="lock-icon">🔒</div>
-        <h3>Shaahado Master IT</h3>
-        <p style="font-size: 12px; opacity: 0.8;">Lacagta: $10.00 | Waxay furmaysaa marka la dhameeyo dhammaan qaybaha.</p>
-    </div>
+    // Marka bogga la furo shaqo bilow
+    window.onload = displayRandomProduct;
+</script>
 
 </body>
 </html>
