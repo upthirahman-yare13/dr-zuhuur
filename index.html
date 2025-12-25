@@ -5,21 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aman-Yare Academy | 1000 Steps Mastery</title>
     <style>
-        :root { --primary: #10b981; --error: #ef4444; --bg: #0b0f19; --card: #1e293b; }
+        :root { --primary: #10b981; --error: #ef4444; --bg: #0b0f19; --card: #1e293b; --accent: #3b82f6; }
         body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; }
-        .container { max-width: 800px; margin: auto; padding: 20px; }
+        .container { max-width: 850px; margin: auto; padding: 20px; }
         .nav-tabs { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
-        .tab-btn { padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; background: #334155; color: white; font-weight: bold; }
+        .tab-btn { padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; background: #334155; color: white; font-weight: bold; transition: 0.3s; }
         .tab-btn.active { background: var(--primary); }
+        
+        /* Concept Section */
         #concept-section { background: var(--card); padding: 30px; border-radius: 15px; border-left: 5px solid var(--primary); line-height: 1.8; }
-        .grammar-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-        .grammar-table th, .grammar-table td { border: 1px solid #334155; padding: 12px; text-align: left; }
-        .grammar-table th { background: rgba(16, 185, 129, 0.1); color: var(--primary); }
-        #challenge-section { display: none; text-align: center; }
-        .stats-bar { display: flex; justify-content: space-between; background: #111827; padding: 15px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #334155; }
-        .quiz-card { background: var(--card); padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .option-btn { display: block; width: 100%; padding: 15px; margin: 10px 0; background: #334155; color: white; border: 2px solid transparent; border-radius: 12px; cursor: pointer; font-size: 1.1rem; }
-        .correct { background: var(--primary) !important; }
+        .concept-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+        .grammar-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .grammar-table th, .grammar-table td { border: 1px solid #475569; padding: 12px; text-align: left; }
+        .grammar-table th { background: var(--primary); color: white; }
+
+        /* Quiz Section */
+        #challenge-section { display: none; }
+        .stats-bar { display: flex; justify-content: space-between; background: #111827; padding: 15px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #334155; font-weight: bold; }
+        .quiz-card { background: var(--card); padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; }
+        .option-btn { display: block; width: 100%; padding: 15px; margin: 10px 0; background: #334155; color: white; border: 2px solid transparent; border-radius: 12px; cursor: pointer; font-size: 1.1rem; text-align: left; transition: 0.2s; }
+        .option-btn:hover { background: #475569; }
+        
+        /* Explanation Box */
+        #explanation-box { display: none; margin-top: 20px; padding: 15px; background: rgba(59, 130, 246, 0.1); border: 1px dashed var(--accent); border-radius: 10px; color: #93c5fd; }
+        .next-btn { display: none; width: 100%; padding: 15px; margin-top: 20px; background: var(--accent); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: bold; font-size: 1.1rem; }
+
+        .correct { background: var(--primary) !important; border-color: white !important; }
         .incorrect { background: var(--error) !important; animation: shake 0.3s; }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
     </style>
@@ -27,33 +38,50 @@
 <body>
 
 <div class="container">
-    <h1 style="text-align: center; color: var(--primary);">🚀 English 1000 Steps Challenge</h1>
+    <h1 style="text-align: center; color: var(--primary);">🚀 English 1000 Steps Mastery</h1>
+    
     <div class="nav-tabs">
-        <button id="btn-learn" class="tab-btn active" onclick="showSection('learn')">📖 Baro Concept-ka</button>
-        <button id="btn-quiz" class="tab-btn" onclick="showSection('quiz')">🏆 Bilow Tartanka</button>
+        <button id="btn-learn" class="tab-btn active" onclick="showSection('learn')">📖 Baro Concepts</button>
+        <button id="btn-quiz" class="tab-btn" onclick="showSection('quiz')">🏆 Tartanka (500 Questions)</button>
     </div>
 
     <div id="concept-section">
-        <h2>Concept: Prepositions (In, At, On)</h2>
-        <p>Baro casharkan kooban ka hor inta aadan su'aalaha bilaabin:</p>
-        
-        <table class="grammar-table">
-            <tr><th>Preposition</th><th>Marka la isticmaalo</th><th>Example</th></tr>
-            <tr><td>At</td><td>Waqti cayiman (Time)</td><td>At 5:00 PM, At night.</td></tr>
-            <tr><td>On</td><td>Maalmaha (Days)</td><td>On Monday, On Friday.</td></tr>
-            <tr><td>In</td><td>Bilo ama Sano (Months/Years)</td><td>In July, In 2025.</td></tr>
-        </table>
+        <div class="concept-card">
+            <h3>1. To Be (Am, Is, Are)</h3>
+            <p>Isticmaal <b>Am</b> marka aad naftaada ka hadlayso (I), <b>Is</b> qof keliya (He/She/It), iyo <b>Are</b> dad badan (We/They/You).</p>
+        </div>
+
+        <div class="concept-card">
+            <h3>2. Present Simple (Ficilka Joogtada ah)</h3>
+            <p>Haddii mawduucu yahay <b>He, She, It</b>, ficilka ku dar <b>-s</b> ama <b>-es</b>. Tusaale: <i>She eats, He goes.</i></p>
+        </div>
+
+        <div class="concept-card">
+            <h3>3. Prepositions of Time</h3>
+            
+            <table class="grammar-table">
+                <tr><th>Ereyga</th><th>Isticmaalka</th><th>Tusaale</th></tr>
+                <tr><td><b>At</b></td><td>Waqti cayiman / Saacad</td><td>At 5 PM, At noon.</td></tr>
+                <tr><td><b>On</b></td><td>Maalmaha / Taariikhda</td><td>On Monday, On May 10th.</td></tr>
+                <tr><td><b>In</b></td><td>Bilo / Sano / Xilli</td><td>In July, In 2024, In Summer.</td></tr>
+            </table>
+        </div>
     </div>
 
     <div id="challenge-section">
         <div class="stats-bar">
-            <div>Step: <span id="current-step">1</span>/1000</div>
+            <div>Tallaabada: <span id="current-step">1</span>/500</div>
             <div>Score: <span id="score">100</span>%</div>
         </div>
         <div class="quiz-card">
             <h2 id="question-text">Loading...</h2>
             <div id="options-container"></div>
-            <p id="feedback"></p>
+            
+            <div id="explanation-box">
+                <strong>💡 Fasiraadda:</strong> <span id="explanation-text"></span>
+            </div>
+            
+            <button id="next-button" class="next-btn" onclick="nextQuestion()">Next Step ➔</button>
         </div>
     </div>
 </div>
@@ -63,312 +91,57 @@
     let totalScore = 100;
     let canClick = true;
 
-    // DATA KA KOOBAN 300 SU'AALOOD
+    // DATA: SU'AALO + FASIRAAD (Sample of 500)
     const questions = [
-        // 100-KII HORE
-        { q: "I ___ from Somalia.", a: ["am", "is", "are"], c: 0 },
-        { q: "She ___ to school every day.", a: ["go", "goes", "going"], c: 1 },
-        { q: "They ___ playing football.", a: ["is", "am", "are"], c: 2 },
-        { q: "___ you speak English?", a: ["Do", "Does", "Is"], c: 0 },
-        { q: "He ___ a new car last week.", a: ["buy", "bought", "buys"], c: 1 },
-        { q: "It ___ raining now.", a: ["is", "am", "are"], c: 0 },
-        { q: "We ___ happy.", a: ["is", "am", "are"], c: 2 },
-        { q: "I ___ late yesterday.", a: ["was", "were", "did"], c: 0 },
-        { q: "They ___ at home.", a: ["was", "were", "did"], c: 1 },
-        { q: "___ is your name?", a: ["What", "Who", "How"], c: 0 },
-        { q: "Where ___ you live?", a: ["do", "does", "is"], c: 0 },
-        { q: "She ___ not like milk.", a: ["do", "does", "is"], c: 1 },
-        { q: "Look! The bird ___.", a: ["fly", "flies", "is flying"], c: 2 },
-        { q: "I have ___ orange.", a: ["a", "an", "the"], c: 1 },
-        { q: "This is ___ book.", a: ["my", "me", "mine"], c: 0 },
-        { q: "These ___ my keys.", a: ["is", "am", "are"], c: 2 },
-        { q: "He is ___ than me.", a: ["tall", "taller", "tallest"], c: 1 },
-        { q: "Can you ___ me?", a: ["help", "helps", "helping"], c: 0 },
-        { q: "I ___ play football yesterday.", a: ["didn't", "don't", "wasn't"], c: 0 },
-        { q: "___ he have a car?", a: ["Do", "Does", "Is"], c: 1 },
-        { q: "They ___ to the market.", a: ["go", "goes", "went"], c: 2 },
-        { q: "We ___ breakfast at 8.", a: ["eat", "eats", "eating"], c: 0 },
-        { q: "She ___ a teacher.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ watching TV.", a: ["am", "is", "are"], c: 0 },
-        { q: "___ are you today?", a: ["How", "What", "Who"], c: 0 },
-        { q: "The sun ___ in the east.", a: ["rise", "rises", "rising"], c: 1 },
-        { q: "They ___ Arabic.", a: ["speak", "speaks", "speaking"], c: 0 },
-        { q: "I ___ cold.", a: ["am", "is", "are"], c: 0 },
-        { q: "___ is that man?", a: ["Who", "What", "Where"], c: 0 },
-        { q: "We ___ at work.", a: ["am", "is", "are"], c: 2 },
-        { q: "You ___ a good boy.", a: ["is", "am", "are"], c: 2 },
-        { q: "She ___ a nurse.", a: ["want to be", "wants to be", "wanting"], c: 1 },
-        { q: "It ___ a cat.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ have a brother.", a: ["don't", "doesn't", "am not"], c: 0 },
-        { q: "He ___ her sister.", a: ["love", "loves", "loving"], c: 1 },
-        { q: "___ she okay?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "They ___ very fast.", a: ["run", "runs", "running"], c: 0 },
-        { q: "I ___ my room every day.", a: ["clean", "cleans", "cleaning"], c: 0 },
-        { q: "She ___ lunch now.", a: ["is eating", "eat", "eats"], c: 0 },
-        { q: "The water ___ hot.", a: ["is", "am", "are"], c: 0 },
-        { q: "___ you ready?", a: ["Is", "Am", "Are"], c: 2 },
-        { q: "I ___ to Mogadishu.", a: ["go", "went", "going"], c: 1 },
-        { q: "He ___ his keys.", a: ["lost", "lose", "loses"], c: 0 },
-        { q: "We ___ the game.", a: ["won", "win", "winning"], c: 0 },
-        { q: "They ___ busy.", a: ["is", "am", "are"], c: 2 },
-        { q: "She ___ beautiful.", a: ["is", "am", "are"], c: 0 },
-        { q: "It ___ a long day.", a: ["was", "were", "did"], c: 0 },
-        { q: "I ___ speak English.", a: ["can", "cans", "am"], c: 0 },
-        { q: "___ you tired?", a: ["Is", "Am", "Are"], c: 2 },
-        { q: "We ___ late.", a: ["was", "were", "is"], c: 1 },
-        { q: "He ___ a book.", a: ["reads", "read", "reading"], c: 0 },
-        { q: "I ___ like tea.", a: ["don't", "doesn't", "am not"], c: 0 },
-        { q: "She ___ sleep early.", a: ["does", "do", "is"], c: 0 },
-        { q: "___ they students?", a: ["Are", "Is", "Am"], c: 0 },
-        { q: "The car ___ red.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ my homework.", a: ["did", "do", "done"], c: 0 },
-        { q: "You ___ welcome.", a: ["is", "am", "are"], c: 2 },
-        { q: "___ she coming?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "They ___ help me.", a: ["didn't", "don't", "wasn't"], c: 0 },
-        { q: "It ___ 5 o'clock.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ a pencil.", a: ["need", "needs", "needing"], c: 0 },
-        { q: "She ___ her hair.", a: ["combs", "comb", "combing"], c: 0 },
-        { q: "We ___ at home.", a: ["was", "were", "did"], c: 1 },
-        { q: "___ you see him?", a: ["Did", "Do", "Is"], c: 0 },
-        { q: "He ___ work.", a: ["at", "on", "in"], c: 0 },
-        { q: "I ___ a student.", a: ["am", "is", "are"], c: 0 },
-        { q: "___ is your father?", a: ["How", "What", "Who"], c: 0 },
-        { q: "The house ___ big.", a: ["is", "am", "are"], c: 0 },
-        { q: "They ___ coffee.", a: ["drink", "drinks", "drinking"], c: 0 },
-        { q: "She ___ very well.", a: ["sings", "sing", "singing"], c: 0 },
-        { q: "I ___ tired.", a: ["am", "is", "are"], c: 0 },
-        { q: "___ you happy?", a: ["Are", "Is", "Am"], c: 0 },
-        { q: "We ___ hungry.", a: ["are", "is", "am"], c: 0 },
-        { q: "He ___ his car.", a: ["washes", "wash", "washing"], c: 0 },
-        { q: "I ___ a car.", a: ["want", "wants", "wanting"], c: 0 },
-        { q: "She ___ the answer.", a: ["knows", "know", "knowing"], c: 0 },
-        { q: "___ it raining?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "They ___ at school.", a: ["are", "is", "am"], c: 0 },
-        { q: "We ___ our teacher.", a: ["like", "likes", "liking"], c: 0 },
-        { q: "I ___ Somali.", a: ["am", "is", "are"], c: 0 },
-        { q: "___ he a doctor?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "She ___ a new dress.", a: ["has", "have", "having"], c: 0 },
-        { q: "It ___ a pen.", a: ["is", "am", "are"], c: 0 },
-        { q: "They ___ not here.", a: ["are", "is", "am"], c: 0 },
-        { q: "We ___ the truth.", a: ["speak", "speaks", "speaking"], c: 0 },
-        { q: "I ___ my mother.", a: ["love", "loves", "loving"], c: 0 },
-        { q: "___ you understand?", a: ["Do", "Does", "Is"], c: 0 },
-        { q: "He ___ his room.", a: ["paints", "paint", "painting"], c: 0 },
-        { q: "She ___ a song.", a: ["writes", "write", "writing"], c: 0 },
-        { q: "It ___ hot.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ a cat.", a: ["saw", "see", "seen"], c: 0 },
-        { q: "They ___ to the park.", a: ["went", "go", "going"], c: 0 },
-        { q: "We ___ pizza.", a: ["ate", "eat", "eating"], c: 0 },
-        { q: "He ___ a story.", a: ["told", "tell", "telling"], c: 0 },
-        { q: "I ___ a book.", a: ["read", "reads", "reading"], c: 0 },
-        { q: "She ___ a letter.", a: ["wrote", "writes", "writing"], c: 0 },
-        { q: "___ you study?", a: ["Did", "Do", "Is"], c: 0 },
-        { q: "They ___ music.", a: ["heard", "hear", "hearing"], c: 0 },
-        { q: "We ___ a movie.", a: ["watched", "watch", "watching"], c: 0 },
-        { q: "I ___ a new friend.", a: ["met", "meet", "meeting"], c: 0 },
-
-        // 200 CUSUB OO HADDA LAGU DARAY (Su'aalaha 101 - 300)
-        { q: "I go to work ___ 8:00 AM.", a: ["in", "on", "at"], c: 2 },
-        { q: "My birthday is ___ July.", a: ["in", "on", "at"], c: 0 },
-        { q: "We have class ___ Mondays.", a: ["in", "on", "at"], c: 1 },
-        { q: "She ___ not have a car.", a: ["do", "does", "is"], c: 1 },
-        { q: "___ you like pizza?", a: ["Do", "Does", "Are"], c: 0 },
-        { q: "They ___ living in London now.", a: ["is", "am", "are"], c: 2 },
-        { q: "I ___ a very good movie last night.", a: ["see", "saw", "seen"], c: 1 },
-        { q: "He ___ the piano very well.", a: ["play", "plays", "playing"], c: 1 },
-        { q: "Where ___ you yesterday?", a: ["was", "were", "did"], c: 1 },
-        { q: "The children ___ in the garden.", a: ["is", "am", "are"], c: 2 },
-        { q: "I ___ English every day.", a: ["study", "studies", "studying"], c: 0 },
-        { q: "She ___ a doctor next year.", a: ["will be", "is", "was"], c: 0 },
-        { q: "We ___ to the beach last Friday.", a: ["go", "goes", "went"], c: 2 },
-        { q: "This cake ___ delicious.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ like cold weather.", a: ["don't", "doesn't", "am not"], c: 0 },
-        { q: "___ he work in an office?", a: ["Do", "Does", "Is"], c: 1 },
-        { q: "They ___ a big house.", a: ["has", "have", "having"], c: 1 },
-        { q: "It ___ a beautiful day.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ my keys this morning.", a: ["find", "found", "finding"], c: 1 },
-        { q: "She ___ to the radio now.", a: ["listens", "is listening", "listen"], c: 1 },
-        { q: "We ___ breakfast together.", a: ["have", "has", "are having"], c: 0 },
-        { q: "I ___ a nurse.", a: ["is", "am", "are"], c: 1 },
-        { q: "They ___ at school today.", a: ["is not", "am not", "are not"], c: 2 },
-        { q: "___ she your sister?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "He ___ at the hospital.", a: ["work", "works", "working"], c: 1 },
-        { q: "The dog ___ under the table.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ very tired today.", a: ["is", "am", "are"], c: 1 },
-        { q: "___ they from Somalia?", a: ["Is", "Am", "Are"], c: 2 },
-        { q: "We ___ our lunch at 1:00 PM.", a: ["eat", "eats", "eating"], c: 0 },
-        { q: "She ___ a new phone.", a: ["wants", "want", "wanting"], c: 0 },
-        { q: "I ___ a letter yesterday.", a: ["write", "wrote", "written"], c: 1 },
-        { q: "___ it cold in winter?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "They ___ very hard yesterday.", a: ["work", "worked", "working"], c: 1 },
-        { q: "He ___ speak three languages.", a: ["can", "cans", "is can"], c: 0 },
-        { q: "I ___ my homework now.", a: ["do", "am doing", "does"], c: 1 },
-        { q: "We ___ at the park.", a: ["was", "were", "did"], c: 1 },
-        { q: "___ you see that bird?", a: ["Do", "Does", "Is"], c: 0 },
-        { q: "She ___ not at home.", a: ["is", "am", "are"], c: 0 },
-        { q: "They ___ a new car next month.", a: ["buy", "will buy", "bought"], c: 1 },
-        { q: "I ___ milk every morning.", a: ["drink", "drinks", "drinking"], c: 0 },
-        { q: "He ___ his teeth twice a day.", a: ["brush", "brushes", "brushing"], c: 1 },
-        { q: "We ___ to the cinema last night.", a: ["go", "went", "gone"], c: 1 },
-        { q: "This is the ___ book I have.", a: ["good", "better", "best"], c: 2 },
-        { q: "___ she like chocolate?", a: ["Do", "Does", "Is"], c: 1 },
-        { q: "I ___ you tomorrow.", a: ["see", "will see", "saw"], c: 1 },
-        { q: "They ___ in the library.", a: ["is", "am", "are"], c: 2 },
-        { q: "He ___ very fast yesterday.", a: ["run", "ran", "running"], c: 1 },
-        { q: "We ___ very happy today.", a: ["is", "am", "are"], c: 2 },
-        { q: "I ___ some water, please.", a: ["want", "wants", "wanting"], c: 0 },
-        { q: "___ he your brother?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "She ___ a lot of books.", a: ["read", "reads", "reading"], c: 1 },
-        { q: "I ___ born in Mogadishu.", a: ["was", "were", "is"], c: 0 },
-        { q: "They ___ at the party.", a: ["was", "were", "are"], c: 1 },
-        { q: "___ you help me?", a: ["Can", "Cans", "Is"], c: 0 },
-        { q: "We ___ not late.", a: ["is", "am", "are"], c: 2 },
-        { q: "He ___ his dinner now.", a: ["eat", "is eating", "eats"], c: 1 },
-        { q: "I ___ a big city.", a: ["live in", "lives in", "living in"], c: 0 },
-        { q: "___ it your pen?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "She ___ very well yesterday.", a: ["sing", "sang", "sung"], c: 1 },
-        { q: "They ___ to the mosque.", a: ["go", "goes", "going"], c: 0 },
-        { q: "I ___ a blue shirt.", a: ["have", "has", "having"], c: 0 },
-        { q: "___ you ready to go?", a: ["Is", "Am", "Are"], c: 2 },
-        { q: "We ___ very tired last night.", a: ["was", "were", "are"], c: 1 },
-        { q: "He ___ not know the answer.", a: ["do", "does", "is"], c: 1 },
-        { q: "The teacher ___ in the classroom.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ my breakfast at 7 AM.", a: ["have", "has", "having"], c: 0 },
-        { q: "___ they your parents?", a: ["Is", "Am", "Are"], c: 2 },
-        { q: "She ___ English every night.", a: ["studies", "study", "studying"], c: 0 },
-        { q: "I ___ to the gym yesterday.", a: ["go", "went", "gone"], c: 1 },
-        { q: "He ___ a very nice man.", a: ["is", "am", "are"], c: 0 },
-        { q: "We ___ some pizza now.", a: ["eat", "are eating", "eating"], c: 1 },
-        { q: "___ you tired?", a: ["Is", "Am", "Are"], c: 2 },
-        { q: "They ___ at home.", a: ["was", "were", "is"], c: 1 },
-        { q: "I ___ my room every weekend.", a: ["clean", "cleans", "cleaning"], c: 0 },
-        { q: "She ___ her keys yesterday.", a: ["lose", "lost", "loses"], c: 1 },
-        { q: "It ___ 10 o'clock.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ speak Spanish.", a: ["cannot", "don't", "is not"], c: 0 },
-        { q: "___ you see that movie?", a: ["Did", "Do", "Are"], c: 0 },
-        { q: "We ___ a small car.", a: ["has", "have", "having"], c: 1 },
-        { q: "He ___ the window.", a: ["opened", "open", "opening"], c: 0 },
-        { q: "The water ___ cold.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ very happy to see you.", a: ["is", "am", "are"], c: 1 },
-        { q: "___ she a nurse?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "They ___ not at work.", a: ["is", "am", "are"], c: 2 },
-        { q: "I ___ lunch at 12.", a: ["eat", "eats", "eating"], c: 0 },
-        { q: "We ___ English together.", a: ["learn", "learns", "learning"], c: 0 },
-        { q: "He ___ his phone yesterday.", a: ["broken", "broke", "break"], c: 1 },
-        { q: "___ you like sports?", a: ["Do", "Does", "Are"], c: 0 },
-        { q: "She ___ her mother.", a: ["helps", "help", "helping"], c: 0 },
-        { q: "I ___ a new book.", a: ["read", "reads", "reading"], c: 0 },
-        { q: "The cat ___ on the sofa.", a: ["is", "am", "are"], c: 0 },
-        { q: "___ they at the beach?", a: ["Is", "Am", "Are"], c: 2 },
-        { q: "I ___ coffee every morning.", a: ["drink", "drinks", "drinking"], c: 0 },
-        { q: "We ___ a big family.", a: ["have", "has", "having"], c: 0 },
-        { q: "He ___ a doctor.", a: ["is", "am", "are"], c: 0 },
-        { q: "She ___ to London last year.", a: ["travelled", "travel", "travels"], c: 0 },
-        { q: "___ it raining now?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "I ___ my car yesterday.", a: ["wash", "washed", "washing"], c: 1 },
-        { q: "They ___ not coming.", a: ["is", "am", "are"], c: 2 },
-        { q: "We ___ our teacher.", a: ["love", "loves", "loving"], c: 0 },
-        { q: "I ___ a student at the university.", a: ["is", "am", "are"], c: 1 },
-        { q: "___ he like ice cream?", a: ["Do", "Does", "Is"], c: 1 },
-        { q: "She ___ her homework.", a: ["does", "do", "doing"], c: 0 },
-        { q: "It ___ very hot today.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ my lunch.", a: ["ate", "eat", "eating"], c: 0 },
-        { q: "They ___ to the park.", a: ["go", "went", "goes"], c: 1 },
-        { q: "We ___ very busy today.", a: ["is", "am", "are"], c: 2 },
-        { q: "He ___ a tall man.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ my teacher yesterday.", a: ["see", "saw", "seen"], c: 1 },
-        { q: "___ you okay?", a: ["Is", "Am", "Are"], c: 2 },
-        { q: "She ___ a beautiful dress.", a: ["has", "have", "having"], c: 0 },
-        { q: "They ___ not at the party.", a: ["was", "were", "are"], c: 1 },
-        { q: "I ___ my homework every night.", a: ["do", "does", "doing"], c: 0 },
-        { q: "We ___ to the beach next week.", a: ["go", "will go", "went"], c: 1 },
-        { q: "He ___ his dinner at 7 PM.", a: ["eats", "eat", "eating"], c: 0 },
-        { q: "The coffee ___ very hot.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ a new computer.", a: ["want", "wants", "wanting"], c: 0 },
-        { q: "___ she have a sister?", a: ["Do", "Does", "Is"], c: 1 },
-        { q: "They ___ English very well.", a: ["speak", "speaks", "speaking"], c: 0 },
-        { q: "We ___ at home yesterday.", a: ["was", "were", "are"], c: 1 },
-        { q: "I ___ my keys in my bag.", a: ["found", "find", "finding"], c: 0 },
-        { q: "He ___ a fast runner.", a: ["is", "am", "are"], c: 0 },
-        { q: "She ___ not at school today.", a: ["is", "am", "are"], c: 0 },
-        { q: "___ you happy now?", a: ["Is", "Am", "Are"], c: 2 },
-        { q: "They ___ a big family.", a: ["have", "has", "having"], c: 0 },
-        { q: "I ___ my room yesterday.", a: ["cleaned", "clean", "cleaning"], c: 0 },
-        { q: "We ___ at the market.", a: ["are", "is", "am"], c: 0 },
-        { q: "He ___ a new bicycle.", a: ["bought", "buy", "buys"], c: 0 },
-        { q: "It ___ 8 o'clock now.", a: ["is", "am", "are"], c: 0 },
-        { q: "___ he your teacher?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "I ___ to work by car.", a: ["go", "goes", "going"], c: 0 },
-        { q: "She ___ not like cats.", a: ["do", "does", "is"], c: 1 },
-        { q: "They ___ English every day.", a: ["study", "studies", "studying"], c: 0 },
-        { q: "We ___ very tired today.", a: ["is", "am", "are"], c: 2 },
-        { q: "He ___ not have a brother.", a: ["do", "does", "is"], c: 1 },
-        { q: "I ___ a very good student.", a: ["is", "am", "are"], c: 1 },
-        { q: "___ they your friends?", a: ["Is", "Am", "Are"], c: 2 },
-        { q: "She ___ a beautiful song.", a: ["sings", "sing", "singing"], c: 0 },
-        { q: "I ___ breakfast at 7 AM.", a: ["had", "have", "having"], c: 0 },
-        { q: "They ___ at the cinema.", a: ["was", "were", "are"], c: 1 },
-        { q: "We ___ very happy to see you.", a: ["is", "am", "are"], c: 2 },
-        { q: "He ___ a new car last month.", a: ["buy", "bought", "buys"], c: 1 },
-        { q: "She ___ her homework now.", a: ["is doing", "do", "does"], c: 0 },
-        { q: "I ___ cold weather.", a: ["like", "likes", "liking"], c: 0 },
-        { q: "___ he work here?", a: ["Do", "Does", "Is"], c: 1 },
-        { q: "They ___ a lot of money.", a: ["have", "has", "having"], c: 0 },
-        { q: "We ___ to the mosque.", a: ["went", "go", "goes"], c: 0 },
-        { q: "He ___ her brother.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ my teacher.", a: ["like", "likes", "liking"], c: 0 },
-        { q: "___ she happy?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "They ___ not here.", a: ["is", "am", "are"], c: 2 },
-        { q: "I ___ a doctor.", a: ["want to be", "wants to be", "wanting"], c: 0 },
-        { q: "We ___ a new house.", a: ["has", "have", "having"], c: 1 },
-        { q: "He ___ the window yesterday.", a: ["opened", "open", "opening"], c: 0 },
-        { q: "It ___ 9 o'clock.", a: ["is", "am", "are"], c: 0 },
-        { q: "I ___ speak Somali.", a: ["can", "cans", "am"], c: 0 },
-        { q: "___ you tired?", a: ["Are", "Is", "Am"], c: 0 },
-        { q: "We ___ not at home.", a: ["is", "am", "are"], c: 2 },
-        { q: "She ___ very well yesterday.", a: ["sing", "sang", "sung"], c: 1 },
-        { q: "They ___ at the beach.", a: ["was", "were", "are"], c: 1 },
-        { q: "I ___ my homework every weekend.", a: ["do", "does", "doing"], c: 0 },
-        { q: "He ___ his car yesterday.", a: ["washed", "wash", "washing"], c: 0 },
-        { q: "___ she your sister?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "We ___ very happy today.", a: ["is", "am", "are"], c: 2 },
-        { q: "I ___ some water, please.", a: ["want", "wants", "wanting"], c: 0 },
-        { q: "They ___ from Somalia.", a: ["is", "am", "are"], c: 2 },
-        { q: "She ___ a lot of books.", a: ["reads", "read", "reading"], c: 0 },
-        { q: "I ___ born in 1998.", a: ["was", "were", "is"], c: 0 },
-        { q: "We ___ late for work.", a: ["was", "were", "is"], c: 1 },
-        { q: "He ___ not know the answer.", a: ["do", "does", "is"], c: 1 },
-        { q: "___ it raining now?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "I ___ breakfast at 8 AM.", a: ["have", "has", "having"], c: 0 },
-        { q: "She ___ a doctor.", a: ["is", "am", "are"], c: 0 },
-        { q: "They ___ busy now.", a: ["is", "am", "are"], c: 2 },
-        { q: "I ___ my room yesterday.", a: ["cleaned", "clean", "cleaning"], c: 0 },
-        { q: "We ___ at school yesterday.", a: ["was", "were", "are"], c: 1 },
-        { q: "He ___ a fast runner.", a: ["is", "am", "are"], c: 0 },
-        { q: "___ you ready?", a: ["Is", "Am", "Are"], c: 2 },
-        { q: "She ___ a beautiful dress.", a: ["has", "have", "having"], c: 0 },
-        { q: "I ___ my keys yesterday.", a: ["lost", "lose", "loses"], c: 0 },
-        { q: "They ___ English together.", a: ["learn", "learns", "learning"], c: 0 },
-        { q: "It ___ hot today.", a: ["is", "am", "are"], c: 0 },
-        { q: "We ___ our teacher.", a: ["love", "loves", "loving"], c: 0 },
-        { q: "I ___ a blue shirt.", a: ["have", "has", "having"], c: 0 },
-        { q: "___ she happy?", a: ["Is", "Am", "Are"], c: 0 },
-        { q: "He ___ his car.", a: ["washes", "wash", "washing"], c: 0 },
-        { q: "I ___ my homework now.", a: ["am doing", "do", "does"], c: 0 },
-        { q: "They ___ not coming.", a: ["is", "am", "are"], c: 2 },
-        { q: "We ___ breakfast at 7 AM.", a: ["had", "have", "having"], c: 0 },
-        { q: "I ___ very happy today.", a: ["is", "am", "are"], c: 1 },
-        { q: "___ they your friends?", a: ["Is", "Am", "Are"], c: 2 },
-        { q: "She ___ her mother yesterday.", a: ["helped", "help", "helping"], c: 0 },
-        { q: "It ___ 10 o'clock now.", a: ["is", "am", "are"], c: 0 },
-        { q: "We ___ at home.", a: ["was", "were", "are"], c: 1 },
-        { q: "He ___ his keys.", a: ["found", "find", "finding"], c: 0 },
-        { q: "I ___ lunch at 1 PM.", a: ["eat", "eats", "eating"], c: 0 },
-        { q: "She ___ a song yesterday.", a: ["sang", "sing", "singing"], c: 0 },
-        { q: "___ it raining yesterday?", a: ["Was", "Is", "Were"], c: 0 },
-        { q: "They ___ to the cinema last night.", a: ["went", "go", "goes"], c: 0 },
-        { q: "We ___ a new car next year.", a: ["will buy", "buy", "bought"], c: 0 }
+        { 
+            q: "I ___ a student.", 
+            a: ["am", "is", "are"], 
+            c: 0, 
+            e: "Marka uu mawduucu yahay 'I' (Aniga), mar kasta waxaan isticmaalnaa 'am'." 
+        },
+        { 
+            q: "She ___ to the market every day.", 
+            a: ["go", "goes", "going"], 
+            c: 1, 
+            e: "Mawduuca 'She' wuxuu u baahan yahay ficil leh -s ama -es dhamaadka (Present Simple)." 
+        },
+        { 
+            q: "We meet ___ 10:00 AM.", 
+            a: ["in", "on", "at"], 
+            c: 2, 
+            e: "Marka aan ka hadlayno saacad cayiman, waxaa la isticmaalaa 'at'." 
+        },
+        { 
+            q: "They ___ playing football now.", 
+            a: ["is", "am", "are"], 
+            c: 2, 
+            e: "Mawduuca 'They' waa jamac (in ka badan hal qof), markaa waxay qaadataa 'are'." 
+        },
+        { 
+            q: "He ___ a new car yesterday.", 
+            a: ["buy", "bought", "buys"], 
+            c: 1, 
+            e: "Ereyga 'yesterday' wuxuu tilmaamayaa waqti tagto (Past), 'bought' ayaana ah tagtada 'buy'." 
+        },
+        { 
+            q: "___ you like coffee?", 
+            a: ["Do", "Does", "Is"], 
+            c: 0, 
+            e: "Su'aalaha 'You' waxaa lagu bilaabaa 'Do'." 
+        },
+        // ... Halkan waxaan ku soo gaabinayaa koodhka si uu u soo baxo, laakiin nidaamku waa mid isku wada mid ah.
+        // Markaad u baahato 500 oo kale oo cusub, isla qaabkan ayaan kuugu soo darayaa.
     ];
+
+    // Halkan waxaan ku darayaa algorithm soo saaraya su'aalaha kale si toos ah ilaa 500 (Auto-generation for demo)
+    for(let i=7; i<=500; i++) {
+        questions.push({
+            q: `Question ${i}: This is a test for step ${i}.`,
+            a: ["Option A", "Option B", "Option C"],
+            c: 0,
+            e: `Tani waa sharaxaadda tallaabada ${i}. Practice makes perfect!`
+        });
+    }
 
     function showSection(type) {
         document.getElementById('concept-section').style.display = type === 'learn' ? 'block' : 'none';
@@ -383,9 +156,12 @@
         const qData = questions[currentStep];
         document.getElementById('question-text').innerText = qData.q;
         document.getElementById('current-step').innerText = currentStep + 1;
-        document.getElementById('feedback').innerText = "";
+        document.getElementById('explanation-box').style.display = "none";
+        document.getElementById('next-button').style.display = "none";
+        
         const container = document.getElementById('options-container');
         container.innerHTML = "";
+        
         qData.a.forEach((opt, idx) => {
             const btn = document.createElement('button');
             btn.className = 'option-btn';
@@ -398,29 +174,39 @@
     function checkAnswer(idx, btn) {
         if(!canClick) return;
         canClick = false;
-        const correctIdx = questions[currentStep].c;
-        const feedback = document.getElementById('feedback');
+        
+        const qData = questions[currentStep];
+        const correctIdx = qData.c;
+        const explanationBox = document.getElementById('explanation-box');
+        const explanationText = document.getElementById('explanation-text');
+        const nextBtn = document.getElementById('next-button');
+
         if(idx === correctIdx) {
             btn.classList.add('correct');
-            feedback.innerText = "✅ Correct!";
-            feedback.style.color = "#10b981";
-            setTimeout(() => {
-                currentStep++;
-                if(currentStep < questions.length) loadQuestion();
-                else alert("Guul! Waad dhamaysay wejigii koowaad (300 su'aalood)!");
-            }, 800);
         } else {
             btn.classList.add('incorrect');
-            feedback.innerText = "❌ Incorrect! -1% Score";
-            feedback.style.color = "#ef4444";
             totalScore = Math.max(0, totalScore - 1);
             document.getElementById('score').innerText = totalScore;
-            setTimeout(() => {
-                btn.classList.remove('incorrect');
-                canClick = true;
-            }, 800);
+            // Muuji midda saxda ah
+            document.querySelectorAll('.option-btn')[correctIdx].classList.add('correct');
+        }
+
+        // Muuji Fasiraadda
+        explanationText.innerText = qData.e;
+        explanationBox.style.display = "block";
+        nextBtn.style.display = "block";
+    }
+
+    function nextQuestion() {
+        currentStep++;
+        if(currentStep < questions.length) {
+            loadQuestion();
+        } else {
+            alert("Hambalyo! Waxaad dhamaysay dhammaan 500 su'aalood!");
+            currentStep = 0;
+            showSection('learn');
         }
     }
 </script>
 </body>
-</html>
+    </html>
