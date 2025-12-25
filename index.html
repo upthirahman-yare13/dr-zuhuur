@@ -3,137 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aman-Yare | New Enterprise A2</title>
+    <title>Aman-Yare Academy | New Enterprise A2</title>
     <style>
-        :root { --main-color: #10b981; --bg-dark: #0b0f19; --card-bg: #1e293b; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg-dark); color: white; margin: 0; line-height: 1.6; }
-        .container { width: 90%; max-width: 900px; margin: auto; padding: 20px; }
+        :root { --primary: #10b981; --bg: #0b1120; --card: #1e293b; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: var(--bg); color: white; margin: 0; }
+        .header { background: var(--primary); padding: 15px; text-align: center; position: sticky; top: 0; z-index: 1000; font-weight: bold; }
+        .header a { color: white; text-decoration: none; border: 1px solid white; padding: 5px 10px; border-radius: 5px; margin-left: 10px; }
+        .container { max-width: 1000px; margin: 20px auto; padding: 20px; }
         
-        /* Header & Contact */
-        .top-bar { background: var(--main-color); color: white; text-align: center; padding: 10px; font-weight: bold; position: sticky; top: 0; z-index: 100; }
-        .top-bar a { color: white; text-decoration: underline; margin-left: 10px; }
+        /* Unit Selector */
+        .unit-nav { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0; margin-bottom: 30px; }
+        .unit-btn { background: #334155; color: white; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; white-space: nowrap; }
+        .unit-btn.active { background: var(--primary); }
 
-        /* Tabs Navigation */
-        .tabs { display: flex; gap: 10px; margin: 30px 0; overflow-x: auto; padding-bottom: 10px; }
-        .tab-btn { background: #334155; border: none; color: white; padding: 12px 25px; border-radius: 8px; cursor: pointer; white-space: nowrap; font-weight: bold; }
-        .tab-btn.active { background: var(--main-color); }
+        /* Main Tabs */
+        .tabs { display: flex; background: var(--card); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+        .tab { flex: 1; padding: 15px; text-align: center; cursor: pointer; transition: 0.3s; font-weight: bold; border-bottom: 3px solid transparent; }
+        .tab.active { border-bottom-color: var(--primary); background: rgba(16, 185, 129, 0.1); }
 
-        /* Content Sections */
-        .content-box { background: var(--card-bg); padding: 30px; border-radius: 15px; border: 1px solid #334155; display: none; }
+        .content-box { background: var(--card); padding: 30px; border-radius: 15px; display: none; line-height: 1.8; }
         .content-box.active { display: block; }
-        
-        /* Video Container */
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* Input Styles */
-        input, textarea { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #475569; background: #0f172a; color: white; }
-        .send-btn { background: #2563eb; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; background: #000; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        .assignment-card { background: #0f172a; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 4px solid var(--primary); }
+        textarea { width: 100%; padding: 15px; border-radius: 8px; background: #1e293b; color: white; border: 1px solid #334155; margin-top: 10px; }
+        .btn-send { background: #2563eb; color: white; border: none; padding: 15px; border-radius: 8px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-<div class="top-bar">
-    📩 Assignment-ka halkan ku soo dir: <a href="https://wa.me/252613040087">+252 613040087</a>
+<div class="header">
+    📚 NEW ENTERPRISE A2 COURSE | WhatsApp Assignment: <a href="https://wa.me/252613040087">SEND HERE</a>
 </div>
 
 <div class="container">
-    <h1 style="text-align: center; color: var(--main-color);">New Enterprise A2: Unit 1</h1>
-    <p style="text-align: center; color: #9ca3af;">Baro Luuqadda Ingiriisiga adoo adeegsanaya buugga New Enterprise A2.</p>
+    <div class="unit-nav">
+        <button class="unit-btn active">Unit 1</button>
+        <button class="unit-btn">Unit 2</button>
+        <button class="unit-btn">Unit 3</button>
+        <button class="unit-btn">Unit 4</button>
+        <button class="unit-btn">Units 5-12...</button>
+    </div>
 
     <div class="tabs">
-        <button class="tab-btn active" onclick="openTab(event, 'lesson')">📖 Lesson</button>
-        <button class="tab-btn" onclick="openTab(event, 'video')">🎥 Video</button>
-        <button class="tab-btn" onclick="openTab(event, 'practice')">✍️ Practice</button>
-        <button class="tab-btn" onclick="openTab(event, 'assignment')">📝 Assignment</button>
+        <div class="tab active" onclick="switchTab(event, 'lesson')">📖 Casharka</div>
+        <div class="tab" onclick="switchTab(event, 'video')">🎥 Video</div>
+        <div class="tab" onclick="switchTab(event, 'assignment')">📝 Assignment</div>
     </div>
 
     <div id="lesson" class="content-box active">
-        <h2>Unit 1: Day in, Day out</h2>
-        <p>Casharkan waxaan ku baran doonaa <strong>Present Simple</strong> iyo sida looga hadlo hab-maalmeedka (Daily Routine).</p>
-        <hr style="border: 0.5px solid #334155;">
-        <h3>Vocabulary: Daily Activities</h3>
+        <h2 style="color: var(--primary);">Unit 1: Day in, Day out</h2>
+        <p>Bogga 6-17 ee buugga: Casharkani wuxuu ku barayaa sida looga hadlo nolol maalmeedka iyo hab-dhaqanka dadka.</p>
+        
+        <h3>1. Vocabulary (Erayo Cusub)</h3>
         <ul>
-            <li><strong>Get up:</strong> Tooraado / Hurdada ka kac.</li>
-            <li><strong>Have breakfast:</strong> Quraaco.</li>
-            <li><strong>Go to work:</strong> Shaqo tag.</li>
-            <li><strong>Watch TV:</strong> Telefishinka daawo.</li>
+            <li><strong>Daily Routine:</strong> Hawl maalmeedka (waxaad samayso maalin kasta).</li>
+            <li><strong>Freelance:</strong> Shaqo madax-bannaan (iyada oo aan shirkad gaar ah lagugu xirin).</li>
+            <li><strong>Commute:</strong> Socdaalka u dhexeeya guriga iyo goobta shaqada.</li>
         </ul>
-        <h3>Grammar: Present Simple</h3>
-        <p>Waxaan isticmaalnaa Present Simple marka aan ka hadlayno wax joogto ah (Habits).</p>
-        <blockquote style="background: #334155; padding: 10px; border-left: 5px solid var(--main-color);">
-            Example: I <strong>get up</strong> at 7:00 AM every day.
-        </blockquote>
+
+        <h3>2. Grammar: Present Simple</h3>
+        <p>Waxaan isticmaalnaa Present Simple marka aan ka hadlayno xaqiiqooyin ama wax joogto ah.</p>
+        <div style="background: #334155; padding: 15px; border-radius: 8px;">
+            <strong>Structure:</strong> Subject + Verb (s/es for he/she/it) <br>
+            <em>Tusaale:</em> I work from home. / He work<strong>s</strong> in an office.
+        </div>
     </div>
 
     <div id="video" class="content-box">
-        <h2>Daawo Sharaxaadda Casharka</h2>
-        <div class="video-wrapper">
+        <h2>🎥 Video-ga Sharaxaadda (Unit 1)</h2>
+        <div class="video-container">
             <iframe src="https://www.youtube.com/embed/S_8qK6eT62E" frameborder="0" allowfullscreen></iframe>
         </div>
-        <p style="margin-top: 15px; font-size: 0.9rem; color: #9ca3af;">Muuqaalkani wuxuu si faahfaahsan u sharaxayaa casharka Unit 1.</p>
-    </div>
-
-    <div id="practice" class="content-box">
-        <h2>Practice: Dooro Jawaabta Saxda ah</h2>
-        <p>1. She _______ breakfast at 8:00 AM.</p>
-        <button onclick="checkAns(this, false)" style="display:block; width:100%; margin:5px 0; padding:10px; border-radius:5px; border:none; background:#334155; color:white;">A) have</button>
-        <button onclick="checkAns(this, true)" style="display:block; width:100%; margin:5px 0; padding:10px; border-radius:5px; border:none; background:#334155; color:white;">B) has</button>
-        <button onclick="checkAns(this, false)" style="display:block; width:100%; margin:5px 0; padding:10px; border-radius:5px; border:none; background:#334155; color:white;">C) having</button>
-        <p id="feedback" style="margin-top: 15px; font-weight: bold;"></p>
+        <p style="margin-top:15px;">Daawo casharka oo maqal iyo muuqaal ah si aad u fahanto dhawaaqa erayada iyo naxwaha.</p>
     </div>
 
     <div id="assignment" class="content-box">
-        <h2>📝 Assignment (Shaqada Guriga)</h2>
-        <p>Qor 5 jumladood oo ku saabsan hab-maalmeedkaaga (Daily Routine), ka dibna halkan ku qor si aad ugu dirto macallinkaaga WhatsApp.</p>
-        <textarea id="answerArea" rows="5" placeholder="Halkan ku qor jawaabtaada..."></textarea>
-        <button class="send-btn" onclick="sendToWhatsApp()">U Dir Macallinka (WhatsApp)</button>
+        <h2>📝 Assignment - Unit 1</h2>
+        <div class="assignment-card">
+            <p><strong>Task 1:</strong> Qor 5 jumladood oo ku saabsan hab-maalmeedkaaga adoo isticmaalaya erayada: <em>get up, have breakfast, go to work, watch TV, sleep.</em></p>
+        </div>
+        <div class="assignment-card">
+            <p><strong>Task 2:</strong> Ka jawaab su'aalahan: <br> 1. What time do you start work? <br> 2. Do you like your daily routine? Why?</p>
+        </div>
+        
+        <textarea id="ans" rows="6" placeholder="Halkan ku qor jawaabahaaga..."></textarea>
+        <button class="btn-send" onclick="sendToWhatsApp()">U Dir Macallinka (WhatsApp)</button>
     </div>
-
 </div>
 
 <script>
-    // Tab Switching Logic
-    function openTab(evt, tabName) {
-        let contentBoxes = document.getElementsByClassName("content-box");
-        for (let i = 0; i < contentBoxes.length; i++) {
-            contentBoxes[i].classList.remove("active");
-        }
-        let tabButtons = document.getElementsByClassName("tab-btn");
-        for (let i = 0; i < tabButtons.length; i++) {
-            tabButtons[i].classList.remove("active");
-        }
-        document.getElementById(tabName).classList.add("active");
+    function switchTab(evt, tabName) {
+        let boxes = document.getElementsByClassName("content-box");
+        for (let x of boxes) x.style.display = "none";
+        
+        let tabs = document.getElementsByClassName("tab");
+        for (let t of tabs) t.classList.remove("active");
+        
+        document.getElementById(tabName).style.display = "block";
         evt.currentTarget.classList.add("active");
     }
 
-    // Practice Logic
-    function checkAns(btn, isCorrect) {
-        let feedback = document.getElementById('feedback');
-        if(isCorrect) {
-            feedback.innerText = "✅ Sax! Sababtoo ah 'She' waxay qaadataa 'has'.";
-            feedback.style.color = "#10b981";
-            btn.style.background = "#10b981";
-        } else {
-            feedback.innerText = "❌ Khalad! Isku day mar kale.";
-            feedback.style.color = "#ef4444";
-            btn.style.background = "#ef4444";
-        }
-    }
-
-    // WhatsApp Send Logic
     function sendToWhatsApp() {
-        let text = document.getElementById("answerArea").value;
-        if (text.trim() === "") {
-            alert("Fadlan marka hore qor jawaabtaada!");
-            return;
-        }
-        let phone = "252613040087";
-        let message = "Assignment-ka Unit 1: \n\n" + text;
-        let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-        window.open(url, '_blank');
+        let msg = document.getElementById("ans").value;
+        if(!msg) return alert("Fadlan qor jawaabta!");
+        window.open(`https://wa.me/252613040087?text=Assignment Unit 1:%0A${encodeURIComponent(msg)}`);
     }
 </script>
 
 </body>
-    </html>
+            </html>
