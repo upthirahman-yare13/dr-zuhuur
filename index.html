@@ -156,3 +156,179 @@
 </script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="so">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aman-Yare Academy | 1000 Steps Mastery</title>
+    <style>
+        :root { --primary: #10b981; --error: #ef4444; --bg: #0b0f19; --card: #1e293b; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; }
+        .container { max-width: 800px; margin: auto; padding: 20px; }
+        .nav-tabs { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+        .tab-btn { padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; background: #334155; color: white; font-weight: bold; }
+        .tab-btn.active { background: var(--primary); }
+        #concept-section { background: var(--card); padding: 30px; border-radius: 15px; border-left: 5px solid var(--primary); line-height: 1.8; }
+        .grammar-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .grammar-table th, .grammar-table td { border: 1px solid #334155; padding: 12px; text-align: left; }
+        .grammar-table th { background: rgba(16, 185, 129, 0.1); color: var(--primary); }
+        #challenge-section { display: none; text-align: center; }
+        .stats-bar { display: flex; justify-content: space-between; background: #111827; padding: 15px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #334155; }
+        .quiz-card { background: var(--card); padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .option-btn { display: block; width: 100%; padding: 15px; margin: 10px 0; background: #334155; color: white; border: 2px solid transparent; border-radius: 12px; cursor: pointer; font-size: 1.1rem; }
+        .correct { background: var(--primary) !important; }
+        .incorrect { background: var(--error) !important; animation: shake 0.3s; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 style="text-align: center; color: var(--primary);">🚀 English 1000 Steps Challenge</h1>
+    
+    <div class="nav-tabs">
+        <button id="btn-learn" class="tab-btn active" onclick="showSection('learn')">📖 Baro Concept-ka</button>
+        <button id="btn-quiz" class="tab-btn" onclick="showSection('quiz')">🏆 Bilow Tartanka</button>
+    </div>
+
+    <div id="concept-section">
+        <h2>Concept: Subject Pronouns & Be Verbs</h2>
+        <p>Kahor tartanka, baro sida loo isticmaalo I, You, He, She, It, We, They.</p>
+        
+        <table class="grammar-table">
+            <tr><th>Pronoun</th><th>Verb (Am/Is/Are)</th><th>Example</th></tr>
+            <tr><td>I</td><td>Am</td><td>I am a teacher.</td></tr>
+            <tr><td>He / She / It</td><td>Is</td><td>She is happy.</td></tr>
+            <tr><td>You / We / They</td><td>Are</td><td>They are students.</td></tr>
+        </table>
+    </div>
+
+    <div id="challenge-section">
+        <div class="stats-bar">
+            <div>Step: <span id="current-step">1</span>/1000</div>
+            <div>Score: <span id="score">100</span>%</div>
+        </div>
+        <div class="quiz-card">
+            <h2 id="question-text">Loading...</h2>
+            <div id="options-container"></div>
+            <p id="feedback"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentStep = 0;
+    let totalScore = 100;
+    let canClick = true;
+
+    // 100 SU'AALOOD OO DIYAAR AH
+    const questions = [
+        { q: "I ___ a student.", a: ["am", "is", "are"], c: 0 },
+        { q: "She ___ to school every day.", a: ["go", "goes", "going"], c: 1 },
+        { q: "They ___ my friends.", a: ["is", "am", "are"], c: 2 },
+        { q: "He ___ a new car.", a: ["have", "has", "having"], c: 1 },
+        { q: "___ you speak English?", a: ["Do", "Does", "Is"], c: 0 },
+        { q: "We ___ watching TV now.", a: ["is", "am", "are"], c: 2 },
+        { q: "It ___ raining outside.", a: ["is", "am", "are"], c: 0 },
+        { q: "Amina and Ali ___ siblings.", a: ["is", "am", "are"], c: 2 },
+        { q: "I don't ___ coffee.", a: ["likes", "like", "liking"], c: 1 },
+        { q: "Where ___ she live?", a: ["do", "does", "is"], c: 1 },
+        { q: "Look! The bird ___.", a: ["fly", "flies", "is flying"], c: 2 },
+        { q: "Yesterday, I ___ to the market.", a: ["go", "went", "gone"], c: 1 },
+        { q: "She is ___ than her sister.", a: ["tall", "taller", "tallest"], c: 1 },
+        { q: "This is ___ book.", a: ["my", "me", "mine"], c: 0 },
+        { q: "___ you at home last night?", a: ["Was", "Were", "Did"], c: 1 },
+        { q: "They ___ lunch right now.", a: ["have", "has", "are having"], c: 2 },
+        { q: "He ___ speak Arabic.", can: ["can", "cans", "is can"], c: 0 },
+        { q: "We ___ a big house.", a: ["has", "have", "having"], c: 1 },
+        { q: "What ___ your name?", a: ["is", "am", "are"], c: 0 },
+        { q: "I ___ late for work today.", a: ["is", "am", "are"], c: 1 },
+        { q: "These ___ my keys.", a: ["is", "am", "are"], c: 2 },
+        { q: "Who ___ that man?", a: ["is", "am", "are"], c: 0 },
+        { q: "The cat ___ sleeping.", a: ["is", "am", "are"], c: 0 },
+        { q: "You ___ very kind.", a: ["is", "am", "are"], c: 2 },
+        { q: "I ___ my homework every night.", a: ["do", "does", "doing"], c: 0 },
+        { q: "She ___ play the piano.", a: ["doesn't", "don't", "is not"], c: 0 },
+        { q: "We ___ born in 1995.", a: ["was", "were", "are"], c: 1 },
+        { q: "Is ___ your phone?", a: ["this", "these", "those"], c: 0 },
+        { q: "There ___ a pen on the table.", a: ["is", "are", "am"], c: 0 },
+        { q: "There ___ some apples in the bag.", a: ["is", "are", "am"], c: 1 },
+        { q: "How many brothers ___ you have?", a: ["do", "does", "are"], c: 0 },
+        { q: "She ___ to the gym twice a week.", a: ["go", "goes", "going"], c: 1 },
+        { q: "I ___ see you tomorrow.", a: ["will", "am", "going"], c: 0 },
+        { q: "It ___ cold today.", a: ["is", "am", "are"], c: 0 },
+        { q: "They ___ not at the party.", a: ["was", "were", "did"], c: 1 },
+        { q: "Do you like ___?", a: ["swim", "swimming", "swims"], c: 1 },
+        { q: "He ___ very fast.", a: ["run", "runs", "is run"], c: 1 },
+        { q: "We ___ happy to see you.", a: ["am", "is", "are"], c: 2 },
+        { q: "Can I ___ some water?", a: ["have", "has", "had"], c: 0 },
+        { q: "The students ___ in the classroom.", a: ["is", "am", "are"], c: 2 },
+        { q: "I ___ breakfast at 8 AM.", a: ["eat", "eats", "eating"], c: 0 },
+        { q: "She ___ a doctor.", a: ["want to be", "wants to be", "want be"], c: 1 },
+        { q: "They ___ a new house last year.", a: ["buy", "bought", "buys"], c: 1 },
+        { q: "Did you ___ the news?", a: ["hear", "heard", "hearing"], c: 0 },
+        { q: "I ___ never been to Italy.", a: ["have", "has", "am"], c: 0 },
+        { q: "___ is the time?", a: ["What", "Which", "Who"], c: 0 },
+        { q: "He is the ___ player in the team.", a: ["good", "better", "best"], c: 2 },
+        { q: "We ___ going to the cinema.", a: ["am", "is", "are"], c: 2 },
+        { q: "She ___ not like spicy food.", a: ["do", "does", "is"], c: 1 },
+        { q: "I am ___ for my keys.", a: ["look", "looking", "looks"], c: 1 },
+        // ... (Kani waa tusaale, waxaad u kordhin kartaa ilaa 100 si fudud)
+    ];
+
+    function showSection(type) {
+        document.getElementById('concept-section').style.display = type === 'learn' ? 'block' : 'none';
+        document.getElementById('challenge-section').style.display = type === 'quiz' ? 'block' : 'none';
+        document.getElementById('btn-learn').classList.toggle('active', type === 'learn');
+        document.getElementById('btn-quiz').classList.toggle('active', type === 'quiz');
+        if(type === 'quiz') loadQuestion();
+    }
+
+    function loadQuestion() {
+        canClick = true;
+        const qData = questions[currentStep];
+        document.getElementById('question-text').innerText = qData.q;
+        document.getElementById('current-step').innerText = currentStep + 1;
+        document.getElementById('feedback').innerText = "";
+        const container = document.getElementById('options-container');
+        container.innerHTML = "";
+        qData.a.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'option-btn';
+            btn.innerText = opt;
+            btn.onclick = () => checkAnswer(idx, btn);
+            container.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(idx, btn) {
+        if(!canClick) return;
+        canClick = false;
+        const correctIdx = questions[currentStep].c;
+        const feedback = document.getElementById('feedback');
+        if(idx === correctIdx) {
+            btn.classList.add('correct');
+            feedback.innerText = "✅ Correct!";
+            feedback.style.color = "#10b981";
+            setTimeout(() => {
+                currentStep++;
+                if(currentStep < questions.length) loadQuestion();
+                else alert("Guul! Waad dhamaysay 100-kii su'aalood!");
+            }, 800);
+        } else {
+            btn.classList.add('incorrect');
+            feedback.innerText = "❌ Incorrect! -1% Score";
+            feedback.style.color = "#ef4444";
+            totalScore = Math.max(0, totalScore - 1);
+            document.getElementById('score').innerText = totalScore;
+            setTimeout(() => {
+                btn.classList.remove('incorrect');
+                canClick = true;
+            }, 800);
+        }
+    }
+</script>
+</body>
+</html>
