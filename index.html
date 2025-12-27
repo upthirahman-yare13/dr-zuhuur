@@ -8,94 +8,113 @@
         :root { --gold: #D4AF37; --pink: #ff85a2; --black: #050505; }
         body { font-family: 'Poppins', sans-serif; background: var(--black); color: white; margin: 0; text-align: center; overflow-x: hidden; }
         
+        /* Airplane Animation */
+        @keyframes fly {
+            0% { left: -100px; top: 20px; opacity: 0; }
+            50% { opacity: 1; }
+            100% { left: 110%; top: 50px; opacity: 0; }
+        }
+        .airplane {
+            position: absolute; font-size: 30px; animation: fly 8s linear infinite; z-index: 10; pointer-events: none;
+        }
+
         /* Floating Hearts */
         @keyframes hearts { 0% { transform: translateY(0) rotate(0); opacity: 1; } 100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
         .heart { position: fixed; bottom: -10px; color: var(--gold); font-size: 20px; animation: hearts 5s linear infinite; z-index: -1; }
 
-        .hero { padding: 80px 20px; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200'); background-size: cover; border-bottom: 2px solid var(--gold); }
+        .hero { padding: 80px 20px; background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200'); background-size: cover; border-bottom: 2px solid var(--gold); position: relative; }
         
-        /* Sawirka Rumaan */
         .profile-img { 
             width: 220px; height: 220px; border-radius: 50%; 
             border: 5px solid var(--gold); object-fit: cover; 
             box-shadow: 0 0 40px var(--gold); margin-bottom: 20px;
+            animation: glow 2s infinite alternate;
         }
+        @keyframes glow { from { box-shadow: 0 0 20px var(--gold); } to { box-shadow: 0 0 45px #f1c40f; } }
         
-        h1 { color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin: 10px 0; font-size: 35px; }
-        .age-badge { background: var(--gold); color: black; padding: 6px 20px; border-radius: 20px; font-weight: bold; }
+        /* Animated Name */
+        h1 { 
+            color: var(--gold); letter-spacing: 4px; text-transform: uppercase; margin: 10px 0; font-size: 38px; 
+            animation: colorChange 4s infinite;
+        }
+        @keyframes colorChange { 0%, 100% { color: var(--gold); } 50% { color: #fff; } }
 
-        /* Countdown */
+        .age-badge { background: var(--gold); color: black; padding: 6px 25px; border-radius: 20px; font-weight: bold; }
+
         .countdown { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
-        .time-box { background: rgba(212, 175, 55, 0.1); padding: 15px; border-radius: 15px; border: 1px solid var(--gold); min-width: 80px; }
-        .time-box span { display: block; font-size: 28px; font-weight: bold; color: var(--gold); }
+        .time-box { background: rgba(212, 175, 55, 0.1); padding: 15px; border-radius: 15px; border: 1px solid var(--gold); min-width: 85px; backdrop-filter: blur(5px); }
+        .time-box span { display: block; font-size: 30px; font-weight: bold; color: var(--gold); }
+
+        .surprise-btn { background: linear-gradient(45deg, #D4AF37, #f1c40f); color: black; padding: 15px 35px; border-radius: 50px; border: none; font-weight: 900; cursor: pointer; font-size: 16px; margin: 20px 0; box-shadow: 0 10px 20px rgba(212,175,55,0.4); }
+        #surprise-msg { display: none; background: rgba(212, 175, 55, 0.1); padding: 30px; border-radius: 20px; border: 2px dashed var(--gold); margin: 20px auto; max-width: 80%; animation: fadeIn 1s; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
         .dream-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 30px; }
-        .dream-item { border-radius: 25px; overflow: hidden; border: 1px solid rgba(212,175,55,0.3); background: #111; transition: 0.4s; }
-        .dream-item:hover { transform: scale(1.05); border-color: var(--gold); }
+        .dream-item { border-radius: 25px; overflow: hidden; border: 1px solid rgba(212,175,55,0.3); background: #111; }
         .dream-item img { width: 100%; height: 250px; object-fit: cover; }
         .dream-item p { padding: 15px; font-weight: bold; color: var(--gold); }
 
-        .btn-call { display: inline-block; background: linear-gradient(45deg, #D4AF37, #f1c40f); color: black; padding: 18px 50px; border-radius: 50px; text-decoration: none; font-weight: 900; font-size: 18px; margin: 40px 0; box-shadow: 0 10px 20px rgba(212,175,55,0.3); }
-        
         .footer-note { padding: 40px; border-top: 1px solid #222; margin-top: 50px; }
-        .upthi { color: var(--gold); font-weight: bold; font-size: 18px; }
+        .upthi { color: var(--gold); font-weight: bold; font-size: 20px; }
     </style>
 </head>
 <body>
 
 <div class="hero">
+    <div class="airplane">✈️</div>
+
     <img src="https://i.ibb.co/3ykG8Lw/IMG-20250912-WA0005.jpg" alt="Rumaan" class="profile-img">
-    <h1>Rumaan 👑</h1>
-    <p style="font-size: 18px;">Future Pilot | Island Queen</p>
+    <h1>RUMAAN 👑</h1>
+    <p style="font-size: 20px;">Future Pilot | Island Queen</p>
     <div style="margin: 15px 0;"><span class="age-badge">16 Sano Jir</span></div>
 
     <h3 style="color: var(--pink); margin-top: 40px;">Birthday Countdown 🎂</h3>
-    <div class="countdown" id="timer">
-        <div class="time-box"><span id="days">00</span>Maalmood</div>
-        <div class="time-box"><span id="hours">00</span>Saacadood</div>
+    <div class="countdown">
+        <div class="time-box"><span id="days">00</span>Maal</div>
+        <div class="time-box"><span id="hours">00</span>Saac</div>
+        <div class="time-box"><span id="mins">00</span>Daq</div>
+    </div>
+
+    <button class="surprise-btn" onclick="showSurprise()">🎁 CLICK FOR SURPRISE</button>
+    <div id="surprise-msg">
+        <h2 style="color: var(--gold);">Special Message for Rumaan! 🌹</h2>
+        <p style="font-size: 18px;">
+            Maanta waxaad tahay 16 jir leh hiraal aad u weyn. <br>
+            Waxaan kuu rajaynayaa inaad maalin uun diyaaraddaadu dhex gasho daruuraha, adigoo ah Pilot-ka ugu guusha badan. <br>
+            <strong style="color: #fff;">Upthirahmaan ayaa ku dhiirigelinaya markasta! ✨</strong>
+        </p>
     </div>
 </div>
 
 <div class="container">
-    <h2 style="color: var(--gold); margin-top: 60px; font-size: 28px;">MY LUXURY LIFESTYLE 🏰</h2>
+    <h2 style="color: var(--gold); margin-top: 60px; font-size: 30px;">MY LUXURY LIFESTYLE 🏰</h2>
     <div class="dream-grid">
-        <div class="dream-item">
-            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=500" alt="Villa">
-            <p>Gurigeyga Riyada (Dream Villa)</p>
-        </div>
-        <div class="dream-item">
-            <img src="https://images.unsplash.com/photo-1590156221122-c4462101450b?w=500" alt="Island">
-            <p>Jasiiradayda Gaarka Ah</p>
-        </div>
-        <div class="dream-item">
-            <img src="https://images.unsplash.com/photo-1541019177149-bef500cbb2a2?w=500" alt="Perfume">
-            <p>Cadarka Aan Jeclahay 🌸</p>
-        </div>
-        <div class="dream-item">
-            <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500" alt="Roses">
-            <p>Ubaxa Gabdhaha 🌹</p>
-        </div>
+        <div class="dream-item"><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=500"><p>Dream Villa</p></div>
+        <div class="dream-item"><img src="https://images.unsplash.com/photo-1590156221122-c4462101450b?w=500"><p>Private Island</p></div>
+        <div class="dream-item"><img src="https://images.unsplash.com/photo-1541019177149-bef500cbb2a2?w=500"><p>Luxury Perfumes</p></div>
+        <div class="dream-item"><img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=500"><p>Red Roses 🌹</p></div>
     </div>
 
-    <a href="tel:+252771941086" class="btn-call">📞 WAC RUMAAN</a>
-
     <div class="footer-note">
-        Boggan waxaa si kalgacal leh ugu dhisay saaxiibkeeda qaaliga ah <br>
+        <p>Boggan waxaa si surprise ah u dhisay:</p>
         <span class="upthi">UPTHIRAHMAAN</span>
     </div>
 </div>
 
 <script>
-    // Countdown dhamaadka sanadka (waad badali kartaa taariikhda dhabta ah)
     const birthday = new Date("Dec 31, 2025 00:00:00").getTime();
     setInterval(function() {
         const now = new Date().getTime();
         const diff = birthday - now;
         document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
         document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     }, 1000);
 
-    // Floating Hearts Animation
+    function showSurprise() {
+        document.getElementById("surprise-msg").style.display = "block";
+    }
+
     setInterval(function() {
         const heart = document.createElement("div");
         heart.innerHTML = "❤";
@@ -104,8 +123,8 @@
         heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 5000);
-    }, 500);
+    }, 400);
 </script>
 
 </body>
-</html>
+    </html>
