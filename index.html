@@ -3,113 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Queen Rumaan’s Secret World 👑</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <title>For My Queen Rumaan 👑</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #D4AF37; --pink: #FF85A1; --soft-pink: #fbc2eb; --black: #050505; }
+        :root { --gold: #D4AF37; --pink: #FF4D6D; --black: #050505; }
         body { font-family: 'Poppins', sans-serif; background: var(--black); color: white; margin: 0; text-align: center; overflow-x: hidden; }
+        
+        /* Rose Petals Animation */
+        .petal { position: fixed; top: -10%; color: var(--pink); user-select: none; z-index: 1000; pointer-events: none; animation: fall linear forwards; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-        /* Floating Sparkles & Petals */
-        .sparkle { position: fixed; background: white; border-radius: 50%; pointer-events: none; animation: flyUp 5s linear infinite; }
-        @keyframes flyUp { from { transform: translateY(100vh) scale(0); opacity: 1; } to { transform: translateY(-10vh) scale(1.5); opacity: 0; } }
-
-        /* Aesthetic Header */
+        /* Hero Section - Island Theme */
         .hero { 
-            height: 100vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-            url('https://images.unsplash.com/photo-1518131359143-b367bcad9472?q=80&w=1200'); 
-            background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 100vh; 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?q=80&w=1200'); 
+            background-size: cover; background-position: center;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
 
-        .profile-ring { padding: 10px; border: 2px dashed var(--gold); border-radius: 50%; animation: spin 10s linear infinite; }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .profile-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; position: absolute; }
-        
-        h1 { font-family: 'Dancing Script', cursive; font-size: 4rem; color: var(--gold); margin-top: 20px; text-shadow: 0 0 10px var(--gold); }
+        .profile-img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--gold); box-shadow: 0 0 30px var(--gold); object-fit: cover; }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 4rem; color: var(--gold); margin: 10px 0; }
 
-        /* Daily Compliment */
-        .compliment-box { background: rgba(255, 133, 161, 0.1); padding: 20px; border-radius: 20px; margin: 30px auto; max-width: 80%; border: 1px solid var(--pink); }
+        /* Sections */
+        .section { padding: 60px 20px; border-top: 1px solid #222; }
+        .option-card { 
+            background: #111; border: 1px solid var(--gold); border-radius: 20px; 
+            padding: 20px; margin: 15px auto; max-width: 400px; cursor: pointer;
+            transition: 0.3s;
+        }
+        .option-card:hover { transform: scale(1.05); background: #1a1a1a; box-shadow: 0 0 20px var(--gold); }
+        .option-card img { width: 100%; border-radius: 15px; height: 200px; object-fit: cover; }
 
-        /* Aesthetic Grid (Moodboard) */
-        .moodboard { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 20px; }
-        .mood-img { width: 100%; height: 150px; object-fit: cover; border-radius: 15px; filter: grayscale(30%); transition: 0.5s; }
-        .mood-img:hover { filter: grayscale(0%); transform: scale(1.05); }
+        /* Quiz Buttons */
+        .quiz-btn { 
+            display: block; width: 100%; max-width: 400px; margin: 10px auto; 
+            padding: 15px; border-radius: 10px; border: 1px solid var(--pink);
+            background: transparent; color: white; cursor: pointer; transition: 0.3s;
+            font-size: 1rem;
+        }
+        .quiz-btn:hover { background: var(--pink); color: black; font-weight: bold; }
 
-        /* Interactive Buttons */
-        .gift-btn { background: var(--gold); color: black; padding: 15px 30px; border-radius: 50px; border: none; font-weight: bold; margin: 10px; cursor: pointer; transition: 0.3s; width: 85%; }
-        .gift-btn:hover { background: white; box-shadow: 0 0 20px var(--gold); }
-
-        /* Floating Audio Control */
-        .music-btn { position: fixed; bottom: 20px; right: 20px; background: var(--pink); border-radius: 50%; width: 50px; height: 50px; border: none; cursor: pointer; z-index: 1001; }
+        .footer-note { padding: 40px; color: var(--gold); font-family: 'Dancing Script', cursive; font-size: 25px; }
     </style>
 </head>
 <body>
 
     <div class="hero">
-        <div style="display:flex; align-items:center; justify-content:center;">
-            <div class="profile-ring" style="width:200px; height:200px;"></div>
-            <img src="https://i.ibb.co/3ykG8Lw/IMG-20250912-WA0005.jpg" class="profile-img">
+        <img src="https://i.ibb.co/3ykG8Lw/IMG-20250912-WA0005.jpg" class="profile-img">
+        <h1>Rumaan ❤️</h1>
+        <p style="font-size: 1.2rem; max-width: 80%;">Ku soo dhawoow Jasiiradda Upthirahmaan kuu dhisay si aad u dareento boqornimadaada.</p>
+        <div style="margin-top: 20px; animation: bounce 2s infinite;">⬇️ Hoos u soco</div>
+    </div>
+
+    <div class="section">
+        <h2 style="color: var(--gold);">Dooro Hadiyaddaada 🎁</h2>
+        <p>Dooro hal mid, waxaana toos WhatsApp-ka ugu sheegi doonaa Upthirahmaan!</p>
+        
+        <div class="option-card" onclick="sendGift('Cadarka Luxury-ga ah 🌸')">
+            <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=500">
+            <h3>Luxury Perfume 🌸</h3>
         </div>
-        <h1>Rumaan 👑</h1>
-        <p style="letter-spacing: 3px; font-weight: 300;">YOU ARE MY FAVORITE PERSON</p>
+        
+        <div class="option-card" onclick="sendGift('Casho Jasiirad ah 🍽️')">
+            <img src="https://images.unsplash.com/photo-1590156221122-c4462101450b?w=500">
+            <h3>Island Dinner 🍽️</h3>
+        </div>
+
+        <div class="option-card" onclick="sendGift('Dahab & Luul 💍')">
+            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500">
+            <h3>Jewelry Gift 💍</h3>
+        </div>
     </div>
 
-    <div class="compliment-box">
-        <h3 style="color: var(--pink);">Today's Note 💌</h3>
-        <p id="daily-text">"Ma ogtahay in dhoolacadayntaadu ay tahay waxa ugu quruxda badan dunida?"</p>
+    <div class="section" style="background: #0a0a0a;">
+        <h2 style="color: var(--pink);">Su'aal Muhiim ah 🤔</h2>
+        <p>Upthirahmaan sidee ayuu agtaada ka yahay?</p>
+        
+        <button class="quiz-btn" onclick="sendQuiz('Walaal')">1. Walaal</button>
+        <button class="quiz-btn" onclick="sendQuiz('Saaxiib')">2. Saaxiib</button>
+        <button class="quiz-btn" onclick="sendQuiz('Qof aan bari dhow nolosha wadaagi doono')">3. Qof nolosha wadaagi doono 😍</button>
+        <button class="quiz-btn" onclick="sendQuiz('Gabar/Muraayad aan iska dhex arko')">4. Dunidda oo dhan 🌎</button>
     </div>
 
-    <h2 style="font-family: 'Dancing Script', cursive; color: var(--gold);">Your Aesthetic Vibes ✨</h2>
-    <div class="moodboard">
-        <img src="https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?w=400" class="mood-img">
-        <img src="https://images.unsplash.com/photo-1529619768328-e37af76c6fe5?w=400" class="mood-img">
-        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400" class="mood-img">
-        <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400" class="mood-img">
-    </div>
-
-    <div style="padding: 40px 20px;">
-        <h2 style="color: var(--gold);">Special Requests 🎀</h2>
-        <button class="gift-btn" onclick="sendWA('Daryeel & Jacail (Spiritual Care) ❤️')">Dooro Daryeel & Jacail ❤️</button>
-        <button class="gift-btn" onclick="sendWA('Inaan dalxiis u baxno Jasiirad 🏝️')">Inaan Dalxiis tagno 🏝️</button>
-        <button class="gift-btn" onclick="sendWA('Hadiyad qarsoon (Mystery Gift) 🎁')">Mystery Gift 🎁</button>
-    </div>
-
-    <div style="background: #111; padding: 40px 20px;">
-        <h2 style="color: var(--pink);">Intee in le'eg ayaad i aaminsan tahay? 💎</h2>
-        <button class="gift-btn" style="background:none; color:white; border:1px solid var(--gold);" onclick="sendWA('Waxaad tahay qofka aan nolosha la wadaagi doono 😍')">1. Qofka aan nolosha la wadaagi doono 😍</button>
-        <button class="gift-btn" style="background:none; color:white; border:1px solid var(--gold);" onclick="sendWA('Waxaad tahay saaxiibkayga ugu qaalisan 🤝')">2. Saaxiibkeyga qaaliga ah 🤝</button>
-        <button class="gift-btn" style="background:none; color:white; border:1px solid var(--gold);" onclick="sendWA('Adiga ayaa ii ah dunidda oo dhan 🌎')">3. Dunidda oo dhan 🌎</button>
-    </div>
-
-    <div style="padding: 50px; font-family: 'Dancing Script', cursive; font-size: 24px; color: var(--gold);">
-        Always by your side, <br> <b>Upthirahmaan</b>
+    <div class="footer-note">
+        Built with Love by Upthirahmaan
     </div>
 
     <script>
         const myNum = "252771941086";
 
-        function sendWA(msg) {
-            window.open(`https://wa.me/${myNum}?text=${encodeURIComponent("Upthirahmaan, waxaan doortay: " + msg)}`, '_blank');
+        function sendGift(giftName) {
+            const msg = `Haye Upthirahmaan, surprise-ka jasiiradda waa qurux badnaa! Hadiyadda aan doortay waa: ${giftName}`;
+            window.open(`https://wa.me/${myNum}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        // Compliment Generator
-        const compliments = [
-            "Ma ogtahay in dhoolacadayntaadu ay tahay waxa ugu quruxda badan dunida?",
-            "Rumaan, waxaad tahay gabar leh maskax dahab ah.",
-            "Mustaqbalkaagu wuxuu u ifayaa sida xiddigaha.",
-            "Waan ku faraxsanahay inaan noloshaada ka mid ahay."
-        ];
-        document.getElementById('daily-text').innerText = compliments[Math.floor(Math.random() * compliments.length)];
+        function sendQuiz(answer) {
+            const msg = `Upthirahmaan, su'aashaadii jawaabteedu waa: ${answer}. ❤️`;
+            window.open(`https://wa.me/${myNum}?text=${encodeURIComponent(msg)}`, '_blank');
+        }
 
-        // Sparkle Generator
+        // Falling Petals
         setInterval(() => {
-            const s = document.createElement('div');
-            s.className = 'sparkle';
-            s.style.left = Math.random() * 100 + 'vw';
-            s.style.width = s.style.height = Math.random() * 5 + 2 + 'px';
-            s.style.animationDuration = Math.random() * 3 + 2 + 's';
-            document.body.appendChild(s);
-            setTimeout(() => s.remove(), 5000);
-        }, 200);
+            const p = document.createElement('div');
+            p.innerHTML = '🌹'; p.className = 'petal';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 5000);
+        }, 300);
     </script>
 </body>
-            </html>
+    </html>
