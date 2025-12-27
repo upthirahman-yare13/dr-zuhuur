@@ -3,122 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fatxi Ubuukar Cali - Professional Portfolio 👑</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Fathi Upthi Kariin Ali | Professional Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #D4AF37; --pink: #FF4D6D; --black: #050505; --card-bg: #111; }
-        body { font-family: 'Poppins', sans-serif; background: var(--black); color: white; margin: 0; text-align: center; line-height: 1.6; }
+        :root { --primary: #00d2ff; --dark-bg: #0a0a0b; --card-bg: #16161a; --text: #e0e0e0; --border: #2d2d30; }
+        body { font-family: 'Inter', sans-serif; background: var(--dark-bg); color: var(--text); margin: 0; line-height: 1.6; }
         
-        .petal { position: fixed; top: -10%; color: var(--pink); user-select: none; z-index: 1000; pointer-events: none; animation: fall linear forwards; }
-        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+        /* Professional Navigation */
+        nav { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; background: rgba(10, 10, 11, 0.95); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+        .logo { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--primary); font-size: 1.2rem; }
+        .status-dot { height: 10px; width: 10px; background-color: #28a745; border-radius: 50%; display: inline-block; margin-right: 5px; }
 
-        /* Header Area */
-        .hero { padding: 100px 20px; background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1576091160550-2173dad99901?q=80&w=1200'); background-size: cover; border-bottom: 3px solid var(--gold); }
-        .profile-img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--gold); box-shadow: 0 0 30px var(--gold); object-fit: cover; }
-        h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; color: var(--gold); margin: 15px 0; }
+        /* Hero Header */
+        .hero { padding: 80px 5%; background: linear-gradient(to bottom, #111, var(--dark-bg)); text-align: left; border-bottom: 1px solid var(--border); }
+        h1 { font-size: 3rem; margin: 0; font-weight: 700; letter-spacing: -1px; }
+        .hero span { color: var(--primary); }
+        .subtitle { color: #888; font-size: 1.1rem; margin-top: 10px; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* Main Content Wrapper */
-        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; text-align: left; }
-        
-        /* CV Card Style */
-        .cv-card { background: var(--card-bg); padding: 30px; border-radius: 20px; border-left: 5px solid var(--gold); margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .cv-card h2 { color: var(--gold); border-bottom: 1px solid #333; padding-bottom: 10px; font-family: 'Dancing Script', cursive; font-size: 2.2rem; }
-        
-        .skill-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-        .skill-item { background: rgba(212, 175, 55, 0.1); border: 1px solid var(--gold); padding: 5px 15px; border-radius: 50px; font-size: 0.85rem; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 5%; }
 
-        /* Scholarship Section */
-        .scholarship-box { background: linear-gradient(45deg, #111, #1a1a1a); border: 1px dashed var(--gold); padding: 25px; border-radius: 20px; margin-top: 20px; }
-        
-        /* Buttons */
-        .btn-wa { background: var(--gold); color: black; border: none; padding: 15px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s; display: block; width: 100%; text-align: center; text-decoration: none; margin-top: 20px; }
-        .btn-wa:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(212,175,55,0.4); }
+        /* Grid System */
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .card { background: var(--card-bg); border: 1px solid var(--border); padding: 35px; border-radius: 12px; transition: 0.3s; }
+        .card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card h3 { color: var(--primary); margin-top: 0; font-family: 'JetBrains Mono', monospace; display: flex; align-items: center; gap: 10px; }
 
-        .footer { padding: 50px; opacity: 0.6; text-align: center; font-size: 0.8rem; border-top: 1px solid #222; }
+        /* Skill Tags */
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+        .tag { background: #1f1f23; border: 1px solid #333; color: #aaa; padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; }
+
+        /* CTA Button */
+        .btn-connect { display: inline-block; background: var(--primary); color: #000; padding: 15px 35px; border-radius: 6px; text-decoration: none; font-weight: 700; margin-top: 25px; transition: 0.3s; width: 100%; text-align: center; border: none; cursor: pointer; }
+        .btn-connect:hover { background: #fff; transform: scale(1.02); }
+
+        .cv-summary { background: #0e0e10; border-radius: 12px; padding: 30px; margin-top: 40px; border: 1px solid var(--border); }
+        footer { padding: 40px; text-align: center; border-top: 1px solid var(--border); color: #444; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
+    <nav>
+        <div class="logo">FATHI_UPTHI.DEV</div>
+        <div style="font-size: 0.8rem; color: #888;"><span class="status-dot"></span> OPEN FOR PROJECTS</div>
+    </nav>
+
     <div class="hero">
-        <img src="https://i.ibb.co/3ykG8Lw/IMG-20250912-WA0005.jpg" class="profile-img">
-        <h1>Fatxi Ubuukar Cali</h1>
-        <p style="letter-spacing: 2px;">Professional CV & Academic Portfolio</p>
+        <h1>Fathi <span>Upthi Kariin Ali</span></h1>
+        <p class="subtitle">Healthcare Specialist | Strategic Analyst | Developer</p>
     </div>
 
     <div class="container">
         
-        <div class="cv-card">
-            <h2>🩺 Medical Background</h2>
-            <p>Xirfadle caafimaad oo aqoon durugsan u leh daryeelka hooyada iyo dhallaanka.</p>
-            <ul style="list-style: none; padding: 0;">
-                <li>🎓 <b>Diploma:</b> Nursing & Midwifery (Professional Umuliso)</li>
-                <li>🧠 <b>Expertise:</b> Clinical Psychology & Patient Counseling</li>
-            </ul>
-            <div class="skill-list">
-                <span class="skill-item">Maternal Care</span>
-                <span class="skill-item">Mental Health Support</span>
-                <span class="skill-item">Clinical Nursing</span>
-                <span class="skill-item">Patient Advocacy</span>
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>🩺 Medical Expertise</h3>
+                <p>Khibrad dheer ah oo ku aaddan daryeelka caafimaadka, gaar ahaan Nursing-ka iyo Psychology-ga.</p>
+                <div class="tags">
+                    <span class="tag">Clinical Nursing</span>
+                    <span class="tag">Midwifery</span>
+                    <span class="tag">Psychology</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📈 Strategic Logic</h3>
+                <p>Awood falanqayneed oo ku saabsan suuqyada iyo maaraynta mashaariicda iyadoo la raacayo nidaamyo xirfadaysan.</p>
+                <div class="tags">
+                    <span class="tag">Risk Management</span>
+                    <span class="tag">Market Analysis</span>
+                    <span class="tag">Decision Making</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🤖 Digital Systems</h3>
+                <p>Isticmaalka tignoolajiyadda casriga ah iyo AI si loo dardar-geliyo shaqada loona dhiso barnaamijyo hufan.</p>
+                <div class="tags">
+                    <span class="tag">AI Integration</span>
+                    <span class="tag">Web Development</span>
+                    <span class="tag">GitHub</span>
+                </div>
             </div>
         </div>
 
-        <div class="cv-card">
-            <h2>📈 Financial Trading mastery</h2>
-            <p>Xirfadle dhinaca maaliyadda ah oo ku takhasusay falanqaynta suuqyada caalamiga ah.</p>
-            <p><b>Strategy:</b> <span style="color: var(--gold); font-weight: bold;">LAW AND ORDER STRATEGY ⚖️</span></p>
-            <div class="skill-list">
-                <span class="skill-item">Market Analysis</span>
-                <span class="skill-item">Risk Management</span>
-                <span class="skill-item">Strategic Planning</span>
+        <div class="cv-summary">
+            <h2 style="margin-top:0; color:var(--primary);">Professional Summary</h2>
+            <p>Xirfadle isku dhafan oo leh aqoon caafimaad iyo mid farsamo. Waxaan u taaganahay dhisidda xalal dhijitaal ah iyo bixinta adeegyo tayo sare leh oo ku dhisan hufnaan iyo aqoon.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                <div>
+                    <strong style="color:var(--primary);">Email:</strong> upthikariin@gmail.com<br>
+                    <strong style="color:var(--primary);">Location:</strong> Somalia / Remote
+                </div>
+                <div>
+                    <strong style="color:var(--primary);">WhatsApp:</strong> +252 613040087<br>
+                    <strong style="color:var(--primary);">Availability:</strong> Full-time / Projects
+                </div>
             </div>
-        </div>
-
-        <div class="cv-card">
-            <h2>🎓 2026 Scholarship Goals (Jan/Feb)</h2>
-            <p>Fatxi waxay hadda u taagan tahay inay codsato deeqaha waxbarasho ee caalamiga ah ee dhowaan furmaya.</p>
-            <div class="scholarship-box">
-                <h4 style="margin: 0; color: var(--gold);">Target Programs:</h4>
-                <ul style="font-size: 0.9rem; padding-left: 20px;">
-                    <li>Advanced Nursing Studies (Turkey/Europe)</li>
-                    <li>Global Health & Midwifery Excellence</li>
-                    <li>Financial Psychology & Investment</li>
-                </ul>
-                <a href="#" class="btn-wa" onclick="sendToUpthi('Haye Upthirahmaan, waxaan rabaa inaan xareeyo Scholarship bisha 1-aad ama 2-aad.')">Xaree Codsiga Scholarship 🚀</a>
-            </div>
-        </div>
-
-        <div class="cv-card" style="background: rgba(212, 175, 55, 0.05);">
-            <h2>📝 Motivation Letter Preview</h2>
-            <p style="font-size: 0.85rem; font-style: italic; color: #ccc;">
-                "Being a Midwife is more than a job; it's a mission. My background in Psychology allows me to understand the fear and joy of a mother, providing care that heals both body and mind..."
-            </p>
-            <a href="#" class="btn-wa" style="background: transparent; border: 1px solid var(--gold); color: var(--gold);" onclick="sendToUpthi('Fadlan iigu soo dir Motivation Letter-ka oo dhammaystiran.')">Codso PDF Motivation Letter</a>
+            <a href="https://wa.me/252613040087" class="btn-connect">CONNECT FOR BUSINESS</a>
         </div>
 
     </div>
 
-    <div class="footer">
-        © 2025 Portfolio for Fatxi Ubuukar Cali <br>
-        Developed by Upthirahmaan | Contact: 613040087
-    </div>
+    <footer>
+        © 2025 Fathi Upthi Kariin Ali | Systems Developed with Professional Integrity
+    </footer>
 
-    <script>
-        const myWhatsApp = "252613040087";
-
-        function sendToUpthi(msg) {
-            window.open(`https://wa.me/${myWhatsApp}?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-
-        // Falling Flowers
-        setInterval(() => {
-            const p = document.createElement('div');
-            p.innerHTML = '🌹'; p.className = 'petal';
-            p.style.left = Math.random() * 100 + 'vw';
-            p.style.fontSize = Math.random() * 20 + 10 + 'px';
-            p.style.animationDuration = Math.random() * 3 + 2 + 's';
-            document.body.appendChild(p);
-            setTimeout(() => p.remove(), 5000);
-        }, 300);
-    </script>
 </body>
-</html>
+                </html>
