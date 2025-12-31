@@ -3,159 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Dr. Zuhuur | Professional Medical Portfolio</title>
-    <meta name="description" content="Dr. Zuhuur - Medical Researcher & Clinical Strategist. Bixinta adeegyo caafimaad oo heer PhD ah.">
-    <meta property="og:title" content="Dr. Zuhuur | Professional Medical Portfolio">
-    <meta property="og:description" content="Bixinta adeegyo caafimaad iyo la-talin PhD level ah. Nagala soo xiriir: +252617911816">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1000&auto=format&fit=crop">
-    <link rel="icon" type="image/x-icon" href="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=100&auto=format&fit=crop">
-
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&family=Libre+Barcode+39&display=swap" rel="stylesheet">
+    <title>Dr. Zuhuur | PhD Medical Researcher</title>
     
     <style>
-        :root { --navy: #0a192f; --gold: #c5a059; --soft-bg: #f8fafc; --white: #ffffff; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; background: var(--white); color: var(--navy); scroll-behavior: smooth; }
+        .float-wa {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .float-wa:hover { transform: scale(1.1); background-color: #128c7e; }
 
-        /* Navigation */
-        nav { padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; background: var(--navy); color: white; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); }
+        .trust-icons {
+            display: flex;
+            justify-content: space-around;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .trust-icons span { font-weight: 800; font-size: 1.2rem; color: #64748b; }
 
-        /* Hero */
-        .hero { padding: 100px 8%; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-bottom: 5px solid var(--gold); }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 4rem); margin: 0; }
-        .hero span { color: var(--gold); }
-        .hero p { font-size: 1.2rem; max-width: 700px; color: #475569; margin: 20px 0; font-weight: 300; }
-
-        .container { max-width: 1100px; margin: 0 auto; padding: 60px 5%; }
-
-        /* Professional ID Badge */
-        .id-wrapper { display: flex; justify-content: center; margin-bottom: 80px; }
-        .id-card { width: 320px; height: 520px; background: white; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); border: 1px solid #eee; overflow: hidden; position: relative; text-align: center; }
-        .id-top { background: var(--navy); height: 90px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; letter-spacing: 2px; font-size: 0.7rem; }
-        .id-img { width: 130px; height: 130px; background-image: url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1000&auto=format&fit=crop'); background-size: cover; background-position: center; border: 5px solid white; border-radius: 50%; margin: -65px auto 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .id-content h3 { margin: 10px 0; font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--navy); }
-        .barcode { font-family: 'Libre Barcode 39'; font-size: 2.8rem; margin-top: 10px; opacity: 0.7; }
-
-        /* Appointment Form */
-        .appointment-section { background: var(--soft-bg); padding: 50px; border-radius: 20px; border: 1px solid #e2e8f0; margin: 60px 0; }
-        .form-group { margin-bottom: 15px; text-align: left; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; font-family: inherit; }
-        .submit-btn { background: var(--navy); color: white; padding: 15px; border: none; width: 100%; border-radius: 8px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
-        .submit-btn:hover { background: var(--gold); }
-
-        /* Store Section */
-        .store-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .product { background: white; padding: 35px; border-radius: 20px; text-align: center; border: 1px solid #e2e8f0; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
-        .price { font-size: 1.8rem; font-weight: 800; color: #b91c1c; margin: 15px 0; }
-        .buy-btn { background: var(--gold); color: var(--navy); padding: 14px 25px; text-decoration: none; display: block; border-radius: 8px; font-weight: 700; }
-
-        /* Contact Section */
-        .contact-box { background: var(--navy); color: white; padding: 60px; border-radius: 20px; text-align: center; margin-top: 60px; }
-        .wa-btn { background: #25d366; color: white; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 800; display: inline-block; margin: 10px; }
-        .email-btn { background: white; color: var(--navy); padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block; margin: 10px; }
-
-        footer { padding: 40px; text-align: center; color: #94a3b8; font-size: 0.8rem; }
+        /* Map styling */
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 40px;
+            border: 1px solid #e2e8f0;
+        }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">DR. ZUHUUR</div>
-        <div style="font-size: 0.7rem; border: 1px solid var(--gold); padding: 5px 12px; color: var(--gold); font-weight: 800;">PHD RESEARCHER</div>
-    </nav>
-
-    <section class="hero">
-        <h1>Dr. Zuhuur</h1>
-        <p>Medical Scientist, PhD Researcher & Professional Clinical Strategist. Khibrad iyo aqoon caafimaad oo heer caalami ah.</p>
-        <div style="font-family: 'JetBrains Mono'; color: var(--gold); font-weight: bold;">+252 617911816 | contact@drzuhuur.com</div>
-    </section>
-
-    <div class="container">
-        
-        <div class="id-wrapper">
-            <div class="id-card">
-                <div class="id-top">GLOBAL MEDICAL ARCHIVE</div>
-                <div class="id-img"></div>
-                <div class="id-content">
-                    <h3 style="margin-bottom:0;">Dr. Zuhuur</h3>
-                    <p style="font-size: 0.7rem; font-weight: 700; color: var(--gold);">MEDICAL SPECIALIST</p>
-                    <div style="font-size: 0.8rem; margin-top: 15px;">Reg No: ZH-816-2025-PHD</div>
-                    <div style="font-size: 0.8rem;">Clinical Systems & Public Health</div>
-                </div>
-                <div style="margin-top: 15px;">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=65x65&data=https://wa.me/252617911816" alt="Scan">
-                </div>
-                <div class="barcode">*617911816*</div>
-            </div>
-        </div>
-
-        <div class="appointment-section">
-            <h2 style="font-family: 'Playfair Display'; text-align: center; margin-bottom: 30px;">Ballan Qabsi (Book Appointment)</h2>
-            <form id="appointmentForm">
-                <div class="form-group">
-                    <label>Magacaaga Dhammaystiran:</label>
-                    <input type="text" id="p_name" placeholder="Tusaale: Maxamed Cali" required>
-                </div>
-                <div class="form-group">
-                    <label>Nooca Adeegga:</label>
-                    <select id="p_service">
-                        <option value="La-talin Caafimaad">La-talin Caafimaad ($50)</option>
-                        <option value="Cilmi-baaris (Research)">Cilmi-baaris PhD Level</option>
-                        <option value="Iibsashada PDF">Iibsashada PDF Guide</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Fariintaada:</label>
-                    <textarea id="p_message" rows="4" placeholder="Sideen kuu caawin karnaa?"></textarea>
-                </div>
-                <button type="button" class="submit-btn" onclick="sendToWhatsApp()">Gudbi Codsiga (WhatsApp)</button>
-            </form>
-        </div>
-
-        <div class="store-grid">
-            <div class="product">
-                <span style="font-size: 40px;">📂</span>
-                <h4>Medical Guide 2025</h4>
-                <div class="price">$10.00</div>
-                <a href="https://wa.me/252617911816?text=Waxaan+rabaa+Medical+Guide+PDF+($10)" class="buy-btn">Ku iibso EVC Plus</a>
-            </div>
-            <div class="product">
-                <span style="font-size: 40px;">📅</span>
-                <h4>VIP Consultation</h4>
-                <div class="price">$50.00</div>
-                <a href="https://wa.me/252617911816?text=Waxaan+rabaa+ballan+la-talin+VIP+ah+($50)" class="buy-btn">Book Appointment</a>
-            </div>
-        </div>
-
-        <div class="contact-box">
-            <h2>Xafiiska Dr. Zuhuur</h2>
-            <p>Wixii faahfaahin dheeraad ah ama wada-shaqayn, fadlan nagala soo xiriir.</p>
-            <a href="https://wa.me/252617911816" class="wa-btn">WhatsApp: +252 617911816</a>
-            <a href="mailto:contact@drzuhuur.com" class="email-btn">Email: contact@drzuhuur.com</a>
+    <div class="container" style="padding-top: 20px; padding-bottom: 20px;">
+        <div class="trust-icons">
+            <span>WHO PARTNER</span>
+            <span>MINISTRY OF HEALTH</span>
+            <span>UNICEF RESEARCH</span>
+            <span>UNIVERSITY HOSPITAL</span>
         </div>
     </div>
 
-    <footer>
-        © 2025 DR. ZUHUUR | PROFESSIONAL HEALTH PORTFOLIO <br>
-        DESIGNED & SECURED BY UPTHIRAHMAAN
-    </footer>
+    <div class="container">
+        <h3 style="text-align: center; font-family: 'Playfair Display';">Our Location</h3>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127572.4312658825!2d45.24449178229235!3d2.046934255148422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d5842595574577d%3A0x2614b98686e00185!2sMogadishu%2C%20Somalia!5e0!3m2!1sen!2s!4v1700000000000" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </div>
 
-    <script>
-        function sendToWhatsApp() {
-            var name = document.getElementById("p_name").value;
-            var service = document.getElementById("p_service").value;
-            var message = document.getElementById("p_message").value;
-            
-            var wa_message = "Hambalyo Dr. Zuhuur!%0A" + 
-                             "Codsi ballan oo cusub:%0A%0A" + 
-                             "*Magaca:* " + name + "%0A" + 
-                             "*Adeegga:* " + service + "%0A" + 
-                             "*Fariinta:* " + message;
-            
-            window.open("https://wa.me/252617911816?text=" + wa_message, "_blank");
-        }
-    </script>
-</body>
+    <a href="https://wa.me/252617911816" class="float-wa" target="_blank">
+        <span style="font-size: 35px;">💬</span>
+    </a>
+
+    </body>
 </html>
