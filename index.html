@@ -33,7 +33,6 @@
         .booking-box { padding: 60px 8%; text-align: center; }
         .calendar-input { padding: 15px; border-radius: 12px; border: 2px solid var(--gold); font-size: 1rem; width: 100%; max-width: 300px; margin-bottom: 20px; }
 
-        /* Yaqshiid Map Section */
         .location-box { padding: 60px 8%; text-align: center; background: #fff; }
         .map-wrapper { width: 100%; height: 450px; border-radius: 25px; overflow: hidden; border: 4px solid var(--gold); margin-top: 20px; }
 
@@ -85,7 +84,7 @@
         <h2 style="font-family:'Playfair Display';">Bixi Lacagta Ballanta</h2>
         <div class="payment-card">
             <p>Si ballantaadu u xaqiijisanto, bixi lacagta la-talinta ($50)</p>
-            <p style="font-size: 1.2rem; font-weight: 800; color: var(--gold);">EVC Plus: 617911816</p>
+            <p style="font-size: 1.5rem; font-weight: 800; color: var(--gold);">EVC Plus: 617 xxx xxx</p>
             <small>*Markaad lacagta dirto, AI-ga hoose u sheeg si uu kuu diiwaangeliyo.</small>
         </div>
     </section>
@@ -100,7 +99,7 @@
         <h2 style="font-family:'Playfair Display';">Halkee ku Naallaa?</h2>
         <p><b>Dagmada Yaqshiid, Xaafadda Mahad-Alle (Agagaarka Caymiska)</b>, Mogadishu, Somalia.</p>
         <div class="map-wrapper">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15951.688323620353!2d45.3333!3d2.0667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d58410000000000%3A0x0!2zMsKwMDQnMDAuMCJOIDQ1wrAyMCcwMC4wIkU!5e0!3m2!1sen!2sso!4v1700000000000!5m2!1sen!2sso" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15949.613346517116!2d45.333069!3d2.074722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d58434771f8ed1d%3A0x6762397734a3626e!2sYaqshid%2C%20Mogadishu!5e0!3m2!1sen!2sso!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
@@ -128,10 +127,10 @@
         let userName = "";
         const knowledge = {
             "asc": "Wacalaykum Salaam! Sideen kuu caawin karaa?",
-            "qiimaha": "La-talin: $50. Baaritaan guud: $30. EVC: 617911816.",
-            "location": "Dagmada Yaqshiid, Xaafadda Mahad-Alle (Caymiska).",
-            "dhabar": "Dhabar xanuunka: Ma wuxuu kugu bilaawday fadhiga badan mise wax culus ayaad qaaday? Dr. Zuhuur ayaa ku caawinaysa.",
-            "lacag": "Markaad dirto $50 (EVC: 617911816), sawirka nala soo wadaag WhatsApp."
+            "qiimaha": "La-talin: $50. EVC Plus: 617 xxx xxx.",
+            "location": "Yaqshiid, Mahad-Alle (Agagaarka Caymiska).",
+            "dhabar": "Dhabar xanuunka waxaa si xirfadaysan u baarta Dr. Zuhuur. Fadlan qabso ballan.",
+            "lacag": "Markaad dirto $50 (EVC: 617 xxx xxx), sawirka nala soo wadaag WhatsApp."
         };
 
         function toggleChat() {
@@ -145,7 +144,7 @@
             userName = n;
             document.getElementById('reg-area').style.display = 'none';
             document.getElementById('input-area').style.display = 'flex';
-            document.getElementById('chat-body').innerHTML += `<div class="msg bot-msg">Mahadsanid <b>${n}</b>! Maxaan kaa caawiyaa maanta?</div>`;
+            document.getElementById('chat-body').innerHTML += `<div class="msg bot-msg">Mahadsanid <b>${n}</b>! Maxaan kaa caawiyaa?</div>`;
         }
 
         function processChat() {
@@ -155,8 +154,7 @@
             if(!text) return;
 
             body.innerHTML += `<div class="msg user-msg">${input.value}</div>`;
-            let reply = "Waan ka xumahay, su'aashaas database-kayga hadda kuma jirto, laakiin waxaan u gudbinayaa Dr. Zuhuur.";
-            
+            let reply = "Su'aashan Dr. Zuhuur ayaa si toos ah WhatsApp-ka kaaga jawaabi doonta.";
             for(let key in knowledge) { if(text.includes(key)) { reply = knowledge[key]; break; } }
 
             setTimeout(() => {
