@@ -36,13 +36,14 @@
         .location-box { padding: 60px 8%; text-align: center; background: #fff; }
         .map-wrapper { width: 100%; height: 450px; border-radius: 25px; overflow: hidden; border: 4px solid var(--gold); margin-top: 20px; }
 
+        /* Chatbot Window */
         #chatbot-launcher { position: fixed; bottom: 30px; left: 30px; width: 70px; height: 70px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; z-index: 10000; font-size: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         #chat-window { position: fixed; bottom: 110px; left: 30px; width: 350px; height: 500px; background: white; border-radius: 25px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 10000; border: 1px solid #eee; overflow: hidden; }
         .chat-header { background: var(--navy); color: white; padding: 18px; font-weight: bold; display: flex; justify-content: space-between; border-bottom: 3px solid var(--gold); }
         .chat-body { flex: 1; padding: 15px; overflow-y: auto; background: #f9fbff; display: flex; flex-direction: column; gap: 12px; }
         .chat-input-area { padding: 15px; display: flex; gap: 10px; border-top: 1px solid #eee; background: white; }
         .chat-input-area input { flex: 1; padding: 12px; border-radius: 25px; border: 1px solid #ddd; outline: none; }
-        .msg { padding: 12px 16px; border-radius: 18px; max-width: 85%; font-size: 0.9rem; line-height: 1.5; }
+        .msg { padding: 12px 16px; border-radius: 18px; max-width: 85%; font-size: 0.9rem; line-height: 1.5; word-wrap: break-word; }
         .bot-msg { background: white; border: 1px solid #eee; align-self: flex-start; }
         .user-msg { background: var(--navy); color: white; align-self: flex-end; }
 
@@ -57,7 +58,7 @@
     <section class="hero">
         <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=500" class="hero-img" alt="Dr Zuhuur">
         <h1>PhD Medical Researcher</h1>
-        <p>Expert medical diagnosis and clinical research in Mogadishu.</p>
+        <p>Expert diagnosis and clinical research in Mogadishu.</p>
         <div class="cta-container">
             <a href="https://vm.tiktok.com/ZMD2GHmXd/" class="btn btn-tiktok">TikTok Profile</a>
             <a href="https://wa.me/252617911816" class="btn btn-wa">WhatsApp Direct</a>
@@ -72,7 +73,7 @@
         </div>
         <div class="gallery-item">
             <img src="https://images.unsplash.com/photo-1581594632702-fbdc51b2763b?q=80&w=500" alt="Qalabka">
-            <div class="desc">Qalabka Baaritaanka Casriga ah</div>
+            <div class="desc">Baaritaan Casri ah</div>
         </div>
         <div class="gallery-item">
             <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=500" alt="Daryeelka">
@@ -97,9 +98,9 @@
 
     <section class="location-box">
         <h2 style="font-family:'Playfair Display';">Halkee ku Naallaa?</h2>
-        <p><b>Dagmada Yaqshiid, Xaafadda Mahad-Alle (Agagaarka Caymiska)</b>, Mogadishu, Somalia.</p>
+        <p><b>Dagmada Yaqshiid, Xaafadda Mahad-Alle (Agagaarka Caymiska)</b></p>
         <div class="map-wrapper">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15949.613346517116!2d45.333069!3d2.074722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d58434771f8ed1d%3A0x6762397734a3626e!2sYaqshid%2C%20Mogadishu!5e0!3m2!1sen!2sso!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15946.864380252818!2d45.3341!3d2.0664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d5843b171f11b2b%3A0x673c4f923a9d590!2sYaqshid%2C%20Mogadishu!5e0!3m2!1sen!2sso!4v1715560000000!5m2!1sen!2sso" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
@@ -125,12 +126,27 @@
 
     <script>
         let userName = "";
+        
+        // HACKER PROTECTION: Sifeeyaha qoraalka (Input Sanitization)
+        function sanitize(str) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#x27;',
+                "/": '&#x2F;',
+            };
+            const reg = /[&<>"'/]/ig;
+            return str.replace(reg, (match)=>(map[match]));
+        }
+
         const knowledge = {
             "asc": "Wacalaykum Salaam! Sideen kuu caawin karaa?",
             "qiimaha": "La-talin: $50. EVC Plus: 617 xxx xxx.",
             "location": "Yaqshiid, Mahad-Alle (Agagaarka Caymiska).",
-            "dhabar": "Dhabar xanuunka waxaa si xirfadaysan u baarta Dr. Zuhuur. Fadlan qabso ballan.",
-            "lacag": "Markaad dirto $50 (EVC: 617 xxx xxx), sawirka nala soo wadaag WhatsApp."
+            "dhabar": "Dhabar xanuunka waxaa si xirfadaysan u baarta Dr. Zuhuur.",
+            "lacag": "Markaad dirto $50, sawirka nala soo wadaag WhatsApp."
         };
 
         function toggleChat() {
@@ -139,8 +155,8 @@
         }
 
         function startChat() {
-            let n = document.getElementById('u-name').value;
-            if(!n) return alert("Fadlan magaca geli");
+            let n = sanitize(document.getElementById('u-name').value);
+            if(!n || n.length < 2) return alert("Fadlan geli magac sax ah");
             userName = n;
             document.getElementById('reg-area').style.display = 'none';
             document.getElementById('input-area').style.display = 'flex';
@@ -149,17 +165,23 @@
 
         function processChat() {
             let input = document.getElementById('chat-input');
-            let text = input.value.toLowerCase();
+            let rawText = input.value;
+            
+            // HACKER PROTECTION: Nadiifi qoraalka ka hor intaanan isticmaalin
+            let cleanText = sanitize(rawText);
+            let text = cleanText.toLowerCase();
+            
             let body = document.getElementById('chat-body');
             if(!text) return;
 
-            body.innerHTML += `<div class="msg user-msg">${input.value}</div>`;
+            body.innerHTML += `<div class="msg user-msg">${cleanText}</div>`;
             let reply = "Su'aashan Dr. Zuhuur ayaa si toos ah WhatsApp-ka kaaga jawaabi doonta.";
+            
             for(let key in knowledge) { if(text.includes(key)) { reply = knowledge[key]; break; } }
 
             setTimeout(() => {
                 body.innerHTML += `<div class="msg bot-msg">${reply}</div>`;
-                body.innerHTML += `<button onclick="window.open('https://wa.me/252617911816?text=Asc Dr. Zuhuur, waxaan ahay ${userName}. Su'aasheydu waa: ${text}')" style="background:#25d366; color:white; border:none; padding:8px; border-radius:10px; cursor:pointer; margin-top:5px;">U dir WhatsApp</button>`;
+                body.innerHTML += `<button onclick="window.open('https://wa.me/252617911816?text=Asc Dr. Zuhuur, waxaan ahay ${userName}. Su'aasheydu waa: ${cleanText}')" style="background:#25d366; color:white; border:none; padding:8px; border-radius:10px; cursor:pointer; margin-top:5px;">U dir WhatsApp</button>`;
                 body.scrollTop = body.scrollHeight;
             }, 500);
             input.value = "";
