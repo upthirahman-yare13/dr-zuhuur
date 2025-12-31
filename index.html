@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Zuhuur | Smart PhD Portfolio & Chatbot</title>
+    <title>Dr. Zuhuur | PhD Medical Researcher & Consultant</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono&family=Libre+Barcode+39&display=swap" rel="stylesheet">
     
@@ -15,39 +15,39 @@
         nav { padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; background: var(--navy); color: white; position: sticky; top: 0; z-index: 1000; }
         .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); }
 
-        /* Hero */
-        .hero { padding: 80px 8%; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-bottom: 5px solid var(--gold); text-align: center; }
+        /* Hero Section */
+        .hero { padding: 100px 8%; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-bottom: 5px solid var(--gold); text-align: center; }
         .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 4rem); margin: 0; }
-        
-        .social-btn { display: inline-flex; align-items: center; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; margin: 10px 5px; transition: 0.3s; font-size: 0.9rem; }
+        .hero p { font-size: 1.2rem; max-width: 700px; color: #475569; margin: 20px auto; font-weight: 300; }
+
+        .social-btn { display: inline-flex; align-items: center; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; margin: 10px 5px; transition: 0.3s; }
         .tiktok-btn { background: #000000; color: white; }
-        .wa-btn-hero { background: #25d366; color: white; }
+        .wa-btn { background: #25d366; color: white; }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 60px 5%; }
 
-        /* Smart Chatbot UI */
-        #chatbot-launcher { position: fixed; bottom: 30px; left: 30px; width: 65px; height: 65px; background: var(--navy); border: 3px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; z-index: 10000; box-shadow: 0 10px 25px rgba(0,0,0,0.3); font-size: 1.8rem; }
-        #chat-window { position: fixed; bottom: 110px; left: 30px; width: 330px; background: white; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden; z-index: 10000; border: 1px solid #eee; }
-        .chat-header { background: var(--navy); color: white; padding: 18px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-        .chat-body { height: 300px; padding: 15px; overflow-y: auto; font-size: 0.85rem; background: #f8fafc; display: flex; flex-direction: column; }
+        /* Chatbot Interface */
+        #chatbot-launcher { position: fixed; bottom: 30px; left: 30px; width: 60px; height: 60px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; z-index: 10000; box-shadow: 0 10px 20px rgba(0,0,0,0.2); font-size: 30px; }
+        #chat-window { position: fixed; bottom: 100px; left: 30px; width: 320px; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: none; flex-direction: column; overflow: hidden; z-index: 10000; }
+        .chat-header { background: var(--navy); color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; }
+        .chat-body { height: 300px; padding: 15px; overflow-y: auto; font-size: 0.9rem; background: #f1f5f9; display: flex; flex-direction: column; }
+        .chat-input-area { padding: 10px; border-top: 1px solid #eee; display: flex; }
+        .chat-input-area input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
         
-        /* Chat Input Search */
-        .chat-input-area { padding: 10px; background: white; border-top: 1px solid #eee; display: flex; gap: 5px; }
-        .chat-input-area input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; font-size: 0.8rem; }
-        .chat-input-area button { background: var(--gold); border: none; padding: 5px 15px; border-radius: 20px; color: var(--navy); font-weight: bold; cursor: pointer; }
+        .msg { margin-bottom: 10px; padding: 10px; border-radius: 10px; max-width: 85%; line-height: 1.4; }
+        .bot-msg { background: white; color: var(--navy); align-self: flex-start; }
+        .user-msg { background: var(--gold); color: white; align-self: flex-end; }
 
-        .msg { margin-bottom: 12px; padding: 12px; border-radius: 15px; max-width: 85%; line-height: 1.4; }
-        .bot-msg { background: white; color: var(--navy); border: 1px solid #e2e8f0; align-self: flex-start; border-bottom-left-radius: 2px; }
-        .user-msg { background: var(--navy); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+        /* Professional ID Badge */
+        .id-wrapper { display: flex; justify-content: center; margin-bottom: 80px; }
+        .id-card { width: 320px; height: 520px; background: white; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); border: 1px solid #eee; text-align: center; overflow: hidden; }
+        .id-top { background: var(--navy); height: 90px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 0.7rem; }
+        .id-img { width: 130px; height: 130px; background-image: url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1000&auto=format&fit=crop'); background-size: cover; border: 5px solid white; border-radius: 50%; margin: -65px auto 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .barcode { font-family: 'Libre Barcode 39'; font-size: 2.8rem; margin-top: 10px; opacity: 0.7; }
 
-        /* ID Badge & Store (Sida hore) */
-        .id-wrapper { display: flex; justify-content: center; margin-bottom: 60px; }
-        .id-card { width: 320px; height: 480px; background: white; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); border: 1px solid #eee; text-align: center; overflow: hidden; }
-        .id-top { background: var(--navy); padding: 15px; color: white; font-weight: 800; font-size: 0.7rem; }
-        .id-img { width: 120px; height: 120px; background-image: url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1000&auto=format&fit=crop'); background-size: cover; border-radius: 50%; margin: 20px auto; border: 5px solid var(--soft-bg); }
-        .barcode { font-family: 'Libre Barcode 39'; font-size: 2.5rem; opacity: 0.5; }
+        .map-container { width: 100%; height: 400px; border-radius: 20px; overflow: hidden; border: 2px solid var(--gold); margin-top: 20px; }
 
-        footer { padding: 40px; text-align: center; color: #94a3b8; font-size: 0.75rem; }
+        footer { padding: 40px; text-align: center; color: #94a3b8; font-size: 0.8rem; }
     </style>
 </head>
 <body>
@@ -55,29 +55,28 @@
     <div id="chatbot-launcher" onclick="toggleChat()">🤖</div>
     <div id="chat-window">
         <div class="chat-header">
-            <span>Dr. Zuhuur Smart AI</span>
+            <span>Dr. Zuhuur Search AI</span>
             <span style="cursor:pointer" onclick="toggleChat()">×</span>
         </div>
         <div class="chat-body" id="chat-body">
-            <div class="msg bot-msg">Asc! Waxaan ahay AI-ga Dr. Zuhuur. Qor waxaad rabto inaad ogaato (tusaale: "Lacagta", "Location", "PhD").</div>
+            <div class="msg bot-msg">Asc! Qor erey kasta oo caafimaad, daawo, ama qiimaha adeegyada Dr. Zuhuur si aan kuugu raadiyo.</div>
         </div>
         <div class="chat-input-area">
-            <input type="text" id="chat-input" placeholder="Search wax walba..." onkeypress="handleEnter(event)">
-            <button onclick="processSearch()">Hagaag</button>
+            <input type="text" id="chat-input" placeholder="Tusaale: Xumad, Daawo, Qiimaha..." onkeypress="if(event.key==='Enter') processChat()">
         </div>
     </div>
 
     <nav>
         <div class="logo">DR. ZUHUUR</div>
-        <div style="font-size: 0.65rem; border: 1px solid var(--gold); padding: 4px 10px; color: var(--gold); font-weight: 800;">PHD RESEARCHER</div>
+        <div style="font-size: 0.7rem; border: 1px solid var(--gold); padding: 5px 12px; color: var(--gold); font-weight: 800;">PHD RESEARCHER</div>
     </nav>
 
     <section class="hero">
         <h1>Dr. Zuhuur</h1>
-        <p>Medical Scientist, PhD Researcher & Clinical Strategist. Khibrad iyo aqoon caafimaad oo heer caalami ah.</p>
+        <p>PhD Medical Researcher & Clinical Strategist. Khibrad caafimaad oo heer sare ah.</p>
         <div>
-            <a href="https://vm.tiktok.com/ZMD2GHmXd/" class="social-btn tiktok-btn" target="_blank">TikTok Profile</a>
-            <a href="https://wa.me/252617911816" class="social-btn wa-btn-hero" target="_blank">WhatsApp Chat</a>
+            <a href="https://vm.tiktok.com/ZMD2GHmXd/" class="social-btn tiktok-btn" target="_blank">🎵 TikTok Profile</a>
+            <a href="https://wa.me/252617911816" class="social-btn wa-btn" target="_blank">💬 WhatsApp</a>
         </div>
     </section>
 
@@ -87,11 +86,22 @@
                 <div class="id-top">GLOBAL MEDICAL ARCHIVE</div>
                 <div class="id-img"></div>
                 <div class="id-content">
-                    <h3>Dr. Zuhuur</h3>
+                    <h3 style="margin: 10px 0;">Dr. Zuhuur</h3>
                     <p style="color: var(--gold); font-weight: bold;">MEDICAL SPECIALIST</p>
-                    <div style="font-size: 0.8rem; margin-top: 10px;">Reg: ZH-816-2025-PHD</div>
+                    <div style="font-size: 0.8rem; margin-top: 15px;">Reg No: ZH-816-2025-PHD</div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=65x65&data=https://wa.me/252617911816" alt="Scan">
                 </div>
                 <div class="barcode">*617911816*</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 60px;">
+            <h2 style="font-family: 'Playfair Display';">Daru-salaam Office</h2>
+            <p>Xafada Banana, Dabaqyada Daru-salaam, Mogadishu</p>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.70460497561!2d45.2963124!3d2.0911739!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d58434771429995%3A0x6b772c95e1c0700!2sDaru%20Salam%2C%20Mogadishu!5e0!3m2!1sen!2sso!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </div>
@@ -101,49 +111,42 @@
     </footer>
 
     <script>
-        // Data for Chatbot Search Intelligence
-        const knowledgeBase = [
-            { keywords: ["location", "halkee", "xafiiska", "address", "addresska", "degmada"], reply: "Xafiiskayagu wuxuu ku yaallaa degmada Daru-salaam, Dabaqyada Cusub, Mogadishu." },
-            { keywords: ["lacag", "evc", "bixin", "payment", "dollar", "qiimaha"], reply: "Lacagta waxaa lagu bixiyaa EVC Plus lambarka: 617911816. PDF-ku waa $10, La-talintuna waa $50." },
-            { keywords: ["phd", "research", "aqoon", "jaamacad", "researcher"], reply: "Dr. Zuhuur waa PhD Researcher ku takhasustay Clinical Systems iyo Public Health." },
-            { keywords: ["pdf", "buug", "guide", "iibso", "download"], reply: "Haa, waxaan haynaa Medical Guide 2025. Markaad bixiso $10, waxaan kuugu soo diraynaa WhatsApp-ka." },
-            { keywords: ["ballan", "appointment", "booking", "consultation"], reply: "Si aad ballan u qabsato, fadlan isticmaal foomka websaytka ama noogu soo qor WhatsApp." },
-            { keywords: ["tiktok", "video", "social"], reply: "Waxaad nagu raaci kartaa TikTok halkan: https://vm.tiktok.com/ZMD2GHmXd/" }
-        ];
+        // Chatbot Knowledge Base
+        const medicalDB = {
+            "xumad": "Xumaddu waa difaaca jirka. Cab biyo badan, naso, haddii ay kor u kacdana la xiriir Dr. Zuhuur.",
+            "madax xanuun": "Madax xanuunka wuxuu ku imaan karaa hurdo la'aan ama stress. Haddii uu saa'id yahay, ballan qabso.",
+            "daawo": "Daawooyinka waxaa loo bixiyaa si waafaqsan baaritaanka. Dr. Zuhuur waxay ku siinaysaa talo cilmiyeed.",
+            "qiimaha": "La-talinta VIP waa $50, Buugga Medical Guide waa $10. Adeegyada kale xafiiska ayaa looga heshiiyaa.",
+            "evc": "Lacagta ku soo dir EVC Plus: 617911816.",
+            "location": "Waxaan joognaa Daru-salaam, Xafada Banana, Mogadishu."
+        };
 
         function toggleChat() {
             var chat = document.getElementById('chat-window');
-            chat.style.display = (chat.style.display === 'flex') ? 'none' : 'flex';
+            chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
         }
 
-        function handleEnter(event) {
-            if (event.key === "Enter") processSearch();
-        }
+        function processChat() {
+            let input = document.getElementById('chat-input');
+            let text = input.value.toLowerCase();
+            let body = document.getElementById('chat-body');
 
-        function processSearch() {
-            const inputField = document.getElementById('chat-input');
-            const userText = inputField.value.trim().toLowerCase();
-            const body = document.getElementById('chat-body');
+            if (text.trim() === "") return;
 
-            if (userText === "") return;
+            body.innerHTML += `<div class="msg user-msg">${input.value}</div>`;
+            input.value = "";
 
-            // Add user message to UI
-            body.innerHTML += `<div class="msg user-msg">${inputField.value}</div>`;
-            inputField.value = "";
-
-            // Find match in Knowledge Base
-            let botReply = "Waan ka xumahay, su'aashaas kama jawaabi karo hadda. Fadlan kala xiriir Dr. Zuhuur WhatsApp: +252617911816";
+            let reply = "Waan ka xumahay, xogtaas hadda ma hayo. Fadlan si toos ah u weydii Dr. Zuhuur WhatsApp-ka.";
             
-            for (let item of knowledgeBase) {
-                if (item.keywords.some(k => userText.includes(k))) {
-                    botReply = item.reply;
+            for (let key in medicalDB) {
+                if (text.includes(key)) {
+                    reply = medicalDB[key];
                     break;
                 }
             }
 
-            // Typing effect
             setTimeout(() => {
-                body.innerHTML += `<div class="msg bot-msg">${botReply}</div>`;
+                body.innerHTML += `<div class="msg bot-msg">${reply}</div>`;
                 body.scrollTop = body.scrollHeight;
             }, 600);
         }
