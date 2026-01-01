@@ -3,182 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Zuhuur | Medical Researcher & Forex Data</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Dr. Zuhuur | PhD Medical Researcher & AI Bot</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #001f3f; /* Navy Blue */
-            --secondary-color: #d4af37; /* Gold */
-            --text-light: #ffffff;
-            --bg-light: #f4f4f4;
-        }
+        :root { --navy: #0a192f; --gold: #c5a059; --white: #ffffff; --green: #25d366; --soft-grey: #f8fafc; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; background: var(--white); color: var(--navy); scroll-behavior: smooth; overflow-x: hidden; }
+        
+        nav { padding: 15px 8%; background: var(--navy); color: white; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-light);
-            color: #333;
-        }
+        .hero { padding: 60px 8%; text-align: center; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-bottom: 5px solid var(--gold); }
+        .hero-img { width: 180px; height: 180px; border-radius: 50%; border: 5px solid var(--gold); margin-bottom: 20px; object-fit: cover; }
+        
+        .cta-container { margin-top: 30px; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn { padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; display: flex; align-items: center; gap: 10px; }
+        .btn-tiktok { background: #000; color: white; }
+        .btn-wa { background: var(--green); color: white; }
 
-        /* Header Section */
-        header {
-            background-color: var(--primary-color);
-            color: var(--text-light);
-            padding: 60px 20px;
-            text-align: center;
-        }
+        .section-title { font-family: 'Playfair Display', serif; text-align: center; margin: 40px 0; font-size: 2rem; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 0 8% 40px; }
+        .gallery-item { border-radius: 20px; overflow: hidden; background: white; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .gallery-item img { width: 100%; height: 250px; object-fit: cover; }
+        .gallery-item .desc { padding: 15px; text-align: center; font-weight: bold; background: var(--navy); color: white; }
 
-        header h1 { margin: 0; font-size: 2.5rem; color: var(--secondary-color); }
-        header p { margin: 10px 0 0; font-size: 1.1rem; opacity: 0.9; }
+        .payment-box { padding: 50px 8%; background: var(--soft-grey); text-align: center; border-radius: 40px; margin: 20px 8%; }
+        .payment-card { background: white; border: 2px dashed var(--gold); padding: 30px; border-radius: 20px; max-width: 500px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
 
-        /* Forex Widget Style */
-        .forex-card {
-            background: var(--primary-color);
-            color: var(--secondary-color);
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 500px;
-            border-radius: 15px;
-            border: 2px solid var(--secondary-color);
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
+        .booking-box { padding: 60px 8%; text-align: center; }
+        .calendar-input { padding: 15px; border-radius: 12px; border: 2px solid var(--gold); font-size: 1rem; width: 100%; max-width: 300px; margin-bottom: 20px; }
 
-        /* Form Section */
-        .container {
-            max-width: 600px;
-            margin: 40px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
+        .location-box { padding: 60px 8%; text-align: center; background: #fff; }
+        .map-wrapper { width: 100%; height: 450px; border-radius: 25px; overflow: hidden; border: 4px solid var(--gold); margin-top: 20px; }
 
-        h2 { text-align: center; color: var(--primary-color); }
+        #chatbot-launcher { position: fixed; bottom: 30px; left: 30px; width: 70px; height: 70px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; z-index: 10000; font-size: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        #chat-window { position: fixed; bottom: 110px; left: 30px; width: 350px; height: 500px; background: white; border-radius: 25px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); display: none; flex-direction: column; z-index: 10000; border: 1px solid #eee; overflow: hidden; }
+        .chat-header { background: var(--navy); color: white; padding: 18px; font-weight: bold; display: flex; justify-content: space-between; border-bottom: 3px solid var(--gold); }
+        .chat-body { flex: 1; padding: 15px; overflow-y: auto; background: #f9fbff; display: flex; flex-direction: column; gap: 12px; }
+        .chat-input-area { padding: 15px; display: flex; gap: 10px; border-top: 1px solid #eee; background: white; }
+        .chat-input-area input { flex: 1; padding: 12px; border-radius: 25px; border: 1px solid #ddd; outline: none; }
+        .msg { padding: 12px 16px; border-radius: 18px; max-width: 85%; font-size: 0.9rem; line-height: 1.5; }
+        .bot-msg { background: white; border: 1px solid #eee; align-self: flex-start; }
+        .user-msg { background: var(--navy); color: white; align-self: flex-end; }
 
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-sizing: border-box;
-        }
-
-        button {
-            width: 100%;
-            padding: 15px;
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover { background-color: #b8962d; }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
-            color: #777;
-        }
+        footer { padding: 40px; text-align: center; background: var(--soft-grey); color: #64748b; font-size: 0.8rem; border-top: 1px solid #eee; }
+        .designer-tag { color: var(--gold); font-weight: 800; display: block; margin-top: 5px; text-decoration: none; }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Dr. Zuhuur</h1>
-        <p>PhD Medical Researcher - Somalia</p>
-    </header>
+    <nav><div class="logo">DR. ZUHUUR</div></nav>
 
-    <div class="forex-card">
-        <h3>📊 Live Forex Rates (USD Base)</h3>
-        <div id="rates">Soo kabanaya...</div>
-    </div>
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=500" class="hero-img" alt="Dr Zuhuur">
+        <h1>PhD Medical Researcher</h1>
+        <p>Expert medical diagnosis and clinical research in Mogadishu.</p>
+        <div class="cta-container">
+            <a href="https://vm.tiktok.com/ZMD2GHmXd/" class="btn btn-tiktok">TikTok Profile</a>
+            <a href="https://wa.me/252617911816" class="btn btn-wa">WhatsApp Direct</a>
+        </div>
+    </section>
 
-    <div class="container">
-        <h2>Ballan Qabso ama Farriin Dir</h2>
-        <input type="text" id="name" placeholder="Magacaaga oo buuxa">
-        <input type="text" id="phone" placeholder="Lambarkaaga telefoonka">
-        <textarea id="message" rows="4" placeholder="Farriintaada halkan ku qor..."></textarea>
-        <button onclick="sendToFirebase()">DIR FARRIINTA</button>
+    <h2 class="section-title">Xafiiska & Adeegyada</h2>
+    <section class="gallery-grid">
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=500" alt="VIP">
+            <div class="desc">Xafiiska La-talinta VIP</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1581594632702-fbdc51b2763b?q=80&w=500" alt="Qalabka">
+            <div class="desc">Qalabka Baaritaanka Casriga ah</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=500" alt="Daryeelka">
+            <div class="desc">Daryeelka Bukaan-socodka</div>
+        </div>
+    </section>
+
+    <section class="payment-box">
+        <h2 style="font-family:'Playfair Display';">Bixi Lacagta Ballanta</h2>
+        <div class="payment-card">
+            <p>Si ballantaadu u xaqiijisanto, bixi lacagta la-talinta ($50)</p>
+            <p style="font-size: 1.5rem; font-weight: 800; color: var(--gold);">EVC Plus: 617 xxx xxx</p>
+            <small>*Markaad lacagta dirto, AI-ga hoose u sheeg si uu kuu diiwaangeliyo.</small>
+        </div>
+    </section>
+
+    <section class="booking-box">
+        <h2 style="font-family:'Playfair Display';">Qabso Ballan Online ah</h2>
+        <input type="date" id="app-date" class="calendar-input"> <br>
+        <button onclick="confirmBooking()" style="background:var(--navy); color:white; border:none; padding:15px 40px; border-radius:50px; font-weight:bold; cursor:pointer;">Xaqiiji Ballanta</button>
+    </section>
+
+    <section class="location-box">
+        <h2 style="font-family:'Playfair Display';">Halkee ku Naallaa?</h2>
+        <p><b>Dagmada Yaqshiid, Xaafadda Mahad-Alle (Agagaarka Caymiska)</b>, Mogadishu, Somalia.</p>
+        <div class="map-wrapper">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15949.613346517116!2d45.333069!3d2.074722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3d58434771f8ed1d%3A0x6762397734a3626e!2sYaqshid%2C%20Mogadishu!5e0!3m2!1sen!2sso!4v1700000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <div id="chatbot-launcher" onclick="toggleChat()">🩺</div>
+    <div id="chat-window">
+        <div class="chat-header"><span>Dr. Zuhuur Medical AI</span><span onclick="toggleChat()" style="cursor:pointer">×</span></div>
+        <div class="chat-body" id="chat-body">
+            <div class="msg bot-msg">Asc! Geli magacaaga si aan u bilowno:</div>
+            <div id="reg-area" style="padding:10px; display:flex; flex-direction:column; gap:8px;">
+                <input type="text" id="u-name" placeholder="Magacaaga..." style="padding:10px; border-radius:10px; border:1px solid #ddd;">
+                <button onclick="startChat()" style="background:var(--gold); color:white; border:none; padding:10px; border-radius:10px; cursor:pointer; font-weight:bold;">Bilow AI</button>
+            </div>
+        </div>
+        <div class="chat-input-area" id="input-area" style="display:none;">
+            <input type="text" id="chat-input" placeholder="Weydii wax kasta..." onkeypress="if(event.key==='Enter') processChat()">
+        </div>
     </div>
 
     <footer>
-        &copy; 2026 Dr. Zuhuur Portfolio | Built by [Magacaaga]
+        <p>© 2025 DR. ZUHUUR | PhD MEDICAL RESEARCHER</p>
+        <a href="#" class="designer-tag">DESIGNED BY UPTHIRAHMAAN</a>
     </footer>
 
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
-
     <script>
-        // 1. FIREBASE CONFIGURATION (Ku beddel xogtaada dhabta ah)
-        const firebaseConfig = {
-            apiKey: "AIzaSy...", 
-            authDomain: "my-plan-2026.firebaseapp.com",
-            projectId: "my-plan-2026",
-            storageBucket: "my-plan-2026.appspot.com",
-            messagingSenderId: "...",
-            appId: "..."
+        let userName = "";
+        const knowledge = {
+            "asc": "Wacalaykum Salaam! Sideen kuu caawin karaa?",
+            "qiimaha": "La-talin: $50. EVC Plus: 617 xxx xxx.",
+            "location": "Yaqshiid, Mahad-Alle (Agagaarka Caymiska).",
+            "dhabar": "Dhabar xanuunka waxaa si xirfadaysan u baarta Dr. Zuhuur. Fadlan qabso ballan.",
+            "lacag": "Markaad dirto $50 (EVC: 617 xxx xxx), sawirka nala soo wadaag WhatsApp."
         };
 
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-
-        // 2. FUNCTION-KA FOREX API
-        async function getForexRates() {
-            try {
-                const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
-                const data = await response.json();
-                const ratesDiv = document.getElementById('rates');
-                const pairs = ['EUR', 'GBP', 'JPY', 'CHF'];
-                
-                let html = '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">';
-                pairs.forEach(p => {
-                    html += `<div><b>USD/${p}:</b> ${data.rates[p].toFixed(2)}</div>`;
-                });
-                html += '</div>';
-                ratesDiv.innerHTML = html;
-            } catch (e) {
-                document.getElementById('rates').innerHTML = "API Error!";
-            }
+        function toggleChat() {
+            let win = document.getElementById('chat-window');
+            win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        // 3. FUNCTION-KA FIREBASE
-        function sendToFirebase() {
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const msg = document.getElementById('message').value;
-
-            if (!name || !phone || !msg) {
-                alert("Fadlan buuxi meelaha bannaan!");
-                return;
-            }
-
-            db.collection("appointments").add({
-                magaca: name,
-                telefanka: phone,
-                farriinta: msg,
-                waqtiga: new Date().toLocaleString()
-            })
-            .then(() => {
-                alert("Guul! Farriintaadu waa na soo gaartay.");
-                document.getElementById('name').value = "";
-                document.getElementById('phone').value = "";
-                document.getElementById('message').value = "";
-            })
-            .catch((error) => {
-                alert("Cilad: " + error.message);
-            });
+        function startChat() {
+            let n = document.getElementById('u-name').value;
+            if(!n) return alert("Fadlan magaca geli");
+            userName = n;
+            document.getElementById('reg-area').style.display = 'none';
+            document.getElementById('input-area').style.display = 'flex';
+            document.getElementById('chat-body').innerHTML += `<div class="msg bot-msg">Mahadsanid <b>${n}</b>! Maxaan kaa caawiyaa?</div>`;
         }
 
-        // Run Forex on Load
-        getForexRates();
+        function processChat() {
+            let input = document.getElementById('chat-input');
+            let text = input.value.toLowerCase();
+            let body = document.getElementById('chat-body');
+            if(!text) return;
+
+            body.innerHTML += `<div class="msg user-msg">${input.value}</div>`;
+            let reply = "Su'aashan Dr. Zuhuur ayaa si toos ah WhatsApp-ka kaaga jawaabi doonta.";
+            for(let key in knowledge) { if(text.includes(key)) { reply = knowledge[key]; break; } }
+
+            setTimeout(() => {
+                body.innerHTML += `<div class="msg bot-msg">${reply}</div>`;
+                body.innerHTML += `<button onclick="window.open('https://wa.me/252617911816?text=Asc Dr. Zuhuur, waxaan ahay ${userName}. Su'aasheydu waa: ${text}')" style="background:#25d366; color:white; border:none; padding:8px; border-radius:10px; cursor:pointer; margin-top:5px;">U dir WhatsApp</button>`;
+                body.scrollTop = body.scrollHeight;
+            }, 500);
+            input.value = "";
+        }
+
+        function confirmBooking() {
+            let d = document.getElementById('app-date').value;
+            if(!d) return alert("Dooro taariikh");
+            window.open(`https://wa.me/252617911816?text=Asc Dr. Zuhuur, waxaan rabaa ballan: ${d}.`, '_blank');
+        }
     </script>
 </body>
 </html>
