@@ -3,254 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bahjo Cosmetics | The Art of Beauty</title>
+    <title>Bahjo Cosmetics | Luxury Boutique Kismayo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,900&family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Prata&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --accent: #ff007a;
-            --gold-gradient: linear-gradient(135deg, #d4af37 0%, #f9f295 50%, #d4af37 100%);
+            --gold: #D4AF37;
+            --deep-pink: #FF1493;
+            --soft-pink: #FFF0F5;
+            --dark: #0F0F0F;
             --glass: rgba(255, 255, 255, 0.1);
-            --dark: #0a0a0a;
         }
 
+        * { box-sizing: border-box; transition: all 0.3s ease; }
         body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            background: #000;
-            color: #fff;
-            scroll-behavior: smooth;
+            margin: 0; font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark); color: white;
+            scroll-behavior: smooth; overflow-x: hidden;
         }
 
-        /* Full Screen Hero Section */
-        .hero {
+        /* Loading Animation */
+        #loader {
+            position: fixed; width: 100%; height: 100vh; background: var(--dark);
+            z-index: 9999; display: flex; justify-content: center; align-items: center;
+        }
+
+        /* Hero Section */
+        header {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&q=80&w=1000');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            border-bottom: 5px solid var(--accent);
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1200');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; border-bottom: 4px solid var(--gold);
         }
 
-        .hero h1 {
-            font-family: 'Prata', serif;
-            font-size: 3.5rem;
-            margin: 0;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 5px;
+        .hero-title {
+            font-family: 'Playfair Display', serif; font-size: 4.5rem;
+            margin: 0; letter-spacing: 5px; color: var(--gold);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
         }
 
-        /* Glassmorphism Digital Card */
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 30px;
-            padding: 40px;
-            margin: -100px 20px 40px;
-            text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        /* Digital Card - Floating */
+        .card-wrapper {
+            max-width: 500px; margin: -100px auto 50px; padding: 20px;
+            animation: slideUp 1s ease;
         }
 
-        .qr-holder {
-            background: white;
-            padding: 10px;
-            border-radius: 15px;
-            display: inline-block;
-            margin-bottom: 20px;
+        .luxury-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            border-radius: 30px; padding: 40px; border: 1px solid var(--gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8); position: relative;
         }
 
-        /* Premium Product Grid */
-        .container { padding: 50px 20px; }
+        #qrcode {
+            background: white; padding: 10px; border-radius: 15px;
+            float: right; margin-bottom: 20px;
+        }
+
+        /* Product Grid */
+        .section-padding { padding: 80px 20px; }
         .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px; max-width: 1200px; margin: auto;
         }
 
-        .luxury-item {
-            position: relative;
-            background: #111;
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid #222;
-            transition: 0.5s;
+        .product-item {
+            background: #1a1a1a; border-radius: 25px; overflow: hidden;
+            border: 1px solid #222; position: relative;
         }
 
-        .luxury-item:hover {
-            border-color: var(--accent);
-            transform: scale(1.02);
+        .product-item:hover { transform: translateY(-15px); border-color: var(--gold); }
+        .product-item img { width: 100%; height: 350px; object-fit: cover; }
+
+        .price-badge {
+            position: absolute; top: 20px; right: 20px;
+            background: var(--gold); color: black; padding: 8px 15px;
+            border-radius: 50px; font-weight: 800;
         }
 
-        .luxury-item img {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            opacity: 0.8;
-            transition: 0.5s;
+        .product-meta { padding: 25px; text-align: center; }
+        .btn-order {
+            background: var(--deep-pink); color: white; border: none;
+            padding: 15px 30px; border-radius: 50px; width: 100%;
+            font-weight: bold; cursor: pointer; text-transform: uppercase;
         }
 
-        .luxury-item:hover img { opacity: 1; }
-
-        .item-details {
-            padding: 25px;
-            background: linear-gradient(transparent, #000);
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            box-sizing: border-box;
+        /* TikTok Section */
+        .tiktok-section {
+            background: var(--gold); color: black; padding: 60px 20px;
+            text-align: center; font-weight: bold;
         }
 
-        .price-tag {
-            font-size: 1.5rem;
-            color: var(--accent);
-            font-weight: bold;
+        .tiktok-link {
+            background: black; color: white; padding: 20px 40px;
+            border-radius: 50px; text-decoration: none; display: inline-block;
+            margin-top: 20px; font-size: 1.2rem;
         }
 
-        .btn-luxury {
-            background: var(--accent);
-            color: white;
-            text-decoration: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            display: inline-block;
-            margin-top: 15px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            transition: 0.3s;
-            border: none;
-            width: 100%;
+        /* Map Section - Kismayo Center */
+        .map-area { padding: 60px 20px; background: #000; }
+        .map-container {
+            max-width: 1000px; margin: auto; border-radius: 30px;
+            overflow: hidden; border: 2px solid var(--gold);
         }
 
-        /* Review Slider */
-        .review-section { background: #050505; padding: 60px 20px; text-align: center; }
-        .review-box { font-style: italic; font-size: 1.2rem; color: #ccc; max-width: 600px; margin: auto; }
-
-        /* Floating Bot */
-        .ai-bot {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: white;
-            color: black;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 0 10px 30px rgba(255,255,255,0.2);
-            cursor: pointer;
-            z-index: 1000;
+        /* Footer */
+        footer {
+            padding: 80px 20px; background: #050505; text-align: center;
+            border-top: 1px solid #222;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        .ai-bot { animation: pulse 2s infinite; }
+        .social-icons i { font-size: 2rem; margin: 0 15px; color: var(--gold); cursor: pointer; }
 
-        footer { padding: 60px; text-align: center; border-top: 1px solid #222; }
+        /* Animations */
+        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-    <section class="hero">
-        <p style="letter-spacing: 10px; text-transform: uppercase;">Exclusively For You</p>
-        <h1>BAHJO MAHAD</h1>
-        <p>COSMETICS • BOUTIQUE • KISMAAYO</p>
-        <a href="#shop" class="btn-luxury" style="width: auto; margin-top: 30px;">EXPLORE COLLECTION</a>
+    <div id="loader"><h2 style="color: var(--gold);">BAHJO LUXURY...</h2></div>
+
+    <header>
+        <p style="letter-spacing: 8px; color: var(--gold);">ESTABLISHED 2026</p>
+        <h1 class="hero-title">BAHJO MAHAD</h1>
+        <p style="font-size: 1.2rem; margin-top: 20px;">Cosmetics • Boutique • Elegance</p>
+        <div style="margin-top: 40px;">
+            <a href="#shop" style="color: white; border: 2px solid var(--gold); padding: 15px 40px; text-decoration: none; border-radius: 50px;">COLLECTION</a>
+        </div>
+    </header>
+
+    <div class="card-wrapper">
+        <div class="luxury-card">
+            <div id="qrcode"></div>
+            <h2 style="margin: 0; font-family: 'Playfair Display';">Bahjo Mahad Bisle</h2>
+            <p style="color: var(--gold); font-weight: bold;">CHIEF EXECUTIVE</p>
+            <hr style="border: 0; border-top: 1px solid #444; margin: 20px 0;">
+            <p><i class="fa fa-phone"></i> +252 61 7799545</p>
+            <p><i class="fa fa-location-dot"></i> Afar-Irdood, Kismayo, Somalia</p>
+        </div>
+    </div>
+
+    <section class="section-padding" id="shop">
+        <h2 style="text-align: center; font-size: 3rem; font-family: 'Playfair Display'; margin-bottom: 50px;">The Boutique Collection</h2>
+        <div class="grid">
+            <div class="product-item">
+                <span class="price-badge">$45.00</span>
+                <img src="https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?w=500">
+                <div class="product-meta">
+                    <h3>Royal Gold Makeup Set</h3>
+                    <button class="btn-order" onclick="dalbo('Gold Makeup Set', '$45')">Dalbo Hadda</button>
+                </div>
+            </div>
+            <div class="product-item">
+                <span class="price-badge">$85.00</span>
+                <img src="https://images.unsplash.com/photo-1522338223523-dcacaf132d93?w=500">
+                <div class="product-meta">
+                    <h3>Midnight Oud Perfume</h3>
+                    <button class="btn-order" onclick="dalbo('Midnight Oud', '$85')">Dalbo Hadda</button>
+                </div>
+            </div>
+            <div class="product-item">
+                <span class="price-badge">$120.00</span>
+                <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500">
+                <div class="product-meta">
+                    <h3>Premium Skin Serum</h3>
+                    <button class="btn-order" onclick="dalbo('Skin Serum', '$120')">Dalbo Hadda</button>
+                </div>
+            </div>
+            <div class="product-item">
+                <span class="price-badge">$200.00</span>
+                <img src="https://images.unsplash.com/photo-1515688594390-b649af70d282?w=500">
+                <div class="product-meta">
+                    <h3>Bridal Beauty Case</h3>
+                    <button class="btn-order" onclick="dalbo('Bridal Beauty', '$200')">Dalbo Hadda</button>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <div class="glass-card">
-        <div class="qr-holder" id="qrcode"></div>
-        <h2 style="font-family: 'Prata', serif; font-size: 2rem; margin: 10px 0;">Bahjo Mahad Bisle</h2>
-        <p style="color: var(--accent); letter-spacing: 3px;">FOUNDER & CEO</p>
-        <p>Xeebta Calanley, Kismaayo | +252 61 7799545</p>
+    <div class="tiktok-section">
+        <h2>FASHION & CODING ON TIKTOK</h2>
+        <p>Follow our lead developer and boutique owner for more updates!</p>
+        <a href="https://vm.tiktok.com/ZMDjKKh4w/" class="tiktok-link">
+            <i class="fab fa-tiktok"></i> @Follow_Bahjo_TikTok
+        </a>
     </div>
 
-    <div class="container" id="shop">
-        <h2 style="text-align: center; font-size: 2.5rem; font-family: 'Prata', serif; margin-bottom: 50px;">Featured Gallery</h2>
-        <div class="grid">
-            <div class="luxury-item">
-                <img src="https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?w=500" alt="Cosmetic">
-                <div class="item-details">
-                    <h3>Bridal Collection</h3>
-                    <div class="price-tag">$120.00</div>
-                    <button class="btn-luxury" onclick="order('Bridal Collection', '$120')">ORDER NOW</button>
-                </div>
-            </div>
-            <div class="luxury-item">
-                <img src="https://images.unsplash.com/photo-1522338223523-dcacaf132d93?w=500" alt="Perfume">
-                <div class="item-details">
-                    <h3>Royal Oud Perfume</h3>
-                    <div class="price-tag">$85.00</div>
-                    <button class="btn-luxury" onclick="order('Royal Oud', '$85')">ORDER NOW</button>
-                </div>
-            </div>
-            <div class="luxury-item">
-                <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500" alt="Dress">
-                <div class="item-details">
-                    <h3>Evening Boutique Gown</h3>
-                    <div class="price-tag">$250.00</div>
-                    <button class="btn-luxury" onclick="order('Evening Gown', '$250')">ORDER NOW</button>
-                </div>
-            </div>
+    <section class="map-area">
+        <h2 style="text-align: center; font-family: 'Playfair Display';">📍 Our Flagship Store</h2>
+        <p style="text-align: center; color: #888; margin-bottom: 30px;">Waxaan ku naalaa Isgoyska caanka ah ee **Afar-Irdood**, Kismaayo.</p>
+        <div class="map-container">
+            <iframe width="100%" height="450" style="border:0; filter: grayscale(1) invert(1);" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15951.642340562687!2d42.5392!3d-0.3582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177926796c561b7f%3A0xc023e9674019623!2sAfar%20Irdood%2C%20Kismayo!5e0!3m2!1sen!2sso!4v1700000000000" 
+                allowfullscreen="" loading="lazy"></iframe>
         </div>
-    </div>
-
-    <div class="review-section">
-        <div class="review-box">
-            <p>"Kismaayo meel ka qurux badan oo adeeg hufan leh ma arag. Bahjo waa boqorada cosmetics-ka!"</p>
-            <span style="color: var(--accent);">★★★★★ - Aisha Omar</span>
-        </div>
-    </div>
-
-    <div style="padding: 40px;">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.4326574514785!2d42.5447!3d-0.3582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMMKwMjEnMjkuNSJTIDQywrszMicyMC45IkU!5e0!3m2!1sen!2s!4v1641000000000" width="100%" height="400" style="border-radius: 30px; filter: grayscale(1) invert(1);" allowfullscreen=""></iframe>
-    </div>
+    </section>
 
     <footer>
-        <h2 style="font-family: 'Prata', serif; letter-spacing: 5px;">BAHJO MAHAD</h2>
-        <p>Luxury Cosmetics & Exclusive Boutique</p>
-        <div style="margin: 30px 0;">
-            <span style="margin: 0 15px;">TIKTOK</span>
-            <span style="margin: 0 15px;">INSTAGRAM</span>
-            <span style="margin: 0 15px;">FACEBOOK</span>
+        <h1 style="font-family: 'Playfair Display'; color: var(--gold);">BAHJO MAHAD</h1>
+        <div class="social-icons">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-whatsapp" onclick="whatsappMe()"></i>
         </div>
-        <p style="font-size: 0.7rem; opacity: 0.5;">DESIGNED BY KOOSHIN YARE | 2026</p>
+        <p style="margin-top: 40px; opacity: 0.5;">© 2026 Developed with Passion for Bahjo Mahad Bisle.</p>
     </footer>
 
-    <div class="ai-bot" onclick="openChat()">💬</div>
-
     <script>
-        // Generate QR
+        // Hide Loader
+        window.onload = () => {
+            document.getElementById('loader').style.display = 'none';
+        };
+
+        // QR Code
         new QRCode(document.getElementById("qrcode"), {
             text: window.location.href,
-            width: 120,
-            height: 120,
-            colorDark : "#000000",
-            colorLight : "#ffffff"
+            width: 110, height: 110,
+            colorDark : "#000000", colorLight : "#ffffff"
         });
 
-        function order(item, price) {
-            let msg = `Asc Bahjo, waxaan rabaa inaan dalbado: ${item} oo qiimihiisu yahay ${price}.`;
+        // WhatsApp Functions
+        function dalbo(item, price) {
+            let msg = `Asc Bahjo, waxaan rabaa inaan dalbado: ${item} oo qiimihiisu yahay ${price}. Ma ii diyaarin kartaa?`;
             window.open(`https://wa.me/252617799545?text=${encodeURIComponent(msg)}`);
         }
 
-        function openChat() {
-            let msg = "Asc Bahjo, waxaan rabaa inaan wax ka ogaado alaabta dukaanka.";
-            window.open(`https://wa.me/252617799545?text=${encodeURIComponent(msg)}`);
+        function whatsappMe() {
+            window.open("https://wa.me/252617799545?text=Asc%20Bahjo%20Cosmetics");
         }
     </script>
 </body>
