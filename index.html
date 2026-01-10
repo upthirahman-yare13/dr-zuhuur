@@ -3,94 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOOSHIN AI | Island HD Filter</title>
+    <title>KOOSHIN AI | Clean Portrait Filter</title>
     <style>
-        body { margin: 0; background: #000; color: white; font-family: 'Segoe UI', sans-serif; overflow: hidden; display: flex; flex-direction: column; align-items: center; }
+        body { margin: 0; background: #000; color: white; font-family: 'Montserrat', sans-serif; display: flex; flex-direction: column; align-items: center; overflow: hidden; }
         
-        .camera-box { position: relative; width: 100%; height: 80vh; background: #111; overflow: hidden; }
-        
-        /* Kamaradda oo leh Filter iPhone Cinematic ah */
+        /* Camera Frame - Portrait Mode (Wajiga ilaa Garbaha) */
+        .portrait-box {
+            position: relative;
+            width: 100vw;
+            height: 75vh;
+            background: #000;
+            overflow: hidden;
+            border-bottom: 4px solid #333;
+        }
+
         #webcam {
-            width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1);
-            filter: brightness(1.1) contrast(1.1) saturate(1.4) sepia(0.05) sharp(1.1);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scaleX(-1);
+            /* Men's Clean Filter: Sifayn, Iftiin qabow, iyo Sharpness */
+            filter: brightness(1.1) contrast(1.05) saturate(1.1) sharpness(1.2) hue-rotate(-2deg);
         }
 
-        /* Jasiiradda Background-ka u ah (Overlay) */
-        .island-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover; background-position: center;
-            opacity: 0.4; /* Tani waxay isku dhex daraysaa adiga iyo jasiiradda */
-            mix-blend-mode: screen; 
-            pointer-events: none; z-index: 5;
+        /* Soft Lighting Overlay */
+        .lighting-effect {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.4) 100%);
+            pointer-events: none;
         }
 
-        .controls { height: 20vh; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #050505; border-top: 2px solid #00f2ff; }
-        
-        .rec-btn { width: 75px; height: 75px; background: white; border: 4px solid #333; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .rec-btn.active { background: #ff003c; animation: pulse 1s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        
-        .status { color: #00f2ff; margin-bottom: 10px; font-weight: bold; font-size: 14px; }
+        .ui-panel {
+            height: 25vh;
+            width: 100%;
+            background: #0a0a0a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Professional Recording Button */
+        .rec-container {
+            width: 80px; height: 80px;
+            border: 4px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .rec-core {
+            width: 60px; height: 60px;
+            background: #fff;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .rec-container.active .rec-core {
+            background: #ff003c;
+            border-radius: 8px; /* Wuxuu noqonayaa square markuu duubayo */
+            transform: scale(0.6);
+        }
+
+        .status-text { font-size: 14px; color: #aaa; margin-bottom: 10px; font-weight: bold; letter-spacing: 1px; }
     </style>
 </head>
 <body>
 
-    <div class="camera-box">
+    <div class="portrait-box">
         <video id="webcam" autoplay playsinline muted></video>
-        <div class="island-bg"></div> </div>
+        <div class="lighting-effect"></div>
+    </div>
 
-    <div class="controls">
-        <p class="status" id="status">ISLAND FILTER: ACTIVE 🏝️</p>
-        <div class="rec-btn" id="recBtn" onclick="toggleRecording()">
-            <div style="width: 25px; height: 25px; background: red; border-radius: 50%;"></div>
+    <div class="ui-panel">
+        <p class="status-text" id="status">ULTRA-CLEAN PORTRAIT MODE</p>
+        <div class="rec-container" id="recBtn" onclick="handleCapture()">
+            <div class="rec-core"></div>
         </div>
+        <p style="font-size: 10px; margin-top: 10px; opacity: 0.5;">HD 4K | 60 FPS | MEN'S FILTER</p>
     </div>
 
     <script>
         let mediaRecorder;
-        let recordedChunks = [];
-        const videoElement = document.getElementById('webcam');
+        let chunks = [];
 
-        async function startHD() {
+        async function initCamera() {
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { facingMode: "user", width: { ideal: 1920 }, height: { ideal: 1080 }, frameRate: 60 },
-                    audio: true 
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { 
+                        facingMode: "user", 
+                        width: { ideal: 1920 }, 
+                        height: { ideal: 1080 },
+                        frameRate: 60 
+                    },
+                    audio: true
                 });
-                videoElement.srcObject = stream;
+                document.getElementById('webcam').srcObject = stream;
             } catch (err) {
-                document.getElementById('status').innerText = "Fadlan ogolow Kamaradda!";
+                document.getElementById('status').innerText = "ERROR: Camera Permission Denied";
             }
         }
 
-        function toggleRecording() {
+        function handleCapture() {
             const btn = document.getElementById('recBtn');
             const status = document.getElementById('status');
+            const video = document.getElementById('webcam');
 
             if (!mediaRecorder || mediaRecorder.state === "inactive") {
-                recordedChunks = [];
-                mediaRecorder = new MediaRecorder(videoElement.srcObject);
-                mediaRecorder.ondataavailable = (e) => { if (e.data.size > 0) recordedChunks.push(e.data); };
+                chunks = [];
+                mediaRecorder = new MediaRecorder(video.srcObject);
+                mediaRecorder.ondataavailable = e => chunks.push(e.data);
                 mediaRecorder.onstop = () => {
-                    const blob = new Blob(recordedChunks, { type: 'video/mp4' });
+                    const blob = new Blob(chunks, { type: 'video/mp4' });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = 'Kooshin_Island_Video.mp4';
+                    a.download = 'Kooshin_Portrait_HD.mp4';
                     a.click();
+                    status.innerText = "MUQAALKA WAA LA DAGSADAY ✅";
                 };
                 mediaRecorder.start();
                 btn.classList.add('active');
-                status.innerText = "WAA LA DUUBAYAA... 🎥";
+                status.innerText = "DUUBISTA AYAA SOCOTA...";
             } else {
                 mediaRecorder.stop();
                 btn.classList.remove('active');
-                status.innerText = "DIYAARINAYAA... ✅";
+                status.innerText = "DIYAARINAYAA MUQAALKA...";
             }
         }
 
-        startHD();
+        initCamera();
     </script>
 </body>
 </html>
