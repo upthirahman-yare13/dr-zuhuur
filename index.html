@@ -3,25 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOOSHIN AI | Snow Filter HD</title>
+    <title>KOOSHIN AI | iPhone 17 Handheld HD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0; padding: 0;
-            background: #000;
-            display: flex; flex-direction: column; align-items: center;
-            font-family: 'Segoe UI', sans-serif;
-            color: white;
-            overflow: hidden;
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: 'Montserrat', sans-serif; }
+
+        /* 1. Background Image (Gabar iPhone 17 gacanta ku haysa) */
+        .scene-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1512446813352-4754621cd123?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        /* 1. Camera Container (Half Mode) */
-        .cam-wrapper {
-            position: relative;
-            width: 100%;
-            height: 70vh; /* Waxaan ka dhigay barkii sare ee shaashadda */
+        /* 2. iPhone Screen Area (Meesha aad adigu ka soo muuqanayso) */
+        .iphone-screen {
+            position: absolute;
+            width: 260px; /* Cabbirka shaashadda taleefanka gabadhu hayso */
+            height: 540px;
+            background: #000;
+            border-radius: 35px;
             overflow: hidden;
-            background: #111;
-            border-bottom: 3px solid #00f2ff;
+            border: 4px solid #1a1a1a;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            transform: rotate(-2deg); /* Wax yar oo janjeer ah si ay dabiici u u ekaato */
+            z-index: 10;
         }
 
         #webcam {
@@ -29,104 +39,99 @@
             height: 100%;
             object-fit: cover;
             transform: scaleX(-1);
-            /* iPhone Vivid & Soft Filter */
-            filter: brightness(1.1) contrast(1.05) saturate(1.2) blur(0px);
+            /* Ultra-Men Filter: Sharp, Clean, and Vivid */
+            filter: brightness(1.1) contrast(1.1) saturate(1.3) sharpness(1.2);
         }
 
-        /* 2. Snow Animation Effect */
-        .snow-overlay {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        .snowflake {
-            position: absolute;
-            top: -10px;
-            background: white;
-            border-radius: 50%;
-            opacity: 0.8;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            to { transform: translateY(70vh); }
-        }
-
-        /* 3. Controls Layout */
+        /* 3. Recording UI */
         .controls {
-            height: 30vh;
-            width: 100%;
-            background: #050505;
+            position: absolute;
+            bottom: 30px;
+            z-index: 20;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
         }
 
-        .btn-record {
+        .rec-btn {
             width: 70px; height: 70px;
-            background: red;
-            border: 4px solid white;
+            background: rgba(255, 255, 255, 0.9);
+            border: 5px solid rgba(0,0,0,0.2);
             border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
         }
 
-        .btn-record:active { transform: scale(0.9); }
-
-        .title { font-size: 14px; letter-spacing: 2px; color: #00f2ff; margin-bottom: 15px; }
+        .rec-dot { width: 25px; height: 25px; background: red; border-radius: 50%; }
+        .rec-btn.active .rec-dot { border-radius: 4px; animation: blink 1s infinite; }
+        
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+        
+        .status { color: white; background: rgba(0,0,0,0.6); padding: 5px 15px; border-radius: 20px; margin-bottom: 10px; font-size: 12px; }
     </style>
 </head>
 <body>
 
-    <div class="cam-wrapper">
-        <video id="webcam" autoplay playsinline></video>
-        <div class="snow-overlay" id="snow-box"></div>
-    </div>
+    <div class="scene-container">
+        <div class="iphone-screen">
+            <video id="webcam" autoplay playsinline muted></video>
+        </div>
 
-    <div class="controls">
-        <div class="title">IPHONE 17 PRO | SNOW MODE</div>
-        <p style="font-size: 12px; opacity: 0.6;">Duubista bilow si aad muqaal baraf leh u hesho</p>
-        <div class="btn-record" id="recordBtn"></div>
+        <div class="controls">
+            <div class="status" id="statusText">LIVE: IPHONE 17 PRO MODE</div>
+            <div class="rec-btn" id="recordBtn" onclick="toggleCapture()">
+                <div class="rec-dot"></div>
+            </div>
+            <p style="color: white; font-size: 10px; margin-top: 5px;">RIIX SI AAD U DUUBTO</p>
+        </div>
     </div>
 
     <script>
-        // Start HD Camera
-        async function startCam() {
+        let mediaRecorder;
+        let chunks = [];
+        const video = document.getElementById('webcam');
+
+        // Bilaaw Kamaradda HD
+        async function startCamera() {
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { facingMode: "user", width: 1280, height: 720 } 
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: "user", width: 1280, height: 720, frameRate: 60 },
+                    audio: true
                 });
-                document.getElementById('webcam').srcObject = stream;
+                video.srcObject = stream;
             } catch (err) {
-                alert("Fadlan ogolow kamaradda si barafka u aragto!");
+                alert("Error: Fadlan ogolow kamaradda!");
             }
         }
 
-        // Create Snowflakes
-        function createSnow() {
-            const snowBox = document.getElementById('snow-box');
-            for (let i = 0; i < 50; i++) {
-                let flake = document.createElement('div');
-                flake.className = 'snowflake';
-                
-                let size = Math.random() * 5 + 2 + 'px';
-                flake.style.width = size;
-                flake.style.height = size;
-                
-                flake.style.left = Math.random() * 100 + 'vw';
-                flake.style.animationDuration = Math.random() * 3 + 2 + 's';
-                flake.style.animationDelay = Math.random() * 5 + 's';
-                
-                snowBox.appendChild(flake);
+        function toggleCapture() {
+            const btn = document.getElementById('recordBtn');
+            const status = document.getElementById('statusText');
+
+            if (!mediaRecorder || mediaRecorder.state === "inactive") {
+                chunks = [];
+                mediaRecorder = new MediaRecorder(video.srcObject);
+                mediaRecorder.ondataavailable = e => chunks.push(e.data);
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(chunks, { type: 'video/mp4' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'Kooshin_iPhone17_Scene.mp4';
+                    a.click();
+                    status.innerText = "VIDEO-GA WAA LA DAGSADAY!";
+                };
+                mediaRecorder.start();
+                btn.classList.add('active');
+                status.innerText = "WAA LA DUUBAYAA...";
+            } else {
+                mediaRecorder.stop();
+                btn.classList.remove('active');
+                status.innerText = "DIYAARINAYAA...";
             }
         }
 
-        startCam();
-        createSnow();
+        startCamera();
     </script>
 </body>
 </html>
