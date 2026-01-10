@@ -3,34 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOOSHIN AI | iPhone 17 Handheld HD</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>KOOSHIN AI | Love Island Live</title>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; font-family: 'Montserrat', sans-serif; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; font-family: sans-serif; }
 
-        /* 1. Background Image (Gabar iPhone 17 gacanta ku haysa) */
-        .scene-container {
+        /* Jasiiradda Background-ka ah */
+        .scene {
             position: relative;
             width: 100vw;
             height: 100vh;
-            background: url('https://images.unsplash.com/photo-1512446813352-4754621cd123?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
             background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* 2. iPhone Screen Area (Meesha aad adigu ka soo muuqanayso) */
-        .iphone-screen {
+        /* Live Camera Area (Adiga) */
+        .camera-overlay {
             position: absolute;
-            width: 260px; /* Cabbirka shaashadda taleefanka gabadhu hayso */
-            height: 540px;
-            background: #000;
-            border-radius: 35px;
-            overflow: hidden;
-            border: 4px solid #1a1a1a;
-            box-shadow: 0 0 30px rgba(0,0,0,0.8);
-            transform: rotate(-2deg); /* Wax yar oo janjeer ah si ay dabiici u u ekaato */
+            bottom: 0;
+            right: 0;
+            width: 50%;
+            height: 80%;
             z-index: 10;
         }
 
@@ -39,99 +34,84 @@
             height: 100%;
             object-fit: cover;
             transform: scaleX(-1);
-            /* Ultra-Men Filter: Sharp, Clean, and Vivid */
-            filter: brightness(1.1) contrast(1.1) saturate(1.3) sharpness(1.2);
+            filter: brightness(1.1) saturate(1.3) contrast(1.1);
+            mask-image: linear-gradient(to left, black 60%, transparent 100%);
         }
 
-        /* 3. Recording UI */
+        /* Gabadha (Cinematic Overlay) */
+        .partner-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50%;
+            height: 90%;
+            background: url('https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Y1b2R3eHByZzR3eHByZzR3eHByZzR3eHByZzR3eHByZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/l41lTjJ8d5XGzY9G0/giphy.gif') no-repeat center bottom;
+            background-size: contain;
+            z-index: 5;
+            animation: slowDance 5s infinite ease-in-out;
+        }
+
+        @keyframes slowDance {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            50% { transform: translateX(20px) rotate(2deg); }
+        }
+
         .controls {
             position: absolute;
-            bottom: 30px;
+            bottom: 40px;
             z-index: 20;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            text-align: center;
+            width: 100%;
         }
 
         .rec-btn {
-            width: 70px; height: 70px;
-            background: rgba(255, 255, 255, 0.9);
-            border: 5px solid rgba(0,0,0,0.2);
+            width: 80px; height: 80px;
+            background: rgba(255,255,255,0.2);
+            border: 4px solid #fff;
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
             cursor: pointer;
+            margin: auto;
         }
-
-        .rec-dot { width: 25px; height: 25px; background: red; border-radius: 50%; }
-        .rec-btn.active .rec-dot { border-radius: 4px; animation: blink 1s infinite; }
-        
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
-        
-        .status { color: white; background: rgba(0,0,0,0.6); padding: 5px 15px; border-radius: 20px; margin-bottom: 10px; font-size: 12px; }
     </style>
 </head>
 <body>
 
-    <div class="scene-container">
-        <div class="iphone-screen">
+    <div class="scene">
+        <div class="camera-overlay">
             <video id="webcam" autoplay playsinline muted></video>
         </div>
 
+        <div class="partner-overlay"></div>
+
         <div class="controls">
-            <div class="status" id="statusText">LIVE: IPHONE 17 PRO MODE</div>
-            <div class="rec-btn" id="recordBtn" onclick="toggleCapture()">
-                <div class="rec-dot"></div>
-            </div>
-            <p style="color: white; font-size: 10px; margin-top: 5px;">RIIX SI AAD U DUUBTO</p>
+            <p style="color: white; text-shadow: 2px 2px 5px #000;">💖 Jawi Jaceyl & Dance 🏝️</p>
+            <div class="rec-btn" onclick="startExperience()"></div>
+            <audio id="loveSong" loop>
+                <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+            </audio>
         </div>
     </div>
 
     <script>
-        let mediaRecorder;
-        let chunks = [];
-        const video = document.getElementById('webcam');
-
-        // Bilaaw Kamaradda HD
-        async function startCamera() {
+        async function startApp() {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: "user", width: 1280, height: 720, frameRate: 60 },
+                    video: { facingMode: "user", width: 1280, height: 720 },
                     audio: true
                 });
-                video.srcObject = stream;
+                document.getElementById('webcam').srcObject = stream;
             } catch (err) {
-                alert("Error: Fadlan ogolow kamaradda!");
+                alert("Fadlan oggolow kamaradda!");
             }
         }
 
-        function toggleCapture() {
-            const btn = document.getElementById('recordBtn');
-            const status = document.getElementById('statusText');
-
-            if (!mediaRecorder || mediaRecorder.state === "inactive") {
-                chunks = [];
-                mediaRecorder = new MediaRecorder(video.srcObject);
-                mediaRecorder.ondataavailable = e => chunks.push(e.data);
-                mediaRecorder.onstop = () => {
-                    const blob = new Blob(chunks, { type: 'video/mp4' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'Kooshin_iPhone17_Scene.mp4';
-                    a.click();
-                    status.innerText = "VIDEO-GA WAA LA DAGSADAY!";
-                };
-                mediaRecorder.start();
-                btn.classList.add('active');
-                status.innerText = "WAA LA DUUBAYAA...";
-            } else {
-                mediaRecorder.stop();
-                btn.classList.remove('active');
-                status.innerText = "DIYAARINAYAA...";
-            }
+        function startExperience() {
+            const song = document.getElementById('loveSong');
+            song.play();
+            alert("Jawiga Jaceylka iyo Dance-ka waa bilaabmay! 🎵🏝️");
         }
 
-        startCamera();
+        startApp();
     </script>
 </body>
 </html>
