@@ -3,126 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOOSHIN AI | Healthcare & Biometrics 2026</title>
+    <title>KOOSHIN BIOMETRIC AI | Mogadishu 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --neon-blue: #00f2ff; --neon-red: #ff003c; --dark: #050a14; }
-        body { background: var(--dark); color: white; font-family: 'Montserrat', sans-serif; margin: 0; }
+        body { background: var(--dark); color: white; font-family: 'Montserrat', sans-serif; margin: 0; overflow-x: hidden; }
         
-        .main-container { min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .scan-container { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
         
-        /* Camera UI - Mugdigii waa laga saaray */
-        #video-container { width: 320px; height: 320px; background: #000; border: 5px solid var(--neon-blue); border-radius: 50%; position: relative; overflow: hidden; box-shadow: 0 0 30px var(--neon-blue); margin-bottom: 20px; }
-        #webcam { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); opacity: 1; }
-        .laser { width: 100%; height: 4px; background: var(--neon-red); position: absolute; top: 0; display: none; box-shadow: 0 0 15px var(--neon-red); animation: scan-move 2s infinite linear; }
-        @keyframes scan-move { 0% { top: 0; } 100% { top: 100%; } }
+        /* Camera Frame */
+        #video-feed { width: 300px; height: 300px; background: #000; border: 4px solid var(--neon-blue); border-radius: 50%; position: relative; overflow: hidden; box-shadow: 0 0 50px var(--neon-blue); }
+        #webcam { width: 100%; height: 100%; object-fit: cover; opacity: 1; } /* Opacity-gii waa la saaray */
+        .laser-line { width: 100%; height: 5px; background: var(--neon-red); position: absolute; top: 0; animation: moving-laser 2s infinite linear; box-shadow: 0 0 20px var(--neon-red); display: none;}
+        @keyframes moving-laser { 0% { top: 0; } 100% { top: 100%; } }
 
         /* Input Form */
-        .input-box { width: 100%; max-width: 400px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; border: 1px solid var(--neon-blue); margin-bottom: 20px; }
-        input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px; border: none; font-weight: bold; box-sizing: border-box; }
-        
-        .btn-scan { background: var(--neon-blue); color: #000; border: none; padding: 15px 40px; border-radius: 50px; font-weight: 900; font-family: 'Orbitron'; cursor: pointer; width: 100%; font-size: 1.1rem; }
-        
-        /* Results */
-        .results-panel { display: none; width: 100%; max-width: 400px; margin-top: 20px; animation: fadeIn 1s; }
-        .card { background: rgba(255,255,255,0.1); padding: 15px; border-radius: 15px; margin-bottom: 10px; border-left: 5px solid var(--neon-blue); }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .input-area { margin-top: 25px; width: 100%; max-width: 350px; text-align: center; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border-radius: 10px; border: 1px solid var(--neon-blue); background: rgba(255,255,255,0.1); color: white; text-align: center; }
 
-        #pay-btn { display: none; background: #25d366; color: white; border: none; padding: 15px; border-radius: 10px; width: 100%; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .results-panel { width: 95%; max-width: 800px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; display: none; }
+        .stat-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 15px; border: 1px solid var(--neon-blue); text-align: center; }
+        .stat-card h3 { color: var(--neon-blue); font-family: 'Orbitron', sans-serif; font-size: 0.8rem; margin: 0; }
+        .stat-value { font-size: 1.5rem; font-weight: 900; color: #fff; margin-top: 5px; }
+
+        .btn-scan { background: var(--neon-blue); color: #000; border: none; padding: 15px 40px; border-radius: 50px; font-weight: 900; font-family: 'Orbitron'; cursor: pointer; margin-top: 20px; width: 100%; }
+
+        .premium-lock { display: none; background: rgba(255, 0, 60, 0.1); border: 2px dashed var(--neon-red); padding: 20px; border-radius: 15px; margin-top: 20px; text-align: center; }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        <h1 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 5px;">KOOSHIN AI SCAN</h1>
-        <p style="font-size: 0.8rem; margin-bottom: 20px;">Hodan District, Mogadishu | Smart Healthcare</p>
-
-        <div id="video-container">
+    <div class="scan-container">
+        <h1 style="font-family: 'Orbitron'; color: var(--neon-blue); margin-bottom: 5px;">KOOSHIN AI SENSOR</h1>
+        
+        <div id="video-feed">
             <video id="webcam" autoplay playsinline></video>
-            <div class="laser" id="laser"></div>
+            <div class="laser-line" id="laser"></div>
         </div>
 
-        <div class="input-box">
-            <h4 style="margin: 0 0 10px 0; color: var(--neon-blue);">GELI XOGTAADA SAXDA AH:</h4>
-            <input type="number" id="user-h" placeholder="Dhererkaaga (cm) - Tusaale: 175">
-            <input type="number" id="user-w" placeholder="Miisaankaaga (kg) - Tusaale: 70">
-            <button class="btn-scan" onclick="processAI()">BILOW SCAN-KA</button>
+        <div class="input-area">
+            <input type="number" id="height-input" placeholder="Dhererkaaga (cm)">
+            <input type="number" id="weight-input" placeholder="Miisaankaaga (kg)">
+            <button class="btn-scan" onclick="startBiometricScan()">BILOW SCAN-KA AI</button>
         </div>
 
         <div class="results-panel" id="results">
-            <div class="card">
-                <small>BMI-GAAGA (BODY MASS INDEX):</small>
-                <div id="bmi-val" style="font-size: 1.5rem; font-weight: 900;">--</div>
-            </div>
-            <div class="card">
-                <small>HEALTH STATUS:</small>
-                <div id="status-val" style="font-size: 1.1rem; color: var(--neon-blue);">--</div>
-            </div>
-            <div class="card">
-                <small>BLOOD TYPE ANALYSIS:</small>
-                <div id="blood-val" style="font-size: 1.2rem; color: var(--neon-red); font-weight: 900;">LOCKED 🔒</div>
-            </div>
-            <button id="pay-btn" onclick="pay()">KU BIXI $1 SI AAD U ARAGTO DHIIGGA</button>
+            <div class="stat-card"><h3>DHERERKA</h3><div class="stat-value" id="res-h">0 cm</div></div>
+            <div class="stat-card"><h3>MIISAANKA</h3><div class="stat-value" id="res-w">0 kg</div></div>
+            <div class="stat-card"><h3>BMI STATUS</h3><div class="stat-value" id="res-bmi">--</div></div>
+            <div class="stat-card"><h3>DHIIGGA</h3><div class="stat-value" id="res-b" style="color: var(--neon-red);">LOCKED</div></div>
+        </div>
+
+        <div class="premium-lock" id="lock">
+            <h3 style="color: var(--neon-red); margin: 0;"><i class="fas fa-lock"></i> NATIIJADA DHIIGGA WAAD HELI KARTAA</h3>
+            <p style="font-size: 0.8rem;">AI-gu wuxuu falanqeeyay xididada wajigaaga. Ku bixi $1 si aad u furto.</p>
+            <button class="btn-scan" style="background: #25d366; color: white;" onclick="pay()">KU BIXI EVC PLUS ($1)</button>
         </div>
     </div>
 
     <script>
-        // Camera setup
-        async function startCam() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-                document.getElementById('webcam').srcObject = stream;
-            } catch (err) {
-                alert("Fadlan ogolaaw kamaradda!");
-            }
+        async function setupCamera() {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            document.getElementById('webcam').srcObject = stream;
         }
-        startCam();
+        setupCamera();
 
-        // Voice
-        function speak(text) {
-            const speech = new SpeechSynthesisUtterance(text);
-            speech.lang = 'en-US';
-            window.speechSynthesis.speak(speech);
-        }
-
-        function processAI() {
-            const h = document.getElementById('user-h').value;
-            const w = document.getElementById('user-w').value;
+        function startBiometricScan() {
+            const h = document.getElementById('height-input').value;
+            const w = document.getElementById('weight-input').value;
 
             if(!h || !w) {
-                alert("Fadlan geli dhererka iyo miisaankaaga!");
+                alert("Fadlan marka hore geli Dhererka iyo Miisaankaaga!");
                 return;
             }
 
-            speak("Analyzing your biometric data and scanning for blood markers. Stand still.");
             document.getElementById('laser').style.display = "block";
             
             setTimeout(() => {
                 document.getElementById('laser').style.display = "none";
-                document.getElementById('results').style.display = "block";
+                document.getElementById('results').style.display = "grid";
                 
                 // BMI Calculation
-                const heightMeters = h / 100;
-                const bmi = (w / (heightMeters * heightMeters)).toFixed(1);
-                document.getElementById('bmi-val').innerText = bmi;
+                const bmi = (w / ((h/100)*(h/100))).toFixed(1);
+                let status = bmi < 18.5 ? "Underweight" : bmi < 25 ? "Healthy" : "Overweight";
 
-                // Health Status Logic
-                let status = "";
-                if(bmi < 18.5) status = "Miisaan yar (Underweight)";
-                else if(bmi < 25) status = "Caadi (Healthy Weight)";
-                else if(bmi < 30) status = "Miisaan dheeraad ah (Overweight)";
-                else status = "Cayni (Obesity)";
+                document.getElementById('res-h').innerText = h + " cm";
+                document.getElementById('res-w').innerText = w + " kg";
+                document.getElementById('res-bmi').innerText = status;
                 
-                document.getElementById('status-val').innerText = status;
-                document.getElementById('pay-btn').style.display = "block";
-                
-                speak("Analysis complete. Your B.M.I is " + bmi + ". We found a match for your blood type. Please pay one dollar to unlock.");
+                document.getElementById('lock').style.display = "block";
             }, 4000);
         }
 
         function pay() {
-            window.open("https://wa.me/252613040087?text=Eng. Kooshin, waxaan rabaa inaan furo natiijada dhiiggayga.");
+            const h = document.getElementById('res-h').innerText;
+            const w = document.getElementById('res-w').innerText;
+            const bmi = document.getElementById('res-bmi').innerText;
+            
+            // XOGTA ADMINKA (ADIGA) KUU SOO DHACAYSA
+            const adminText = `*XOG CUSUB OO SCAN AH*\n\nEng. Kooshin, qof ayaa hadda is-scan-gareeyay:\n📏 Dherer: ${h}\n⚖️ Miisaan: ${w}\n📊 BMI Status: ${bmi}\n\nFadlan macmiilka ka caawi natiijada dhiigga.`;
+            window.open(`https://wa.me/252613040087?text=${encodeURIComponent(adminText)}`);
         }
     </script>
 </body>
