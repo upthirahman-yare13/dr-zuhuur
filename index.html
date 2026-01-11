@@ -3,45 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOOSHIN HUB | Islamic App</title>
+    <title>KOOSHIN HUB | Qur'aan & Tasbiix</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --green: #064e3b; --gold: #D4AF37; --dark: #0f172a; }
         body { font-family: 'Montserrat', sans-serif; background: var(--dark); color: white; margin: 0; padding-bottom: 90px; }
         
-        header { background: var(--green); padding: 25px; text-align: center; border-bottom: 3px solid var(--gold); }
+        header { background: var(--green); padding: 25px; text-align: center; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
         .arabic-text { font-family: 'Amiri', serif; font-size: 1.5rem; color: var(--gold); }
 
         /* Tasbih Grid Layout */
         .tasbih-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 15px; }
-        .tasbih-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3); text-align: center; }
+        .tasbih-card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3); text-align: center; transition: 0.3s; }
+        .tasbih-card:active { transform: scale(0.95); background: rgba(255,255,255,0.1); }
         .count-num { font-size: 2.5rem; font-weight: bold; margin: 10px 0; color: white; }
-        .btn-tap { background: var(--gold); color: black; border: none; padding: 10px 20px; border-radius: 50px; cursor: pointer; font-weight: bold; width: 100%; }
+        .btn-tap { background: var(--gold); color: black; border: none; padding: 12px 20px; border-radius: 50px; cursor: pointer; font-weight: bold; width: 100%; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 
         /* Quran Frame */
-        .quran-box { width: 100%; height: 75vh; border: none; }
+        .quran-box { width: 100%; height: 80vh; border: none; }
 
         /* Navigation Bottom */
-        .nav-bar { position: fixed; bottom: 0; width: 100%; background: #1e293b; display: flex; justify-content: space-around; padding: 15px 0; border-top: 2px solid var(--green); }
-        .nav-item { color: #94a3b8; font-size: 0.8rem; cursor: pointer; text-align: center; border: none; background: none; }
+        .nav-bar { position: fixed; bottom: 0; width: 100%; background: #1e293b; display: flex; justify-content: space-around; padding: 15px 0; border-top: 2px solid var(--green); z-index: 1000; }
+        .nav-item { color: #94a3b8; font-size: 0.8rem; cursor: pointer; text-align: center; border: none; background: none; flex: 1; }
         .nav-item i { display: block; font-size: 1.4rem; margin-bottom: 5px; }
         .active { color: var(--gold); }
+
+        /* About Page Styles */
+        .about-card { background: rgba(255,255,255,0.05); margin: 20px; padding: 30px; border-radius: 20px; border-left: 5px solid var(--gold); }
     </style>
 </head>
 <body>
 
 <header>
-    <h1 style="margin:0;">KOOSHIN HUB</h1>
-    <div style="margin-top:10px;">
-        <button onclick="changeLang('so')" style="color:white; background:none; border:1px solid var(--gold); border-radius:10px; padding:5px;">Somali</button>
-        <button onclick="changeLang('en')" style="color:white; background:none; border:1px solid white; border-radius:10px; padding:5px;">English</button>
-        <button onclick="changeLang('ar')" style="color:white; background:none; border:1px solid white; border-radius:10px; padding:5px;">Arabic</button>
-    </div>
+    <h1 style="margin:0; font-family: 'Amiri'; letter-spacing: 2px;">KOOSHIN HUB</h1>
+    <p style="font-size: 0.7rem; color: var(--gold); margin: 5px 0 0;">QUR'AAN | TAFSIIR | TASBIIX</p>
 </header>
 
 <div id="quran-sec" class="page">
-    <iframe id="quran-frame" class="quran-box" src="https://quran.com?translations=55"></iframe>
+    <iframe id="quran-frame" class="quran-box" src="https://quran.com?translations=55,227"></iframe>
 </div>
 
 <div id="tasbih-sec" class="page" style="display:none;">
@@ -67,33 +67,46 @@
             <button class="btn-tap" onclick="count('c4')">TAABO</button>
         </div>
     </div>
-    <div style="text-align:center;"><button onclick="resetAll()" style="color:red; background:none; border:none;">Nadiifi (Reset All)</button></div>
+    <div style="text-align:center; margin-top: 20px;">
+        <button onclick="resetAll()" style="color:#ff4444; background:none; border:1px solid #ff4444; padding: 5px 15px; border-radius: 10px; cursor:pointer;">Reset All Counts</button>
+    </div>
 </div>
 
-<div id="about-sec" class="page" style="display:none; padding:30px; text-align:center;">
-    <h2 style="color:var(--gold);">ABOUT KOOSHIN HUB</h2>
-    <p>Website-kan waa Sadaqah Jariyah.</p>
-    <p>Waxaa dhisay: <strong>Abdirahman Abdirizaq</strong></p>
-    <p>Ujeedadu waa in si sahlan loogu dhageysto Qur'aanka, loona sameeyo Tasbiix meel kasta oo aad joogto.</p>
+<div id="about-sec" class="page" style="display:none;">
+    <div class="about-card">
+        <h2 style="color:var(--gold);">MAREEMAHA KOOSHIN</h2>
+        <p>Kani waa website Islamic ah oo loogu talagalay in si sahlan loogu helo Qur'aanka kariimka ah isagoo tarjuman.</p>
+        <hr style="border: 0.5px solid rgba(255,255,255,0.1);">
+        <p><strong>Dhisaha:</strong> Abdirahman Abdirizaq (Kooshin AI)</p>
+        <p><strong>Luuqadda:</strong> Af-Soomaali (Tafsiir & Tarjumo)</p>
+        <p><strong>TikTok:</strong> @updyrhmn13</p>
+        <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 20px;">© 2026 Kooshin Islamic Hub. All Rights Reserved.</p>
+    </div>
 </div>
 
 <nav class="nav-bar">
     <button class="nav-item active" onclick="showPage('quran-sec', this)"><i class="fas fa-book-open"></i>QUR'AAN</button>
     <button class="nav-item" onclick="showPage('tasbih-sec', this)"><i class="fas fa-beads"></i>TASBIIX</button>
-    <button class="nav-item" onclick="showPage('about-sec', this)"><i class="fas fa-user"></i>ABOUT</button>
+    <button class="nav-item" onclick="showPage('about-sec', this)"><i class="fas fa-info-circle"></i>ABOUT</button>
 </nav>
 
 <script>
+    // Tirinta Tasbiixda
     function count(id) {
         let el = document.getElementById(id);
         el.innerText = parseInt(el.innerText) + 1;
-        if (navigator.vibrate) navigator.vibrate(40);
+        // Gariir yar markaad taabato badhanka
+        if (navigator.vibrate) navigator.vibrate(50);
     }
 
+    // Nadiifinta tirada
     function resetAll() {
-        document.querySelectorAll('.count-num').forEach(el => el.innerText = '0');
+        if(confirm("Ma hubtaa inaad tirada eber ka dhigto?")) {
+            document.querySelectorAll('.count-num').forEach(el => el.innerText = '0');
+        }
     }
 
+    // Isku beddelka boggaga (Navigation)
     function showPage(id, btn) {
         document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
         document.getElementById(id).style.display = 'block';
@@ -101,15 +114,12 @@
         btn.classList.add('active');
     }
 
-    function changeLang(lang) {
+    // AI-ga wuxuu hubinayaa inuu mar walba Somali ku furmo
+    window.onload = function() {
         const frame = document.getElementById('quran-frame');
-        const urls = {
-            'so': 'https://quran.com?translations=55',
-            'en': 'https://quran.com?translations=131',
-            'ar': 'https://quran.com/ar'
-        };
-        frame.src = urls[lang];
-    }
+        // Koodhka 55 waa Somali Translation rasmiga ah
+        frame.src = "https://quran.com?translations=55";
+    };
 </script>
 
 </body>
