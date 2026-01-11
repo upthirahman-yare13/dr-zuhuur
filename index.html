@@ -3,107 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOOSHIN EXCLUSIVE FILTER | HD</title>
+    <title>KOOSHIN ISLAMIC HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; background: #000; overflow: hidden; font-family: 'Segoe UI', sans-serif; }
+        :root { --gold: #D4AF37; --dark-green: #064e3b; --light-bg: #f3f4f6; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--light-bg); margin: 0; padding: 0; text-align: center; color: #333; }
+        header { background: var(--dark-green); color: white; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         
-        /* Full Screen HD Camera */
-        .viewport { position: relative; width: 100vw; height: 100vh; display: flex; justify-content: center; }
+        /* Tasbih Section */
+        .section { background: white; margin: 20px auto; padding: 25px; width: 90%; max-width: 500px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .counter { font-size: 4rem; font-weight: bold; color: var(--dark-green); margin: 10px 0; }
+        .btn-tasbih { background: var(--dark-green); color: white; border: none; padding: 20px 40px; border-radius: 50px; font-size: 1.2rem; cursor: pointer; transition: 0.3s; width: 100%; }
+        .btn-tasbih:active { transform: scale(0.95); }
+
+        /* Quran & Hadith Text */
+        .arabic-text { font-family: 'Amiri', serif; font-size: 1.8rem; line-height: 1.6; color: var(--dark-green); margin: 15px 0; direction: rtl; }
+        .translation { font-style: italic; color: #666; font-size: 1rem; }
         
-        #webcam {
-            width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1);
-            /* EXCLUSIVE FILTER: Iftiinka iyo quruxda halkan baa ku jirta */
-            filter: brightness(1.12) contrast(1.1) saturate(1.25) sharpness(1.3);
-        }
-
-        /* Iftiinka Wajiga (Soft Glow) */
-        .glow-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, transparent 30%, rgba(0,0,0,0.3) 100%);
-            pointer-events: none;
-        }
-
-        /* Badhanka Duubista (iPhone Style) */
-        .ui-controls {
-            position: absolute; bottom: 40px; width: 100%;
-            display: flex; flex-direction: column; align-items: center;
-        }
-
-        .record-trigger {
-            width: 75px; height: 75px; background: white;
-            border: 5px solid rgba(255,255,255,0.3);
-            border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
-        }
-
-        .record-trigger.active { background: #ff003c; animation: pulse 1s infinite; }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
-
-        .status-badge {
-            color: #fff; background: rgba(0,242,255,0.3);
-            padding: 5px 15px; border-radius: 20px; font-size: 12px;
-            margin-bottom: 15px; border: 1px solid #00f2ff;
-        }
+        .tab-menu { display: flex; justify-content: space-around; background: white; padding: 15px; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid var(--gold); }
+        .tab-link { cursor: pointer; font-weight: bold; color: var(--dark-green); text-decoration: none; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
-    <div class="viewport">
-        <video id="webcam" autoplay playsinline muted></video>
-        <div class="glow-overlay"></div>
+    <header>
+        <h1 style="margin:0; font-family: 'Amiri';">KOOSHIN ISLAMIC HUB</h1>
+        <p style="font-size: 0.8rem; opacity: 0.8;">Qur'aan | Xadiis | Tasbiix</p>
+    </header>
 
-        <div class="ui-controls">
-            <div class="status-badge" id="status">4K CINEMATIC MODE</div>
-            <div class="record-trigger" id="recBtn" onclick="startProRecord()">
-                <div style="width: 25px; height: 25px; background: red; border-radius: 50%;"></div>
-            </div>
-            <p style="color: white; font-size: 10px; margin-top: 10px;">KOOSHIN EXCLUSIVE FILTER © 2026</p>
-        </div>
+    <div class="tab-menu">
+        <div class="tab-link" onclick="showSection('tasbih')">TASBIIX</div>
+        <div class="tab-link" onclick="showSection('quran')">QUR'AAN</div>
+        <div class="tab-link" onclick="showSection('hadith')">XADIIS</div>
+    </div>
+
+    <div id="tasbih" class="section">
+        <h3 style="color: var(--gold);">TASBIIX ELEKTRONIK AH</h3>
+        <p id="zikri-text">Subhaanallaah</p>
+        <div class="counter" id="count">0</div>
+        <button class="btn-tasbih" onclick="countUp()">TAABO (COUNT)</button>
+        <br><br>
+        <button onclick="resetCount()" style="background:none; border:none; color:red; cursor:pointer;">Reset</button>
+    </div>
+
+    <div id="quran" class="section" style="display:none;">
+        <h3 style="color: var(--gold);">AAYAD MAALINLE AH</h3>
+        <div class="arabic-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <div class="arabic-text">إِنَّ مَعَ الْعُسْرِ يُسْرًا</div>
+        <div class="translation">"Xaqiiqdii, dhib kasta waxaa la socda fudayd." (Suuradda Al-Sharh)</div>
+    </div>
+
+    <div id="hadith" class="section" style="display:none;">
+        <h3 style="color: var(--gold);">XADIISKA MAALINTA</h3>
+        <div class="arabic-text">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</div>
+        <div class="translation">"Ka idiinku khayr badan waa kan barta Qur'aanka dadkana bara." (Bukhaari)</div>
     </div>
 
     <script>
-        let mediaRecorder;
-        let chunks = [];
-        const video = document.getElementById('webcam');
-
-        async function initHD() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: "user", width: { ideal: 1920 }, height: { ideal: 1080 }, frameRate: 60 },
-                    audio: true
-                });
-                video.srcObject = stream;
-            } catch (err) {
-                alert("Fadlan oggolow kamaradda si aad u isticmaasho filter-ka gaarka ah.");
-            }
+        // Tasbih Logic
+        let currentCount = 0;
+        function countUp() {
+            currentCount++;
+            document.getElementById('count').innerText = currentCount;
+            // Gariir (Vibration) yar haddii uu taleefan yahay
+            if (navigator.vibrate) navigator.vibrate(50);
+        }
+        function resetCount() {
+            currentCount = 0;
+            document.getElementById('count').innerText = currentCount;
         }
 
-        function startProRecord() {
-            const btn = document.getElementById('recBtn');
-            const status = document.getElementById('status');
-
-            if (!mediaRecorder || mediaRecorder.state === "inactive") {
-                chunks = [];
-                mediaRecorder = new MediaRecorder(video.srcObject);
-                mediaRecorder.ondataavailable = e => chunks.push(e.data);
-                mediaRecorder.onstop = () => {
-                    const blob = new Blob(chunks, { type: 'video/mp4' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'Kooshin_Exclusive_HD.mp4';
-                    a.click();
-                };
-                mediaRecorder.start();
-                btn.classList.add('active');
-                status.innerText = "RECORDING LIVE...";
-            } else {
-                mediaRecorder.stop();
-                btn.classList.remove('active');
-                status.innerText = "SAVING VIDEO...";
-            }
+        // Tab Navigation
+        function showSection(sectionId) {
+            document.getElementById('tasbih').style.display = 'none';
+            document.getElementById('quran').style.display = 'none';
+            document.getElementById('hadith').style.display = 'none';
+            
+            document.getElementById(sectionId).style.display = 'block';
         }
-
-        initHD();
     </script>
+
 </body>
 </html>
