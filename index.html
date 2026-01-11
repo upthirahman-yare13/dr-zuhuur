@@ -3,104 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOOSHIN ISLAMIC HUB | Qur'aan & Tasbiix</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@40;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>KOOSHIN HUB | International Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #D4AF37; --green: #064e3b; --bg: #f8fafc; }
-        body { font-family: 'Montserrat', sans-serif; background: var(--bg); margin: 0; padding-bottom: 80px; text-align: center; }
+        :root { --main-green: #064e3b; --accent-gold: #D4AF37; --glass: rgba(255, 255, 255, 0.1); }
+        body { font-family: 'Montserrat', sans-serif; background: #0f172a; color: white; margin: 0; padding-bottom: 90px; }
         
-        header { background: var(--green); color: white; padding: 30px 20px; border-radius: 0 0 30px 30px; }
-        .arabic-lg { font-family: 'Amiri', serif; font-size: 2.5rem; color: var(--gold); margin: 15px 0; }
-
-        /* Sections */
-        .card { background: white; width: 90%; max-width: 500px; margin: 20px auto; padding: 25px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        /* Header & Language Switcher */
+        header { background: linear-gradient(135deg, #064e3b, #022c22); padding: 30px 20px; text-align: center; border-bottom: 3px solid var(--accent-gold); }
+        .lang-selector { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+        .lang-btn { background: var(--glass); border: 1px solid white; color: white; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 0.8rem; }
         
-        /* Tasbih Design */
-        .counter-circle { width: 150px; height: 150px; border: 8px solid var(--green); border-radius: 50%; margin: 20px auto; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: bold; color: var(--green); }
-        .btn-tap { background: var(--green); color: white; border: none; padding: 15px 40px; border-radius: 50px; font-size: 1.2rem; cursor: pointer; width: 100%; box-shadow: 0 4px 10px rgba(6, 78, 59, 0.3); }
+        /* Quran Frame */
+        .quran-container { width: 95%; height: 70vh; margin: 20px auto; border-radius: 20px; overflow: hidden; background: white; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        iframe { width: 100%; height: 100%; border: none; }
 
-        /* Quran Iframe */
-        .quran-container { width: 100%; height: 600px; border: none; border-radius: 15px; }
-
-        /* Social Icons */
-        .social-bar { margin: 20px 0; display: flex; justify-content: center; gap: 20px; }
-        .social-icon { font-size: 2rem; color: var(--green); text-decoration: none; transition: 0.3s; }
-        .social-icon:hover { color: var(--gold); transform: translateY(-5px); }
+        /* Tasbih & Cards */
+        .card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); width: 90%; max-width: 500px; margin: 20px auto; padding: 20px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.1); }
+        .counter { font-size: 4rem; font-weight: bold; color: var(--accent-gold); }
+        .btn-action { background: var(--accent-gold); color: #000; border: none; padding: 15px 30px; border-radius: 50px; font-weight: bold; width: 100%; cursor: pointer; }
 
         /* Navigation Bottom */
-        .nav-bottom { position: fixed; bottom: 0; width: 100%; background: white; display: flex; justify-content: space-around; padding: 15px 0; border-top: 2px solid #eee; z-index: 1000; }
-        .nav-item { cursor: pointer; color: #666; font-size: 0.8rem; font-weight: bold; }
-        .nav-item i { display: block; font-size: 1.5rem; margin-bottom: 5px; }
-        .active-nav { color: var(--green); }
+        .nav-bar { position: fixed; bottom: 0; width: 100%; background: rgba(15, 23, 42, 0.95); display: flex; justify-content: space-around; padding: 15px 0; border-top: 1px solid var(--glass); }
+        .nav-item { color: #94a3b8; font-size: 0.75rem; cursor: pointer; text-align: center; }
+        .nav-item i { display: block; font-size: 1.4rem; margin-bottom: 4px; }
+        .active-item { color: var(--accent-gold); }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1 style="margin:0; letter-spacing: 2px;">KOOSHIN HUB</h1>
-        <div class="social-bar">
-            <a href="https://tiktok.com/@updyrhmn13" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
-            <a href="https://wa.me/252xxxxxxx" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
-        </div>
-    </header>
-
-    <div id="tasbih-sec" class="card">
-        <h2 id="zikri-title" class="arabic-lg">سُبْحَانَ اللَّهِ</h2>
-        <p id="zikri-so" style="color: #666;">Ilaahay baa hufan</p>
-        <div class="counter-circle" id="count">0</div>
-        <button class="btn-tap" onclick="countStep()">TAABO</button>
-        <p style="margin-top:15px; font-size: 0.8rem; color: #999;">33 kasta way is beddelaysaa</p>
+<header>
+    <h1 style="margin:0; font-family: 'Amiri'; letter-spacing: 2px;">KOOSHIN HUB</h1>
+    <div class="lang-selector">
+        <button class="lang-btn" onclick="changeLang('so')">🇸🇴 Somali</button>
+        <button class="lang-btn" onclick="changeLang('en')">🇺🇸 English</button>
+        <button class="lang-btn" onclick="changeLang('fr')">🇫🇷 French</button>
+        <button class="lang-btn" onclick="changeLang('ar')">🇸🇦 Arabic</button>
     </div>
+</header>
 
-    <div id="quran-sec" class="card" style="display:none; max-width: 95%;">
-        <h2 class="arabic-lg">القرآن الكريم</h2>
-        <iframe src="https://quran.com" class="quran-container"></iframe>
-    </div>
+<div id="quran-sec" class="quran-container">
+    <iframe id="quran-frame" src="https://quran.com"></iframe>
+</div>
 
-    <div id="tafsiir-sec" class="card" style="display:none;">
-        <h2 class="arabic-lg">التفسير</h2>
-        <p>Qaybta Tafsiirka ee Soomaaliga</p>
-        <iframe src="https://quran.com/1/tafsirs/161" class="quran-container"></iframe>
-    </div>
+<div id="tasbih-sec" class="card" style="display:none;">
+    <h2 id="zikri-title" style="font-family:'Amiri'; font-size: 2.5rem; color: var(--accent-gold);">سُبْحَانَ اللَّهِ</h2>
+    <div class="counter" id="count">0</div>
+    <button class="btn-action" onclick="countStep()">TAABO / TAP</button>
+</div>
 
-    <div class="nav-bottom">
-        <div class="nav-item active-nav" onclick="showPage('tasbih-sec', this)"><i class="fas fa-beads"></i>TASBIIX</div>
-        <div class="nav-item" onclick="showPage('quran-sec', this)"><i class="fas fa-book-open"></i>QUR'AAN</div>
-        <div class="nav-item" onclick="showPage('tafsiir-sec', this)"><i class="fas fa-microphone"></i>TAFSIIR</div>
-    </div>
+<nav class="nav-bar">
+    <div class="nav-item active-item" onclick="showSection('quran-sec', this)"><i class="fas fa-book-open"></i>QUR'AAN</div>
+    <div class="nav-item" onclick="showSection('tasbih-sec', this)"><i class="fas fa-beads"></i>TASBIIX</div>
+</nav>
 
-    <script>
-        let count = 0;
-        const zikris = [
-            { ar: "سُبْحَانَ اللَّهِ", so: "Ilaahay baa hufan" },
-            { ar: "الْحَمْدُ لِلَّهِ", so: "Mahad weyn oo dhan Ilaahay baa leh" },
-            { ar: "لَا إِلَهَ إِلَّا اللَّهُ", so: "Ilaah kale ma jiro aan Alle ahayn" },
-            { ar: "اللَّهُ أَكْبَرُ", so: "Ilaahay baa weyn" }
-        ];
-        let zikriIndex = 0;
+<script>
+    function changeLang(lang) {
+        const frame = document.getElementById('quran-frame');
+        const urls = {
+            'so': 'https://quran.com?translations=so', // Tarjumada Soomaaliga
+            'en': 'https://quran.com?translations=131', // Tarjumada Ingiriisiga
+            'fr': 'https://quran.com?translations=31',  // Tarjumada Faransiiska
+            'ar': 'https://quran.com/ar'                // Carabi qura
+        };
+        frame.src = urls[lang];
+        alert("Luuqadda waa la beddelay: " + lang.toUpperCase());
+    }
 
-        function countStep() {
-            count++;
-            if (count > 33) {
-                count = 1;
-                zikriIndex = (zikriIndex + 1) % zikris.length;
-                document.getElementById('zikri-title').innerText = zikris[zikriIndex].ar;
-                document.getElementById('zikri-so').innerText = zikris[zikriIndex].so;
-            }
-            document.getElementById('count').innerText = count;
-            if (navigator.vibrate) navigator.vibrate(40);
-        }
+    function showSection(id, el) {
+        document.getElementById('quran-sec').style.display = 'none';
+        document.getElementById('tasbih-sec').style.display = 'none';
+        document.getElementById(id).style.display = 'block';
+        
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active-item'));
+        el.classList.add('active-item');
+    }
 
-        function showPage(id, el) {
-            document.getElementById('tasbih-sec').style.display = 'none';
-            document.getElementById('quran-sec').style.display = 'none';
-            document.getElementById('tafsiir-sec').style.display = 'none';
-            document.getElementById(id).style.display = 'block';
+    let count = 0;
+    function countStep() {
+        count++;
+        document.getElementById('count').innerText = count;
+        if (navigator.vibrate) navigator.vibrate(50);
+    }
+</script>
 
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active-nav'));
-            el.classList.add('active-nav');
-        }
-    </script>
 </body>
 </html>
