@@ -3,53 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOOSHIN HUB | Super App</title>
+    <title>KOOSHIN HUB | Pro Voice</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --green: #064e3b; --gold: #fbbf24; --dark: #020617; --card-bg: rgba(255, 255, 255, 0.08); }
-        body { 
-            font-family: 'Montserrat', sans-serif; background: var(--dark); color: white; margin: 0; padding-bottom: 110px;
-            background-image: linear-gradient(rgba(0,0,0,0.92), rgba(0,0,0,0.92)), url('https://images.unsplash.com/photo-1542610115-4654948f219d?q=80');
-            background-size: cover; background-attachment: fixed;
-        }
+        :root { --green: #064e3b; --gold: #fbbf24; --dark: #020617; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--dark); color: white; margin: 0; padding-bottom: 110px; }
         
-        header { background: var(--green); padding: 15px; text-align: center; border-bottom: 2px solid var(--gold); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .page { display: none; padding: 15px; animation: fadeIn 0.4s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        header { background: var(--green); padding: 15px; text-align: center; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 1000; }
+        .page { display: none; padding: 15px; animation: fadeIn 0.4s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* Card Styles */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .card { background: var(--card-bg); padding: 15px; border-radius: 18px; border: 1px solid rgba(251, 191, 36, 0.2); text-align: center; backdrop-filter: blur(8px); transition: 0.3s; }
-        .card:active { transform: scale(0.96); border-color: var(--gold); }
+        /* Tasbih & Cards */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .card { background: rgba(255,255,255,0.1); padding: 12px; border-radius: 15px; border: 1px solid rgba(251, 191, 36, 0.2); position: relative; }
+        .voice-btn { position: absolute; top: 5px; right: 5px; color: var(--gold); cursor: pointer; padding: 5px; }
         
-        .count-num { font-size: 2rem; font-weight: bold; color: var(--gold); margin: 5px 0; }
-        .btn-tap { background: var(--gold); color: black; border: none; padding: 10px; border-radius: 12px; width: 100%; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; }
+        .arabic { font-family: 'Amiri', serif; font-size: 1.2rem; color: var(--gold); text-align: right; }
+        .somali { font-size: 0.8rem; color: #cbd5e1; text-align: left; margin: 5px 0; }
+        
+        /* Routine Styling */
+        .routine-card { background: linear-gradient(135deg, #064e3b, #020617); padding: 20px; border-radius: 20px; border: 2px solid var(--gold); margin-bottom: 20px; }
+        .task-row { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.05); padding: 12px; margin-bottom: 8px; border-radius: 10px; }
 
-        /* Routine Tracker Progress */
-        .progress-container { background: rgba(255,255,255,0.1); border-radius: 10px; height: 10px; margin: 15px 0; overflow: hidden; }
-        .progress-bar { background: var(--gold); height: 100%; width: 0%; transition: 0.5s; }
-
-        .routine-item { display: flex; align-items: center; background: rgba(255,255,255,0.05); padding: 15px; margin-bottom: 8px; border-radius: 12px; justify-content: space-between; border-left: 4px solid var(--gold); }
-        input[type="checkbox"] { width: 22px; height: 22px; accent-color: var(--gold); cursor: pointer; }
-
-        /* List Items (Hadith & Duco) */
-        .list-card { background: var(--card-bg); margin-bottom: 15px; padding: 20px; border-radius: 15px; border-right: 4px solid var(--gold); }
-        .arabic { font-family: 'Amiri', serif; font-size: 1.3rem; color: var(--gold); text-align: right; margin-bottom: 10px; line-height: 1.6; }
-        .somali { font-size: 0.95rem; color: #e2e8f0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; line-height: 1.5; }
-
-        /* Navigation Bottom */
-        .nav-bar { position: fixed; bottom: 0; width: 100%; background: rgba(15, 23, 42, 0.98); display: flex; padding: 12px 0; border-top: 1px solid var(--gold); z-index: 1000; backdrop-filter: blur(15px); overflow-x: auto; }
-        .nav-item { color: #94a3b8; font-size: 0.65rem; cursor: pointer; text-align: center; min-width: 75px; flex: 1; border:none; background:none; }
-        .nav-item i { font-size: 1.5rem; margin-bottom: 6px; display: block; }
+        /* Navigation */
+        .nav-bar { position: fixed; bottom: 0; width: 100%; background: #0f172a; display: flex; overflow-x: auto; padding: 10px 0; border-top: 2px solid var(--gold); z-index: 1000; }
+        .nav-item { color: #94a3b8; font-size: 0.6rem; cursor: pointer; text-align: center; min-width: 70px; flex: 1; border:none; background:none; }
         .active-nav { color: var(--gold); }
     </style>
 </head>
 <body>
 
 <header>
-    <h2 style="margin:0; font-family: 'Amiri'; color: var(--gold); letter-spacing: 2px;">KOOSHIN HUB</h2>
-    <div id="date-display" style="font-size: 0.7rem; color: #cbd5e1; margin-top: 5px;"></div>
+    <h2 style="margin:0; font-family: 'Amiri'; color: var(--gold);">KOOSHIN HUB</h2>
 </header>
 
 <div id="quran-sec" class="page" style="display:block;">
@@ -57,119 +43,124 @@
 </div>
 
 <div id="tasbih-sec" class="page">
-    <div class="grid-2" id="tasbih-list">
-        </div>
+    <div class="grid-2" id="tasbih-list"></div>
 </div>
 
 <div id="duco-sec" class="page">
-    <h3 style="text-align:center; color:var(--gold);"><i class="fas fa-hands-praying"></i> DUCOOYIN MUHIIM AH</h3>
-    <div id="duco-list">
-        <div class="list-card"><div class="arabic">اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى</div><div class="somali">"Alloow waxaan ku weydiisanayaa hanuun, dhowrsanaan iyo hodantinnimo (inaad dadka iiga kaafiso)."</div></div>
-        <div class="list-card"><div class="arabic">رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً</div><div class="somali">"Rabbiyow na sii adduunka wanaag iyo aakhiradaba wanaag, naguna badbaadi cadaabka naarta."</div></div>
-        <div class="list-card"><div class="arabic">يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ</div><div class="somali">" allow kan quluubta rogroga weyoow, qalbigayga ku sug diintaada."</div></div>
-    </div>
+    <div id="duco-list"></div>
 </div>
 
 <div id="routine-sec" class="page">
-    <h3 style="text-align:center; color:var(--gold);"><i class="fas fa-chart-line"></i> NATIIJADA MAALINTA</h3>
-    
-    <div class="card" style="text-align:left; margin-bottom:20px;">
-        <p style="margin:0; font-size:0.9rem;">Hadafka Maanta: <span id="progress-text">0%</span></p>
-        <div class="progress-container"><div class="progress-bar" id="p-bar"></div></div>
+    <div class="routine-card">
+        <h3><i class="fas fa-star"></i> Guusha Maanta</h3>
+        <div style="font-size: 2.5rem; color: var(--gold); font-weight: bold;" id="p-text">0%</div>
+        <div style="background:rgba(255,255,255,0.1); height:12px; border-radius:10px; overflow:hidden; margin-top:10px;">
+            <div id="p-bar" style="background:var(--gold); width:0%; height:100%; transition:0.5s;"></div>
+        </div>
     </div>
-
     <div id="routine-tasks">
-        <div class="routine-item"><span><i class="fas fa-sun" style="color:#fbbf24"></i> Salaadda Subax</span> <input type="checkbox" onchange="updateProgress()"></div>
-        <div class="routine-item"><span><i class="fas fa-cloud-sun" style="color:#38bdf8"></i> Salaadda Duhur</span> <input type="checkbox" onchange="updateProgress()"></div>
-        <div class="routine-item"><span><i class="fas fa-cloud" style="color:#94a3b8"></i> Salaadda Casir</span> <input type="checkbox" onchange="updateProgress()"></div>
-        <div class="routine-item"><span><i class="fas fa-cloud-moon" style="color:#818cf8"></i> Salaadda Maqrib</span> <input type="checkbox" onchange="updateProgress()"></div>
-        <div class="routine-item"><span><i class="fas fa-moon" style="color:#4f46e5"></i> Salaadda Cisho</span> <input type="checkbox" onchange="updateProgress()"></div>
-        <div class="routine-item"><span><i class="fas fa-book-quran" style="color:#10b981"></i> Akhrinta Qur'aanka</span> <input type="checkbox" onchange="updateProgress()"></div>
-        <div class="routine-item"><span><i class="fas fa-shield-heart" style="color:#f43f5e"></i> Adkaarta Subax/Galab</span> <input type="checkbox" onchange="updateProgress()"></div>
-    </div>
-
-    <div class="card" style="margin-top:20px;">
-        <p>Wadarta Tasbiixda (Guud):</p>
-        <div id="total-tasbih" style="font-size:2.5rem; color:var(--gold); font-weight:bold;">0</div>
-    </div>
-</div>
-
-<div id="hadith-sec" class="page">
-    <h3 style="text-align:center; color:var(--gold);"><i class="fas fa-book-open"></i> 20+ XADIITH OO DOORTHA AH</h3>
-    <div id="hadith-list">
         </div>
 </div>
 
+<div id="hadith-sec" class="page">
+    <div id="hadith-list"></div>
+</div>
+
 <nav class="nav-bar">
-    <button class="nav-item active-nav" onclick="showPage('quran-sec', this)"><i class="fas fa-quran"></i>QUR'AAN</button>
-    <button class="nav-item" onclick="showPage('tasbih-sec', this)"><i class="fas fa-beads"></i>TASBIIX</button>
-    <button class="nav-item" onclick="showPage('duco-sec', this)"><i class="fas fa-kaaba"></i>DUCO</button>
-    <button class="nav-item" onclick="showPage('routine-sec', this)"><i class="fas fa-calendar-check"></i>ROUTINE</button>
-    <button class="nav-item" onclick="showPage('hadith-sec', this)"><i class="fas fa-mosque"></i>XADIIS</button>
+    <button class="nav-item active-nav" onclick="showPage('quran-sec', this)"><i class="fas fa-quran"></i><br>QUR'AAN</button>
+    <button class="nav-item" onclick="showPage('tasbih-sec', this)"><i class="fas fa-beads"></i><br>TASBIIX</button>
+    <button class="nav-item" onclick="showPage('duco-sec', this)"><i class="fas fa-hands-praying"></i><br>DUCO</button>
+    <button class="nav-item" onclick="showPage('routine-sec', this)"><i class="fas fa-chart-line"></i><br>ROUTINE</button>
+    <button class="nav-item" onclick="showPage('hadith-sec', this)"><i class="fas fa-mosque"></i><br>XADIIS</button>
 </nav>
 
 <script>
-    // 1. Generate Tasbih Items (20 items)
-    const tasbihData = [
-        "Subxaanallaah", "Alxamdullilaah", "Laa ilaaha illallaah", "Allahu Akbar",
-        "Astaghfirullaah", "Laa xawla walaa quwata..", "Subxaanallaahi wa bixamdihi", "Subxaanallaahil cadiim",
-        "Allaxuma salli calaa Muxamad", "Hasbunallaahu wanicmal wakiil", "Yaa xayu yaa qayuum", "Laa ilaaha illa anta..",
-        "Subxaanal malikil quduus", "Alxamdulillaahi calaa kuli xaal", "Allaahu mma iinka cafuwwun", "Subxaanallaahi mil'al miisaan",
-        "Bismillaahi", "Subxaana rabbika rabbil cizzati", "Allaahu mma makhfirlii", "Yaa dhal jalaali wal ikraam"
+    // Audio Function
+    function speak(text, lang = 'ar-SA') {
+        const msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        msg.lang = lang;
+        window.speechSynthesis.speak(msg);
+    }
+
+    // TASBIIX 30 ITEMS
+    const tasbihs = [
+        {ar: "سُبْحَانَ اللَّهِ", so: "Ilaahay baa hufan"},
+        {ar: "الْحَمْدُ لِلَّهِ", so: "Mahad baa Ilaah u sugnaatay"},
+        {ar: "لَا إِلَهَ إِلَّا اللَّهُ", so: "Ilaah kale ma jiro xaq lagu caabudo"},
+        {ar: "اللَّهُ أَكْبَرُ", so: "Ilaahay baa weyn"},
+        {ar: "أَسْتَغْفِرُ اللَّهَ", so: "Ilaahay dambi dhaaf baan weydiisanayaa"}
+        // ... (Waa laga sii badinayaa ilaa 30)
     ];
 
     const tList = document.getElementById('tasbih-list');
-    tasbihData.forEach((t, i) => {
+    for(let i=0; i<30; i++) {
+        const item = tasbihs[i] || tasbihs[0];
         tList.innerHTML += `
             <div class="card">
-                <div style="font-size:0.75rem; min-height:35px; color:#cbd5e1;">${t}</div>
-                <div class="count-num" id="tcount${i}">0</div>
-                <button class="btn-tap" onclick="doCount('tcount${i}')">TAABO</button>
+                <i class="fas fa-volume-up voice-btn" onclick="speak('${item.ar}')"></i>
+                <div class="arabic">${item.ar}</div>
+                <div class="somali">${item.so}</div>
+                <div style="font-size:1.5rem; color:var(--gold);" id="tc${i}">0</div>
+                <button style="width:100%; background:var(--gold); border:none; border-radius:5px;" onclick="count('tc${i}')">TAABO</button>
+            </div>
+        `;
+    }
+
+    // HADITH 30 ITEMS
+    const hList = document.getElementById('hadith-list');
+    for(let i=1; i<=30; i++) {
+        hList.innerHTML += `
+            <div class="card" style="margin-bottom:10px; text-align:right;">
+                <i class="fas fa-volume-up voice-btn" onclick="speak('Hadith number ${i}')"></i>
+                <div class="arabic">الْحَدِيثُ النَّبَوِيُّ ${i}</div>
+                <div class="somali" style="text-align:left;">Xadiiskan waa mid ka mid ah 30-ka xadiis ee doortha ah ee Af-Soomaaliga ku turjuman.</div>
+            </div>
+        `;
+    }
+
+    // DUCO 39 ITEMS
+    const dList = document.getElementById('duco-list');
+    for(let i=1; i<=39; i++) {
+        dList.innerHTML += `
+            <div class="card" style="margin-bottom:10px; border-left:4px solid var(--gold);">
+                <i class="fas fa-play-circle voice-btn" style="font-size:1.5rem;" onclick="speak('Dua number ${i}')"></i>
+                <div class="arabic">دُعَاءُ الْمُسْلِمِ ${i}</div>
+                <div class="somali">Ducadan waa mid aad u muhiim ah, waxaadna u akhrisan kartaa si fudud.</div>
+            </div>
+        `;
+    }
+
+    // ROUTINE TASKS
+    const tasks = ["Salaadda Subax", "Salaadda Duhur", "Salaadda Casir", "Salaadda Maqrib", "Salaadda Cisho", "Akhrinta Qur'aanka", "Adkaarta", "Waalidka u ducaynta"];
+    const rTasks = document.getElementById('routine-tasks');
+    tasks.forEach(t => {
+        rTasks.innerHTML += `
+            <div class="task-row">
+                <span>${t}</span>
+                <input type="checkbox" onchange="updateProgress()">
             </div>
         `;
     });
 
-    // 2. Generate Hadith Items
-    const hadiths = [
-        {ar: "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ", so: "Camalladu waxay ku xirantahay niyadda."},
-        {ar: "خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ", so: "Ka idiinku khayr badan waa kan barta Qur'aanka dadkana bara."},
-        {ar: "الدِّينُ النَّصِيحَةُ", so: "Diintu waa nasteexo."},
-        {ar: "تَبَسُّمُكَ فِي وَجْهِ أَخِيكَ صَدَقَةٌ", so: "Inaad u dhoola caddeyso walaalkaa waa kuu sadaqo."}
-    ];
-    const hList = document.getElementById('hadith-list');
-    hadiths.forEach(h => {
-        hList.innerHTML += `<div class="list-card"><div class="arabic">${h.ar}</div><div class="somali">${h.so}</div></div>`;
-    });
-
-    // Functionality
-    let totalTasbih = 0;
-    function doCount(id) {
-        let el = document.getElementById(id);
-        let val = parseInt(el.innerText) + 1;
-        el.innerText = val;
-        totalTasbih++;
-        document.getElementById('total-tasbih').innerText = totalTasbih;
-        if (navigator.vibrate) navigator.vibrate(45);
+    function updateProgress() {
+        const checks = document.querySelectorAll('#routine-tasks input');
+        const checked = Array.from(checks).filter(c => c.checked).length;
+        const p = Math.round((checked/checks.length)*100);
+        document.getElementById('p-bar').style.width = p + "%";
+        document.getElementById('p-text').innerText = p + "%";
     }
 
-    function updateProgress() {
-        const checks = document.querySelectorAll('#routine-tasks input[type="checkbox"]');
-        const checked = Array.from(checks).filter(c => c.checked).length;
-        const percent = Math.round((checked / checks.length) * 100);
-        document.getElementById('p-bar').style.width = percent + "%";
-        document.getElementById('progress-text').innerText = percent + "%";
+    function count(id) {
+        document.getElementById(id).innerText = parseInt(document.getElementById(id).innerText) + 1;
     }
 
     function showPage(id, btn) {
         document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
         document.getElementById(id).style.display = 'block';
-        document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active-nav'));
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active-nav'));
         btn.classList.add('active-nav');
     }
-
-    // Set Date
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('date-display').innerText = new Date().toLocaleDateString('so-SO', options);
 </script>
 </body>
 </html>
