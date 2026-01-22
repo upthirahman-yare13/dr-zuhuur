@@ -7,152 +7,104 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary: #0077b6; --secondary: #00b4d8; --accent: #caf0f8; --dark: #023e8a; --white: #ffffff; --light: #f8fafc; }
+        :root { --primary: #0077b6; --secondary: #00b4d8; --accent: #caf0f8; --dark: #023e8a; --white: #ffffff; }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background: #f4f7f6; color: #333; line-height: 1.5; }
         
-        body { font-family: 'Poppins', sans-serif; margin: 0; background: #e2e8f0; color: #333; line-height: 1.6; }
-        
+        /* Header Section */
         header { 
             background: linear-gradient(135deg, var(--dark), var(--primary)); 
-            color: white; padding: 60px 20px; text-align: center; position: relative;
-            border-bottom: 10px solid var(--secondary);
+            color: white; padding: 40px 20px; text-align: center;
+            border-bottom: 8px solid var(--secondary);
         }
 
-        .profile-container { position: relative; display: inline-block; margin-bottom: 20px; }
         .profile-img { 
-            width: 170px; height: 170px; border-radius: 50%; 
-            border: 6px solid var(--white); object-fit: cover;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3); background: #eee;
+            width: 140px; height: 140px; border-radius: 50%; 
+            border: 4px solid white; object-fit: cover; margin-bottom: 10px;
         }
 
-        .main-container { max-width: 1100px; margin: -50px auto 40px; display: grid; grid-template-columns: 1fr 2fr; gap: 25px; padding: 0 20px; }
-        .sidebar, .content { background: var(--white); border-radius: 15px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .main-container { max-width: 900px; margin: 20px auto; display: grid; grid-template-columns: 1fr 2fr; gap: 20px; padding: 20px; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        
+        .sidebar { border-right: 1px solid #eee; padding-right: 20px; }
+        h2 { color: var(--dark); font-size: 1.1rem; border-bottom: 2px solid var(--accent); padding-bottom: 5px; margin-top: 20px; display: flex; align-items: center; gap: 8px; }
 
-        h2 { color: var(--dark); font-size: 1.2rem; border-bottom: 3px solid var(--accent); padding-bottom: 8px; margin-top: 0; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
-
-        .action-bar { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; }
-        .btn { padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; color: white; font-size: 0.9rem; transition: 0.3s; }
-        .btn-call { background: #27ae60; } .btn-mail { background: #e67e22; }
-
-        .info-item { margin-bottom: 12px; font-size: 0.85rem; display: flex; align-items: center; gap: 10px; }
+        .info-item { margin-bottom: 10px; font-size: 0.85rem; }
         .info-item i { color: var(--primary); width: 15px; }
 
-        .lang-item { margin-bottom: 12px; }
-        .lang-info { display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; }
-        .progress-bg { background: #e2e8f0; height: 6px; border-radius: 10px; }
-        .progress-fill { background: var(--secondary); height: 100%; border-radius: 10px; }
+        .entry { margin-bottom: 15px; }
+        .entry-header { display: flex; justify-content: space-between; font-weight: bold; color: var(--primary); font-size: 0.9rem; }
+        .entry-title { font-weight: 600; font-size: 0.85rem; color: #444; }
 
-        .entry { margin-bottom: 20px; border-left: 3px solid var(--accent); padding-left: 15px; }
-        .entry-header { display: flex; justify-content: space-between; font-weight: 700; color: var(--primary); font-size: 0.95rem; }
-        .entry-title { font-weight: 600; color: #444; margin: 3px 0; font-size: 0.9rem; }
-        
-        .skills-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-        .skill-item { background: var(--light); padding: 6px 10px; border-radius: 6px; font-size: 0.8rem; border: 1px solid #edf2f7; display: flex; align-items: center; gap: 6px; }
-        .skill-item i { color: var(--secondary); font-size: 0.7rem; }
+        .skill-tag { display: inline-block; background: var(--accent); color: var(--dark); padding: 4px 10px; border-radius: 15px; font-size: 0.75rem; margin: 2px; font-weight: 600; }
 
-        footer { text-align: center; padding: 30px; background: var(--dark); color: white; }
-        @media (max-width: 768px) { .main-container { grid-template-columns: 1fr; } }
-        @media print { .action-bar, .print-btn { display: none; } body { background: white; } .main-container { margin-top: 20px; } }
+        .print-btn { background: #27ae60; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 20px; float: right; }
+
+        @media print { .print-btn { display: none; } .main-container { box-shadow: none; margin: 0; width: 100%; } body { background: white; } }
     </style>
 </head>
 <body>
 
+<button class="print-btn" onclick="window.print()"><i class="fas fa-file-pdf"></i> Daabaco CV (PDF)</button>
+
 <header>
-    <div class="profile-container">
-        <img src="fathi.jpg" alt="Fathi Abdikarin Ali" class="profile-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3840/3840422.png'">
-    </div>
-    <h1>Fathi Abdikarin Ali</h1>
-    <p>Registered Nurse (BSc) | Specialized in Emergency & Neonatal Care</p>
+    <img src="fathi.jpg" alt="Fathi" class="profile-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3840/3840422.png'">
+    <h1 style="margin:0;">Fathi Abdikarin Ali</h1>
+    <p style="margin:5px 0;">Registered Nurse (BSc) | Emergency Care Specialist</p>
 </header>
 
 <div class="main-container">
     <div class="sidebar">
-        <button onclick="window.print()" class="print-btn" style="width:100%; background:var(--dark); color:white; border:none; padding:10px; border-radius:5px; cursor:pointer; margin-bottom:20px;">
-            <i class="fas fa-print"></i> Daabaco CV (PDF)
-        </button>
-
-        <h2><i class="fas fa-id-card"></i> Personal Details</h2>
-        <div class="info-item"><i class="fas fa-user"></i> Fathi Abdikarin Ali</div>
-        <div class="info-item"><i class="fas fa-map-marker-alt"></i> Mogadishu, Somalia</div>
+        <h2><i class="fas fa-user"></i> Faahfaahin</h2>
         <div class="info-item"><i class="fas fa-phone"></i> +252611 154048</div>
         <div class="info-item"><i class="fas fa-envelope"></i> fadxicabdikariin899@gmail.com</div>
-        <div class="info-item"><i class="fas fa-heart"></i> Status: Single</div>
+        <div class="info-item"><i class="fas fa-map-marker-alt"></i> Mogadishu, Somalia</div>
+        <div class="info-item"><i class="fas fa-heart"></i> Single</div>
 
-        <h2 style="margin-top: 30px;"><i class="fas fa-globe"></i> Languages</h2>
-        <div class="lang-item"><div class="lang-info"><span>Somali (Native)</span></div><div class="progress-bg"><div class="progress-fill" style="width: 100%;"></div></div></div>
-        <div class="lang-item"><div class="lang-info"><span>English (Fluent)</span></div><div class="progress-bg"><div class="progress-fill" style="width: 90%;"></div></div></div>
-        <div class="lang-item"><div class="lang-info"><span>Arabic</span></div><div class="progress-bg"><div class="progress-fill" style="width: 75%;"></div></div></div>
+        <h2><i class="fas fa-globe"></i> Luuqadaha</h2>
+        <p style="font-size:0.85rem;">Somali (Native)<br>English (Fluent)<br>Arabic (Professional)</p>
 
-        <h2 style="margin-top: 30px;"><i class="fas fa-users"></i> References</h2>
-        <div style="font-size: 0.8rem;">
-            <p><strong>Dr Hassan Abdullahi Dahiye</strong><br>Principal, SOS College<br>+252615201209</p>
-            <p><strong>MRS. Hamdi Ahmed Husein</strong><br>Coordinator, SOS College<br>+252615507745</p>
-            <p><strong>MR. Mohamed Alasow</strong><br>Admin Officer, SOS College<br>+252615592422</p>
-        </div>
+        <h2><i class="fas fa-users"></i> Tixraac (Ref)</h2>
+        <p style="font-size:0.75rem;"><strong>Dr Hassan Abdullahi</strong><br>Principal, SOS College<br>+252615201209</p>
+        <p style="font-size:0.75rem;"><strong>MRS. Hamdi Ahmed</strong><br>Coordinator, SOS College<br>+2526155507745</p>
     </div>
 
     <div class="content">
-        <div class="action-bar">
-            <a href="tel:+252611154048" class="btn btn-call"><i class="fas fa-phone"></i> Wac Fathi</a>
-            <a href="mailto:fadxicabdikariin899@gmail.com" class="btn btn-mail"><i class="fas fa-envelope"></i> Email u dir</a>
+        <h2><i class="fas fa-envelope-open-text"></i> Cover Letter</h2>
+        <div style="font-size: 0.85rem; text-align: justify; border: 1px solid #f0f0f0; padding: 10px;">
+            <p><strong>To: [Hospital Name]</strong></p>
+            <p>I am writing this application to apply for the Nursing position. I have extensive experience in direct patient care including administering medications, monitoring vital signs, health assessments, and patient education. I speak English and Somali fluently and am an excellent candidate for this role.</p>
+            <p>Sincerely, <br><strong>Drs: Fathi Abdikarin Ali</strong></p>
         </div>
 
-        <div class="section-card">
-            <h2><i class="fas fa-envelope-open-text"></i> Cover Letter</h2>
-            <div style="font-size: 0.9rem; color: #444; margin-bottom: 20px; border: 1px solid #eee; padding: 15px; border-radius: 8px;">
-                <p><strong>To: [Hospital Name]</strong> | Date: [Current Date]</p>
-                <p>I am writing this application to apply for this position and I am happy with how it has really been advertised. I am happy to see this kind of this work because I have more of experience in this work. In addition to my nursing experience, I have strong experience that include direct patient care such as administering medications and monitoring vital signs, health assessments, and patient and family education. My broad background makes me an excellent candidate for this position. I can speak English very well and Somali language which is my mother tongue.</p>
-                <p>Sincerely, <br><strong>Drs: Fathi Abdikarin Ali</strong></p>
-            </div>
-        </div>
-
-        <h2><i class="fas fa-user-md"></i> Profile</h2>
-        <p style="font-size: 0.9rem; color: #444;">According to my experience I am happy to see this kind of this work because I have one of experience in this work. In addition to my nursing experience, I have strong experience that include direct patient care such as administering medications and monitoring vital signs, health assessments, and patient and family education. I can speak English very well and Somali language which is my mother tongue. I would like to get an opportunity to have an interview with you.</p>
-
-        <h2><i class="fas fa-graduation-cap"></i> Education & Training</h2>
+        <h2><i class="fas fa-graduation-cap"></i> Waxbarashada</h2>
         <div class="entry">
-            <div class="entry-header"><span>SOS College of Health Science University</span> <span>2021 — 2025</span></div>
-            <div class="entry-title">Bachelor Degree of Science in Nursing</div>
+            <div class="entry-header"><span>SOS College University</span> <span>2021 — 2025</span></div>
+            <div class="entry-title">Bachelor of Science in Nursing</div>
         </div>
         <div class="entry">
-            <div class="entry-header"><span>World Health Organization (WHO)</span> <span>2024</span></div>
-            <div class="entry-title">Basic Emergency Care (Conflict Related Injuries)</div>
-        </div>
-        <div class="entry">
-            <div class="entry-header"><span>SOS College of Health Science University</span> <span>2025</span></div>
-            <div class="entry-title">Obstetrics Emergency and Neonatal Care</div>
+            <div class="entry-header"><span>WHO Certified</span> <span>2024</span></div>
+            <div class="entry-title">Basic Emergency Care Training</div>
         </div>
 
-        <h2><i class="fas fa-briefcase"></i> Professional Experience</h2>
+        <h2><i class="fas fa-briefcase"></i> Khibradda Shaqo</h2>
         <div class="entry">
             <div class="entry-header"><span>SOS Hospital</span> <span>2022 — 2025</span></div>
-            <div class="entry-title">Nursing Role</div>
-            <ul style="padding-left: 20px; font-size: 0.85rem; color: #555;">
-                <li>Patient assessment: Evaluate health status and record symptoms.</li>
-                <li>Monitor vital signs: Regularly check BP, pulse, and temperature.</li>
-                <li>Assisting daily activities: Patient bathing, dressing, and hygiene.</li>
-                <li>Wound care: Cleaning wounds and applying dressings.</li>
-                <li>Specimen collection: Drawing blood and bodily fluids for lab work.</li>
-            </ul>
+            <p style="font-size:0.8rem; margin:5px 0;">Patient assessment, Wound care, Specimen collection, and Vital signs monitoring.</p>
         </div>
 
-        <h2><i class="fas fa-stethoscope"></i> Clinical Skills</h2>
-        <div class="skills-list">
-            <div class="skill-item"><i class="fas fa-check"></i> Patient assessment</div>
-            <div class="skill-item"><i class="fas fa-check"></i> Medication administration</div>
-            <div class="skill-item"><i class="fas fa-check"></i> Decision Making</div>
-            <div class="skill-item"><i class="fas fa-check"></i> Critical thinking</div>
-            <div class="skill-item"><i class="fas fa-check"></i> Labor and delivery</div>
-            <div class="skill-item"><i class="fas fa-check"></i> Infection control</div>
-            <div class="skill-item"><i class="fas fa-check"></i> Emergency response</div>
-            <div class="skill-item"><i class="fas fa-check"></i> Communication skills</div>
-            <div class="skill-item"><i class="fas fa-check"></i> Time Management</div>
-            <div class="skill-item"><i class="fas fa-check"></i> Problem-solving</div>
+        <h2><i class="fas fa-tools"></i> Xirfadaha (Skills)</h2>
+        <div class="skills">
+            <span class="skill-tag">Patient assessment</span>
+            <span class="skill-tag">Medication administration</span>
+            <span class="skill-tag">Emergency response</span>
+            <span class="skill-tag">Labor and delivery</span>
+            <span class="skill-tag">Infection control</span>
+            <span class="skill-tag">Problem-solving</span>
         </div>
     </div>
 </div>
 
-<footer>
-    <p>&copy; 2026 Fathi Abdikarin Ali - Professional Medical Portfolio</p>
+<footer style="text-align:center; font-size:0.7rem; color:#888; padding: 20px;">
+    &copy; 2026 Fathi Abdikarin Ali - Professional Nursing CV
 </footer>
 
 </body>
